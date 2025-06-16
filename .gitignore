@@ -84,4 +84,7 @@ jspm_packages/
 .nuxt
 
 # rollup.js default build output
-dist/ 
+dist/
+
+# Nested git repository
+portfolio/ 
