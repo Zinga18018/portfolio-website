@@ -162,21 +162,27 @@ Please provide a helpful and informative response about Yogesh Kuchimanchi's por
   }
 
   const handleSendMessage = async () => {
-    if (!input.trim()) return
+    console.log('handleSendMessage called with input:', input); // Debug log
+    
+    if (!input.trim()) {
+      console.log('Input is empty, returning'); // Debug log
+      return;
+    }
 
     const userMessage: Message = {
       id: Date.now(),
-      text: input,
+      text: input.trim(),
       isUser: true,
       timestamp: new Date()
     }
 
     setMessages(prev => [...prev, userMessage])
-    const currentInput = input
+    const currentInput = input.trim()
     setInput('')
     setIsLoading(true)
 
     try {
+      console.log('Generating AI response for:', currentInput); // Debug log
       const aiResponseText = await generateAIResponse(currentInput)
       
       const aiResponse: Message = {
@@ -187,7 +193,9 @@ Please provide a helpful and informative response about Yogesh Kuchimanchi's por
       }
       
       setMessages(prev => [...prev, aiResponse])
+      console.log('AI response added successfully'); // Debug log
     } catch (error) {
+      console.error('Error in handleSendMessage:', error); // Debug log
       const errorResponse: Message = {
         id: Date.now() + 1,
         text: "I apologize, but I'm having trouble processing your request right now. Please try again!",
@@ -200,9 +208,10 @@ Please provide a helpful and informative response about Yogesh Kuchimanchi's por
     }
   }
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
+      e.stopPropagation()
       handleSendMessage()
     }
   }
@@ -217,7 +226,15 @@ Please provide a helpful and informative response about Yogesh Kuchimanchi's por
   ]
 
   const handleQuickQuestion = (question: string) => {
-    setInput(question)
+    console.log('Quick question clicked:', question); // Debug log
+    setInput(question);
+    
+    // Auto-send after a short delay to allow user to see the input change
+    setTimeout(() => {
+      if (!isLoading) {
+        handleSendMessage();
+      }
+    }, 200);
   }
 
   return (
@@ -225,6 +242,7 @@ Please provide a helpful and informative response about Yogesh Kuchimanchi's por
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden max-w-2xl mx-auto"
+      style={{ pointerEvents: 'auto' }}
     >
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-4">
         <h3 className="text-white font-bold text-lg flex items-center gap-2">
@@ -243,8 +261,25 @@ Please provide a helpful and informative response about Yogesh Kuchimanchi's por
           {quickQuestions.map((question, index) => (
             <button
               key={index}
-              onClick={() => handleQuickQuestion(question)}
-              className="px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+              onClick={(e) => {
+                e.preventDefault();
+                console.log('Button clicked:', question);
+                handleQuickQuestion(question);
+              }}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                console.log('Button mouse down:', question);
+                handleQuickQuestion(question);
+              }}
+              disabled={isLoading}
+              className="px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed border-0 outline-0"
+              style={{ 
+                pointerEvents: 'auto',
+                WebkitUserSelect: 'none',
+                userSelect: 'none',
+                WebkitTapHighlightColor: 'transparent'
+              }}
+              type="button"
             >
               {question}
             </button>
@@ -252,7 +287,7 @@ Please provide a helpful and informative response about Yogesh Kuchimanchi's por
         </div>
       </div>
 
-      <div className="h-96 overflow-y-auto p-4 space-y-4">
+      <div className="h-96 overflow-y-auto p-4 space-y-4" style={{ pointerEvents: 'auto' }}>
         <AnimatePresence>
           {messages.map((message) => (
             <motion.div
@@ -309,21 +344,28 @@ Please provide a helpful and informative response about Yogesh Kuchimanchi's por
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="border-t border-gray-200 dark:border-gray-600 p-4">
+      <div className="border-t border-gray-200 dark:border-gray-600 p-4" style={{ pointerEvents: 'auto' }}>
         <div className="flex gap-2">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyDown}
             placeholder="Ask about Yogesh's projects, skills, background..."
             className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white text-sm"
+            style={{ pointerEvents: 'auto' }}
             disabled={isLoading}
+            autoComplete="off"
           />
           <motion.button
-            onClick={handleSendMessage}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              handleSendMessage();
+            }}
             disabled={!input.trim() || isLoading}
-            className="px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full hover:from-purple-700 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+            className="px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full hover:from-purple-700 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 cursor-pointer"
+            style={{ pointerEvents: 'auto' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

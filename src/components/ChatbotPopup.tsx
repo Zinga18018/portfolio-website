@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle, X, Bot, Send, Sparkles } from 'lucide-react'
 import InteractiveAIDemo from './InteractiveAIDemo'
@@ -8,26 +8,64 @@ import InteractiveAIDemo from './InteractiveAIDemo'
 export default function ChatbotPopup() {
   const [isOpen, setIsOpen] = useState(false)
 
+  // Expose the chatbot open function globally
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      (window as any).openChatbot = () => setIsOpen(true);
+    }
+    return () => {
+      if (typeof window !== 'undefined') {
+        delete (window as any).openChatbot;
+      }
+    };
+  }, []);
+
+  // Prevent page scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   return (
     <>
-      {/* Floating Chatbot Icon */}
-      <motion.div
-        className="fixed bottom-6 right-6 z-50"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 2, duration: 0.5, type: "spring" }}
+      {/* Floating Chatbot Icon - Always visible with maximum z-index */}
+      <div
+        id="chatbot-button"
+        className="chatbot-container fixed bottom-6 right-6"
+        style={{ 
+          zIndex: 999999999,
+          position: 'fixed',
+          pointerEvents: 'auto',
+          visibility: 'visible',
+          opacity: 1,
+          display: 'block'
+        }}
+        data-chatbot="true"
       >
         <motion.button
           onClick={() => setIsOpen(true)}
-          className="relative w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-blue-500/25 transition-all duration-300"
+          className="relative w-16 h-16 bg-gradient-to-br from-purple-500 via-purple-600 to-purple-700 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 border-2 border-purple-300/50 cursor-pointer"
+          style={{ 
+            pointerEvents: 'auto',
+            zIndex: 999999999,
+            position: 'relative'
+          }}
+          initial={{ scale: 1, opacity: 1 }}
+          animate={{ scale: 1, opacity: 1 }}
           whileHover={{ scale: 1.1, rotate: 5 }}
           whileTap={{ scale: 0.95 }}
         >
-          <Bot className="w-8 h-8" />
+          <MessageCircle className="w-8 h-8" />
           
           {/* Pulsing Animation */}
           <motion.div
-            className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600"
+            className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 pointer-events-none"
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.7, 0, 0.7],
@@ -39,45 +77,23 @@ export default function ChatbotPopup() {
             }}
           />
           
-          {/* Floating particles around icon */}
-          {[...Array(3)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-blue-300 rounded-full"
-              style={{
-                left: `${30 + Math.cos(i * 120 * Math.PI / 180) * 25}px`,
-                top: `${30 + Math.sin(i * 120 * Math.PI / 180) * 25}px`,
-              }}
-              animate={{
-                y: [-5, -15, -5],
-                opacity: [0.3, 1, 0.3],
-                scale: [0.5, 1, 0.5],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                delay: i * 0.5,
-                ease: "easeInOut",
-              }}
-            />
-          ))}
-          
           {/* AI Badge */}
           <motion.div
-            className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center"
+            className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center border-2 border-white pointer-events-none"
             animate={{ rotate: [0, 10, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity }}
           >
-            <Sparkles className="w-3 h-3 text-white" />
+            <Sparkles className="w-2 h-2 text-white" />
           </motion.div>
         </motion.button>
-      </motion.div>
+      </div>
 
-      {/* Popup Modal */}
+      {/* Popup Modal - Fixed z-index */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+            style={{ zIndex: 999999998 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -90,6 +106,7 @@ export default function ChatbotPopup() {
               exit={{ scale: 0.8, opacity: 0, y: 50 }}
               transition={{ type: "spring", damping: 20, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
+              style={{ pointerEvents: 'auto' }}
             >
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20">
@@ -109,7 +126,8 @@ export default function ChatbotPopup() {
                 
                 <motion.button
                   onClick={() => setIsOpen(false)}
-                  className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 flex items-center justify-center transition-colors"
+                  className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 flex items-center justify-center transition-colors cursor-pointer"
+                  style={{ pointerEvents: 'auto' }}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -118,7 +136,7 @@ export default function ChatbotPopup() {
               </div>
               
               {/* Content */}
-              <div className="p-6 max-h-[calc(90vh-120px)] overflow-y-auto">
+              <div className="p-6 max-h-[calc(90vh-120px)] overflow-y-auto" style={{ pointerEvents: 'auto' }}>
                 <div className="mb-6">
                   <h4 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">
                     Welcome to Yogesh's Real AI Assistant! 🤖✨
@@ -141,6 +159,7 @@ export default function ChatbotPopup() {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 }}
+                        style={{ pointerEvents: 'auto' }}
                       >
                         {topic}
                       </motion.div>

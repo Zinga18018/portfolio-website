@@ -6,8 +6,11 @@ import { Sun, Moon } from 'lucide-react'
 
 export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(false)
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
+    setIsClient(true)
+    
     // Check for saved theme preference or default to system preference
     const savedTheme = localStorage.getItem('theme')
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -31,6 +34,13 @@ export default function ThemeToggle() {
       document.documentElement.classList.add('dark')
       localStorage.setItem('theme', 'dark')
     }
+  }
+
+  // Don't render on server side to avoid hydration issues
+  if (!isClient) {
+    return (
+      <div className="fixed top-6 right-6 z-50 p-3 rounded-full bg-white shadow-lg border border-gray-200 w-11 h-11" />
+    )
   }
 
   return (

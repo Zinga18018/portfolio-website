@@ -1,406 +1,448 @@
 'use client'
 
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useRef, useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
 
-interface CosmicElement {
-  id: number
+interface Particle {
   x: number
   y: number
   size: number
-  speed: number
-  type: 'asteroid' | 'comet' | 'star' | 'nebula' | 'plasma'
-  color: string
+  speedX: number
+  speedY: number
   opacity: number
-  angle: number
+  type: 'star' | 'asteroid' | 'dust' | 'comet'
+  color: string
+  rotation: number
+  rotationSpeed: number
+  trail?: { x: number; y: number; opacity: number }[]
+  life: number
+  maxLife: number
+  pulse: number
 }
 
-export default function AsteroidShower() {
-  const [elements, setElements] = useState<CosmicElement[]>([])
+interface MousePosition {
+  x: number
+  y: number
+}
 
-  const createCosmicElement = useMemo(() => {
-    return (): CosmicElement => {
-      const types: CosmicElement['type'][] = ['asteroid', 'comet', 'star', 'nebula', 'plasma']
-      const type = types[Math.floor(Math.random() * types.length)]
-      
-      const colors = {
-        asteroid: ['#ff6b35', '#f7931e', '#ffb347', '#ff8c42'],
-        comet: ['#00d4ff', '#0099cc', '#66ccff', '#33b5e5'],
-        star: ['#ffffff', '#ffffcc', '#ccffff', '#ffccff'],
-        nebula: ['#9d4edd', '#7209b7', '#c77dff', '#e0aaff'],
-        plasma: ['#ff006e', '#fb5607', '#ffbe0b', '#8338ec']
-      }
+interface AsteroidShowerProps {
+  density?: 'low' | 'medium' | 'high'
+  theme?: 'space' | 'cosmic' | 'minimal'
+  interactive?: boolean
+  reduceMotion?: boolean
+}
 
-      return {
-        id: Math.random(),
-        x: Math.random() * (window.innerWidth + 200) - 100,
-        y: -50 - Math.random() * 100,
-        size: type === 'nebula' ? Math.random() * 8 + 4 : Math.random() * 4 + 1,
-        speed: type === 'comet' ? Math.random() * 4 + 2 : Math.random() * 2 + 0.5,
-        type,
-        color: colors[type][Math.floor(Math.random() * colors[type].length)],
-        opacity: Math.random() * 0.6 + 0.3,
-        angle: Math.random() * 40 + 20
-      }
-    }
-  }, [])
+export default function AsteroidShower({ 
+  density = 'high', 
+  theme = 'space', 
+  interactive = true,
+  reduceMotion = false 
+}: AsteroidShowerProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const animationRef = useRef<number>()
+  const particlesRef = useRef<Particle[]>([])
+  const mouseRef = useRef<MousePosition>({ x: 0, y: 0 })
+  const lastTimeRef = useRef<number>(0)
+  const [isVisible, setIsVisible] = useState(false)
+  const [performanceMode, setPerformanceMode] = useState<'high' | 'medium' | 'low'>('high')
 
+  // Performance detection
   useEffect(() => {
-    // Create initial elements
-    const initialElements = Array.from({ length: 30 }, createCosmicElement)
-    setElements(initialElements)
-
-    // Spawn new elements periodically
-    const spawnInterval = setInterval(() => {
-      if (Math.random() < 0.4) {
-        setElements(prev => [...prev, createCosmicElement()])
+    const checkPerformance = () => {
+      // Check for reduced motion preference
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      if (prefersReducedMotion || reduceMotion) {
+        setPerformanceMode('low')
+        return
       }
-    }, 800)
 
-    return () => clearInterval(spawnInterval)
-  }, [createCosmicElement])
-
-  useEffect(() => {
-    const animateElements = () => {
-      setElements(prev => 
-        prev
-          .map(element => ({
-            ...element,
-            x: element.x - Math.cos(element.angle * Math.PI / 180) * element.speed,
-            y: element.y + Math.sin(element.angle * Math.PI / 180) * element.speed,
-            opacity: element.type === 'star' ? element.opacity : Math.max(0, element.opacity - 0.001)
-          }))
-          .filter(element => 
-            element.x > -200 && 
-            element.y < window.innerHeight + 200 && 
-            element.opacity > 0.1
-          )
-      )
+      // Set default to medium for better stability
+      setPerformanceMode('medium')
     }
 
-    const animationFrame = setInterval(animateElements, 16)
-    return () => clearInterval(animationFrame)
-  }, [])
+    checkPerformance()
+  }, [reduceMotion])
 
-  const renderElement = (element: CosmicElement) => {
-    const baseStyle = {
-      left: element.x,
-      top: element.y,
-      opacity: element.opacity
+  // Particle configuration based on density and performance
+  const getParticleConfig = useCallback(() => {
+    const configs = {
+      low: { count: 100, trailLength: 5 },
+      medium: { count: 200, trailLength: 8 },
+      high: { count: 300, trailLength: 10 }
     }
 
-    switch (element.type) {
+    const performanceMultiplier = performanceMode === 'high' ? 1 : performanceMode === 'medium' ? 0.8 : 0.6
+    const baseConfig = configs[density]
+    
+    return {
+      count: Math.floor(baseConfig.count * performanceMultiplier),
+      trailLength: Math.floor(baseConfig.trailLength * performanceMultiplier)
+    }
+  }, [density, performanceMode])
+
+  // Theme colors
+  const getThemeColors = useCallback(() => {
+    const themes = {
+      space: {
+        background: 'rgba(0, 0, 20, 0.02)',
+        particles: [
+          '#ffffff', '#e6f3ff', '#cce7ff', '#b3dbff', 
+          '#99cfff', '#80c3ff', '#66b7ff', '#4dabff'
+        ],
+        comets: ['#ffd700', '#ffed4e', '#fff59d']
+      },
+      cosmic: {
+        background: 'rgba(139, 69, 193, 0.03)',
+        particles: [
+          '#e1bee7', '#ce93d8', '#ba68c8', '#ab47bc',
+          '#9c27b0', '#8e24aa', '#7b1fa2', '#6a1b9a'
+        ],
+        comets: ['#ff6ec7', '#ff9a9e', '#fad0c4']
+      },
+      minimal: {
+        background: 'rgba(100, 100, 100, 0.01)',
+        particles: [
+          '#f5f5f5', '#eeeeee', '#e0e0e0', '#d5d5d5',
+          '#cccccc', '#c0c0c0', '#b5b5b5', '#aaaaaa'
+        ],
+        comets: ['#90a4ae', '#78909c', '#607d8b']
+      }
+    }
+    return themes[theme]
+  }, [theme])
+
+  // Create particle
+  const createParticle = useCallback((canvas: HTMLCanvasElement): Particle => {
+    const colors = getThemeColors()
+    const types: Particle['type'][] = ['star', 'asteroid', 'dust', 'comet']
+    const type = types[Math.floor(Math.random() * types.length)]
+    
+    // Adjust probabilities for better visual balance - more asteroids and variety
+    const adjustedType = Math.random() < 0.35 ? 'star' : 
+                        Math.random() < 0.35 ? 'dust' :
+                        Math.random() < 0.25 ? 'asteroid' : 'comet'
+
+    const isComet = adjustedType === 'comet'
+    const size = isComet ? 2 + Math.random() * 4 : 
+                adjustedType === 'asteroid' ? 1.5 + Math.random() * 3 :
+                adjustedType === 'dust' ? 0.5 + Math.random() * 1.5 :
+                0.8 + Math.random() * 2
+
+    const speed = isComet ? 3 + Math.random() * 4 : 
+                 adjustedType === 'asteroid' ? 1 + Math.random() * 2 :
+                 0.5 + Math.random() * 1.5
+
+    return {
+      x: Math.random() * (canvas.width + 200) - 100,
+      y: Math.random() * (canvas.height + 200) - 100,
+      size,
+      speedX: (Math.random() - 0.5) * speed,
+      speedY: (Math.random() - 0.5) * speed,
+      opacity: 0.3 + Math.random() * 0.7,
+      type: adjustedType,
+      color: isComet ? colors.comets[Math.floor(Math.random() * colors.comets.length)] :
+             colors.particles[Math.floor(Math.random() * colors.particles.length)],
+      rotation: Math.random() * Math.PI * 2,
+      rotationSpeed: (Math.random() - 0.5) * 0.02,
+      trail: isComet ? [] : undefined,
+      life: Math.random(),
+      maxLife: 1,
+      pulse: Math.random() * Math.PI * 2
+    }
+  }, [getThemeColors])
+
+  // Initialize particles
+  const initParticles = useCallback((canvas: HTMLCanvasElement) => {
+    const config = getParticleConfig()
+    particlesRef.current = Array.from({ length: config.count }, () => createParticle(canvas))
+  }, [createParticle, getParticleConfig])
+
+  // Draw particle
+  const drawParticle = useCallback((ctx: CanvasRenderingContext2D, particle: Particle) => {
+    ctx.save()
+    
+    // Apply opacity
+    ctx.globalAlpha = particle.opacity * Math.sin(particle.life * Math.PI)
+
+    switch (particle.type) {
+      case 'star':
+        // Draw twinkling star
+        ctx.fillStyle = particle.color
+        ctx.translate(particle.x, particle.y)
+        ctx.rotate(particle.rotation)
+        
+        // Star shape
+        ctx.beginPath()
+        for (let i = 0; i < 5; i++) {
+          const angle = (i * Math.PI * 2) / 5
+          const x = Math.cos(angle) * particle.size
+          const y = Math.sin(angle) * particle.size
+          if (i === 0) ctx.moveTo(x, y)
+          else ctx.lineTo(x, y)
+          
+          const innerAngle = ((i + 0.5) * Math.PI * 2) / 5
+          const innerX = Math.cos(innerAngle) * (particle.size * 0.4)
+          const innerY = Math.sin(innerAngle) * (particle.size * 0.4)
+          ctx.lineTo(innerX, innerY)
+        }
+        ctx.closePath()
+        ctx.fill()
+
+        // Add glow
+        const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, particle.size * 2)
+        gradient.addColorStop(0, particle.color)
+        gradient.addColorStop(1, 'transparent')
+        ctx.fillStyle = gradient
+        ctx.beginPath()
+        ctx.arc(0, 0, particle.size * 2, 0, Math.PI * 2)
+        ctx.fill()
+        break
+
       case 'asteroid':
-        return (
-          <motion.div
-            key={element.id}
-            className="absolute"
-            style={baseStyle}
-            initial={{ scale: 0, rotate: 0 }}
-            animate={{ 
-              scale: [0.8, 1.2, 1],
-              rotate: 360
-            }}
-            transition={{ 
-              duration: 4,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          >
-            {/* Main asteroid body */}
-            <div
-              className="rounded-full relative"
-              style={{
-                width: element.size,
-                height: element.size,
-                background: `radial-gradient(circle at 30% 30%, ${element.color}, ${element.color}88)`,
-                boxShadow: `0 0 ${element.size * 3}px ${element.color}66, inset -2px -2px 4px rgba(0,0,0,0.3)`
-              }}
-            />
-            
-            {/* Fiery trail */}
-            <motion.div
-              className="absolute top-1/2"
-              style={{
-                left: element.size,
-                width: element.size * 8,
-                height: 2,
-                background: `linear-gradient(90deg, ${element.color}, ${element.color}66, transparent)`,
-                transform: 'translateY(-50%)',
-                filter: 'blur(1px)'
-              }}
-              animate={{
-                scaleX: [0.7, 1.3, 0.7],
-                opacity: [0.8, 0.4, 0.8]
-              }}
-              transition={{
-                duration: 0.6,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            
-            {/* Secondary trail */}
-            <div
-              className="absolute top-1/2"
-              style={{
-                left: element.size * 1.5,
-                width: element.size * 12,
-                height: 1,
-                background: `linear-gradient(90deg, ${element.color}44, transparent)`,
-                transform: 'translateY(-50%)',
-                filter: 'blur(2px)'
-              }}
-            />
-          </motion.div>
-        )
+        // Draw rough asteroid
+        ctx.fillStyle = particle.color
+        ctx.translate(particle.x, particle.y)
+        ctx.rotate(particle.rotation)
+        
+        ctx.beginPath()
+        const sides = 6 + Math.floor(Math.random() * 4)
+        for (let i = 0; i < sides; i++) {
+          const angle = (i * Math.PI * 2) / sides
+          const variation = 0.7 + Math.random() * 0.6
+          const x = Math.cos(angle) * particle.size * variation
+          const y = Math.sin(angle) * particle.size * variation
+          if (i === 0) ctx.moveTo(x, y)
+          else ctx.lineTo(x, y)
+        }
+        ctx.closePath()
+        ctx.fill()
+        break
+
+      case 'dust':
+        // Draw small dust particle
+        ctx.fillStyle = particle.color
+        ctx.beginPath()
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
+        ctx.fill()
+        break
 
       case 'comet':
-        return (
-          <motion.div
-            key={element.id}
-            className="absolute"
-            style={baseStyle}
-          >
-            {/* Comet nucleus */}
-            <motion.div
-              className="rounded-full"
-              style={{
-                width: element.size,
-                height: element.size,
-                background: `radial-gradient(circle, #ffffff, ${element.color})`,
-                boxShadow: `0 0 ${element.size * 4}px ${element.color}88`
-              }}
-              animate={{
-                scale: [1, 1.4, 1],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            
-            {/* Brilliant tail */}
-            <motion.div
-              className="absolute top-1/2"
-              style={{
-                left: element.size,
-                width: element.size * 15,
-                height: 4,
-                background: `linear-gradient(90deg, ${element.color}, ${element.color}88, ${element.color}44, transparent)`,
-                transform: 'translateY(-50%)',
-                filter: 'blur(2px)'
-              }}
-              animate={{
-                scaleX: [0.8, 1.2, 0.8],
-                opacity: [0.9, 0.6, 0.9]
-              }}
-              transition={{
-                duration: 1,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            
-            {/* Outer glow tail */}
-            <div
-              className="absolute top-1/2"
-              style={{
-                left: element.size * 0.5,
-                width: element.size * 20,
-                height: 8,
-                background: `linear-gradient(90deg, ${element.color}33, ${element.color}22, transparent)`,
-                transform: 'translateY(-50%)',
-                filter: 'blur(4px)'
-              }}
-            />
-          </motion.div>
-        )
+        // Draw comet with trail
+        if (particle.trail) {
+          // Draw trail
+          for (let i = 0; i < particle.trail.length; i++) {
+            const trailPoint = particle.trail[i]
+            ctx.globalAlpha = trailPoint.opacity * particle.opacity * 0.6
+            ctx.fillStyle = particle.color
+            ctx.beginPath()
+            ctx.arc(trailPoint.x, trailPoint.y, particle.size * (i / particle.trail.length), 0, Math.PI * 2)
+            ctx.fill()
+          }
+        }
 
-      case 'star':
-        return (
-          <motion.div
-            key={element.id}
-            className="absolute"
-            style={baseStyle}
-            animate={{
-              opacity: [element.opacity * 0.3, element.opacity, element.opacity * 0.3],
-              scale: [0.8, 1.2, 0.8]
-            }}
-            transition={{
-              duration: 2 + Math.random() * 3,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            <div
-              className="rounded-full"
-              style={{
-                width: element.size,
-                height: element.size,
-                backgroundColor: element.color,
-                boxShadow: `0 0 ${element.size * 2}px ${element.color}88`,
-                filter: 'blur(0.5px)'
-              }}
-            />
-          </motion.div>
+        // Draw comet head
+        ctx.globalAlpha = particle.opacity
+        const cometGradient = ctx.createRadialGradient(
+          particle.x, particle.y, 0,
+          particle.x, particle.y, particle.size * 2
         )
+        cometGradient.addColorStop(0, particle.color)
+        cometGradient.addColorStop(0.5, particle.color + '80')
+        cometGradient.addColorStop(1, 'transparent')
+        
+        ctx.fillStyle = cometGradient
+        ctx.beginPath()
+        ctx.arc(particle.x, particle.y, particle.size * 2, 0, Math.PI * 2)
+        ctx.fill()
 
-      case 'nebula':
-        return (
-          <motion.div
-            key={element.id}
-            className="absolute rounded-full"
-            style={{
-              ...baseStyle,
-              width: element.size * 2,
-              height: element.size * 2,
-              background: `radial-gradient(circle, ${element.color}22, ${element.color}11, transparent)`,
-              filter: 'blur(8px)'
-            }}
-            animate={{
-              scale: [0.8, 1.3, 0.8],
-              opacity: [element.opacity * 0.3, element.opacity * 0.7, element.opacity * 0.3]
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-        )
-
-      case 'plasma':
-        return (
-          <motion.div
-            key={element.id}
-            className="absolute"
-            style={baseStyle}
-          >
-            <motion.div
-              className="rounded-full"
-              style={{
-                width: element.size,
-                height: element.size,
-                background: `radial-gradient(circle, ${element.color}, ${element.color}66)`,
-                boxShadow: `0 0 ${element.size * 5}px ${element.color}88`
-              }}
-              animate={{
-                scale: [0.5, 1.5, 0.5],
-                rotate: [0, 180, 360]
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            
-            {/* Plasma trail */}
-            <motion.div
-              className="absolute top-1/2"
-              style={{
-                left: element.size,
-                width: element.size * 6,
-                height: element.size * 0.8,
-                background: `linear-gradient(90deg, ${element.color}88, ${element.color}44, transparent)`,
-                transform: 'translateY(-50%)',
-                filter: 'blur(1px)',
-                borderRadius: '50%'
-              }}
-              animate={{
-                scaleX: [0.5, 1.2, 0.5],
-                opacity: [0.7, 0.3, 0.7]
-              }}
-              transition={{
-                duration: 0.8,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-          </motion.div>
-        )
-
-      default:
-        return null
+        ctx.fillStyle = particle.color
+        ctx.beginPath()
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
+        ctx.fill()
+        break
     }
-  }
+    
+    ctx.restore()
+  }, [])
 
-  return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {/* Deep space background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/60 via-purple-950/40 to-black/80" />
+  // Update particle
+  const updateParticle = useCallback((particle: Particle, canvas: HTMLCanvasElement, deltaTime: number, mouse: MousePosition) => {
+    // Mouse interaction
+    if (interactive && mouse) {
+      const dx = mouse.x - particle.x
+      const dy = mouse.y - particle.y
+      const distance = Math.sqrt(dx * dx + dy * dy)
       
-      {/* Distant galaxies */}
-      <div className="absolute inset-0">
-        {[...Array(5)].map((_, i) => (
-          <motion.div
-            key={`galaxy-${i}`}
-            className="absolute rounded-full opacity-10"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${100 + Math.random() * 200}px`,
-              height: `${100 + Math.random() * 200}px`,
-              background: `radial-gradient(ellipse, ${['#9d4edd', '#7209b7', '#c77dff'][i % 3]} 0%, transparent 70%)`,
-              filter: 'blur(30px)'
-            }}
-            animate={{
-              scale: [1, 1.2, 1],
-              rotate: [0, 360],
-              opacity: [0.05, 0.15, 0.05]
-            }}
-            transition={{
-              duration: 30 + i * 10,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-        ))}
-      </div>
+      if (distance < 150) {
+        const force = (150 - distance) / 150
+        const angle = Math.atan2(dy, dx)
+        particle.speedX -= Math.cos(angle) * force * 0.01
+        particle.speedY -= Math.sin(angle) * force * 0.01
+      }
+    }
 
-      {/* Render all cosmic elements */}
-      {elements.map(renderElement)}
+    // Update position
+    particle.x += particle.speedX * deltaTime * 60
+    particle.y += particle.speedY * deltaTime * 60
+    particle.rotation += particle.rotationSpeed * deltaTime * 60
 
-      {/* Epic shooting stars */}
-      {typeof window !== 'undefined' && [...Array(4)].map((_, i) => (
-        <motion.div
-          key={`shooting-${i}`}
-          className="absolute"
-          style={{
-            left: `${Math.random() * 50}%`,
-            top: `${Math.random() * 30}%`
-          }}
-          animate={{
-            x: [0, window.innerWidth + 300],
-            y: [0, window.innerHeight * 0.7],
-            opacity: [0, 1, 0]
-          }}
-          transition={{
-            duration: 2.5,
-            repeat: Infinity,
-            delay: i * 3,
-            ease: "easeOut"
-          }}
-        >
-          {/* Shooting star core */}
-          <div className="w-2 h-2 bg-white rounded-full shadow-lg" 
-               style={{ boxShadow: '0 0 20px #ffffff88' }} />
-          
-          {/* Main trail */}
-          <div 
-            className="absolute top-1/2 left-full h-1 bg-gradient-to-r from-white via-blue-200 to-transparent transform -translate-y-1/2"
-            style={{ width: '100px', filter: 'blur(1px)' }}
-          />
-          
-          {/* Outer glow */}
-          <div 
-            className="absolute top-1/2 left-full h-3 bg-gradient-to-r from-white via-cyan-300 to-transparent transform -translate-y-1/2 opacity-50"
-            style={{ width: '120px', filter: 'blur(3px)' }}
-          />
-        </motion.div>
-      ))}
+    // Update life cycle
+    particle.life += deltaTime * 0.5
+    if (particle.life > particle.maxLife) {
+      particle.life = 0
+    }
+
+    // Update comet trail
+    if (particle.type === 'comet' && particle.trail) {
+      const config = getParticleConfig()
+      particle.trail.unshift({ x: particle.x, y: particle.y, opacity: 1 })
+      if (particle.trail.length > config.trailLength) {
+        particle.trail.pop()
+      }
+      
+      // Fade trail
+      particle.trail.forEach((point, index) => {
+        point.opacity = 1 - (index / particle.trail!.length)
+      })
+    }
+
+    // Boundary wrapping with buffer
+    const buffer = 100
+    if (particle.x < -buffer) particle.x = canvas.width + buffer
+    if (particle.x > canvas.width + buffer) particle.x = -buffer
+    if (particle.y < -buffer) particle.y = canvas.height + buffer
+    if (particle.y > canvas.height + buffer) particle.y = -buffer
+  }, [interactive, getParticleConfig])
+
+  // Animation loop
+  const animate = useCallback((currentTime: number) => {
+    const canvas = canvasRef.current
+    if (!canvas || !isVisible) return
+
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    const deltaTime = (currentTime - lastTimeRef.current) / 1000
+    lastTimeRef.current = currentTime
+
+    // Clear canvas with theme background
+    const colors = getThemeColors()
+    ctx.fillStyle = colors.background
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+    // Update and draw particles
+    particlesRef.current.forEach(particle => {
+      updateParticle(particle, canvas, deltaTime, mouseRef.current)
+      drawParticle(ctx, particle)
+    })
+
+    animationRef.current = requestAnimationFrame(animate)
+  }, [isVisible, updateParticle, drawParticle, getThemeColors])
+
+  // Handle mouse movement
+  const handleMouseMove = useCallback((event: MouseEvent) => {
+    if (!interactive) return
+    
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const rect = canvas.getBoundingClientRect()
+    mouseRef.current = {
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top
+    }
+  }, [interactive])
+
+  // Handle resize
+  const handleResize = useCallback(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const rect = canvas.getBoundingClientRect()
+    canvas.width = rect.width * window.devicePixelRatio
+    canvas.height = rect.height * window.devicePixelRatio
+    
+    const ctx = canvas.getContext('2d')
+    if (ctx) {
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio)
+    }
+
+    // Redistribute particles
+    initParticles(canvas)
+  }, [initParticles])
+
+  // Setup and cleanup
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    // Initial setup
+    handleResize()
+    
+    // Intersection Observer for performance
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0 }
+    )
+    observer.observe(canvas)
+
+    // Event listeners
+    window.addEventListener('resize', handleResize)
+    if (interactive) {
+      canvas.addEventListener('mousemove', handleMouseMove)
+    }
+
+    // Start animation
+    animationRef.current = requestAnimationFrame(animate)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', handleResize)
+      if (interactive) {
+        canvas.removeEventListener('mousemove', handleMouseMove)
+      }
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
+    }
+  }, [handleResize, handleMouseMove, animate, interactive])
+
+  // Performance indicator (dev mode)
+  const [showPerformance, setShowPerformance] = useState(false)
+  
+  return (
+    <div className="fixed inset-0 pointer-events-none z-0">
+      <motion.canvas
+        ref={canvasRef}
+        className="w-full h-full"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2 }}
+        style={{
+          background: 'transparent',
+          mixBlendMode: theme === 'minimal' ? 'normal' : 'screen'
+        }}
+      />
+      
+      {/* Performance Debug (only in development) */}
+      {process.env.NODE_ENV === 'development' && (
+        <div className="fixed top-4 right-4 z-50">
+          <button
+            onClick={() => setShowPerformance(!showPerformance)}
+            className="bg-black/20 text-white text-xs px-2 py-1 rounded backdrop-blur-sm"
+          >
+            Debug
+          </button>
+          {showPerformance && (
+            <div className="mt-2 bg-black/80 text-white text-xs p-2 rounded backdrop-blur-sm">
+              <div>Performance: {performanceMode}</div>
+              <div>Particles: {particlesRef.current.length}</div>
+              <div>Theme: {theme}</div>
+              <div>Interactive: {interactive ? 'Yes' : 'No'}</div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   )
 } 

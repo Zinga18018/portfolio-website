@@ -102,7 +102,7 @@ export default function EducationSection() {
 
                 {/* Content Card */}
                 <motion.div
-                  className="ml-8 flex-1 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-100 dark:border-gray-700"
+                  className="ml-8 flex-1 bg-gray-800/50 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-gray-700/50"
                   whileHover={{ y: -5, shadow: "0 20px 40px rgba(0,0,0,0.1)" }}
                   transition={{ duration: 0.3 }}
                 >

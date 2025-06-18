@@ -52,12 +52,19 @@ const ScrollIndicator = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY
-      setIsVisible(scrolled < 200) // Increased threshold for better visibility
+      setIsVisible(scrolled < 300) // Increased threshold for better visibility
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  const scrollToNextSection = () => {
+    const nextSection = document.querySelector('#skills') || document.querySelector('section:nth-child(2)')
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
   return (
     <AnimatePresence>
@@ -67,16 +74,91 @@ const ScrollIndicator = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
-          className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-10"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30" style={{ marginLeft: "-60px" }}
         >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-            className="flex flex-col items-center text-white/70 hover:text-white transition-colors cursor-pointer"
+          <motion.button
+            onClick={scrollToNextSection}
+            className="group relative flex flex-col items-center cursor-pointer"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
           >
-            <span className="text-sm mb-2">Scroll to explore</span>
-            <ChevronDown className="w-6 h-6" />
-          </motion.div>
+            {/* Animated Scroll Orb */}
+            <motion.div
+              className="relative w-12 h-20 border-2 border-cyan-400/60 rounded-full backdrop-blur-sm bg-gray-900/40 flex items-start justify-center pt-3"
+              animate={{ 
+                borderColor: [
+                  "rgba(6, 182, 212, 0.6)",
+                  "rgba(147, 51, 234, 0.6)", 
+                  "rgba(6, 182, 212, 0.6)"
+                ]
+              }}
+              transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+            >
+              {/* Animated Scroll Dot */}
+              <motion.div
+                className="w-2 h-2 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"
+                animate={{ 
+                  y: [0, 8, 0],
+                  opacity: [1, 0.3, 1]
+                }}
+                transition={{ 
+                  repeat: Infinity, 
+                  duration: 2, 
+                  ease: "easeInOut",
+                  delay: 0.5 
+                }}
+              />
+              
+              {/* Pulse Ring */}
+              <motion.div
+                className="absolute inset-0 border-2 border-cyan-400/30 rounded-full"
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [0.6, 0, 0.6]
+                }}
+                transition={{ 
+                  repeat: Infinity, 
+                  duration: 2.5, 
+                  ease: "easeInOut" 
+                }}
+              />
+            </motion.div>
+            
+            {/* Elegant Text Label */}
+            <motion.div
+              className="mt-3 text-center"
+              initial={{ opacity: 0.7 }}
+              whileHover={{ opacity: 1 }}
+            >
+              <motion.span 
+                className="text-xs font-light tracking-widest text-cyan-300/80 uppercase"
+                animate={{ 
+                  color: [
+                    "rgba(103, 232, 249, 0.8)",
+                    "rgba(196, 181, 253, 0.8)",
+                    "rgba(103, 232, 249, 0.8)"
+                  ]
+                }}
+                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              >
+                Explore Below
+              </motion.span>
+            </motion.div>
+
+            {/* Subtle Glow Effect */}
+            <motion.div
+              className="absolute inset-0 rounded-full bg-gradient-to-b from-cyan-400/10 to-purple-400/10 blur-xl"
+              animate={{ 
+                scale: [0.8, 1.2, 0.8],
+                opacity: [0.3, 0.1, 0.3]
+              }}
+              transition={{ 
+                repeat: Infinity, 
+                duration: 3, 
+                ease: "easeInOut" 
+              }}
+            />
+          </motion.button>
         </motion.div>
       )}
     </AnimatePresence>
@@ -91,6 +173,20 @@ export default function AnimatedHero() {
     "Python Developer",
     "Data Analyst"
   ]
+
+  const scrollToProjects = () => {
+    const projectsSection = document.querySelector('#projects')
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  const scrollToContact = () => {
+    const contactSection = document.querySelector('#contact')
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
   const floatingIcons = [
     { icon: <Database className="w-6 h-6" />, delay: 0.2, x: "10%", y: "20%" },
@@ -132,7 +228,7 @@ export default function AnimatedHero() {
   }
 
   return (
-    <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20 overflow-hidden">
+    <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900/20 to-purple-900/30 overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -162,22 +258,34 @@ export default function AnimatedHero() {
       </div>
 
       <motion.div
-        className="container mx-auto px-4 text-center relative z-10"
+        className="container mx-auto px-8 py-12 text-center relative z-10 overflow-visible"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
+        style={{ minHeight: "auto", overflow: "visible" }}
       >
-        <motion.div variants={itemVariants}>
+        <motion.div variants={itemVariants} className="px-6 py-8">
           <motion.h1 
-            className="text-6xl md:text-8xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600"
+            className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 tracking-tight overflow-visible"
             animate={floatingAnimation}
+            style={{ 
+              fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+              fontFeatureSettings: "'kern' 1, 'liga' 1",
+              textRendering: "optimizeLegibility",
+              WebkitFontSmoothing: "antialiased",
+              MozOsxFontSmoothing: "grayscale",
+              wordBreak: "keep-all",
+              overflow: "visible",
+              display: "block",
+              width: "100%"
+            }}
           >
             Yogesh Kuchimanchi
           </motion.h1>
         </motion.div>
 
         <motion.div variants={itemVariants}>
-          <motion.div className="text-xl md:text-3xl text-gray-600 dark:text-gray-300 mb-8 font-light">
+          <motion.div className="text-xl md:text-3xl text-gray-300 mb-8 font-light">
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -193,23 +301,23 @@ export default function AnimatedHero() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Link
-              href="#projects"
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:shadow-lg transition-all duration-300 font-medium"
+            <button
+              onClick={scrollToProjects}
+              className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-full hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 font-medium"
             >
               View Projects
-            </Link>
+            </button>
           </motion.div>
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Link
-              href="#contact"
-              className="px-8 py-4 border-2 border-blue-600 text-blue-600 rounded-full hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 font-medium"
+            <button
+              onClick={scrollToContact}
+              className="px-8 py-4 border-2 border-cyan-400 text-cyan-400 rounded-full hover:bg-cyan-400/10 backdrop-blur-sm transition-all duration-300 font-medium"
             >
               Contact Me
-            </Link>
+            </button>
           </motion.div>
         </motion.div>
 
@@ -221,7 +329,7 @@ export default function AnimatedHero() {
             href="https://github.com/Zinga18018"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 dark:text-white text-gray-800"
+            className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-cyan-400/20 transition-all duration-300 text-white hover:text-cyan-400"
             whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.9 }}
           >
@@ -229,7 +337,7 @@ export default function AnimatedHero() {
           </motion.a>
           <motion.a
             href="mailto:kuchimanchiyogesh@gmail.com"
-            className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 dark:text-white text-gray-800"
+            className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-purple-400/20 transition-all duration-300 text-white hover:text-purple-400"
             whileHover={{ scale: 1.1, rotate: -5 }}
             whileTap={{ scale: 0.9 }}
           >
@@ -239,7 +347,7 @@ export default function AnimatedHero() {
             href="https://www.linkedin.com/in/zinga/"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 dark:text-white text-gray-800"
+            className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-blue-400/20 transition-all duration-300 text-white hover:text-blue-400"
             whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.9 }}
           >
@@ -247,21 +355,11 @@ export default function AnimatedHero() {
           </motion.a>
         </motion.div>
 
-        {/* Download Resume & LinkedIn */}
+        {/* LinkedIn Profile & Chatbot Mention */}
         <motion.div 
           variants={itemVariants}
-          className="flex gap-4 justify-center mb-16"
+          className="flex flex-col items-center gap-4 mb-16"
         >
-          <motion.a
-            href="/resume.html"
-            target="_blank"
-            className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full hover:shadow-lg transition-all duration-300 font-medium flex items-center gap-2"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Download className="w-5 h-5" />
-            View Resume
-          </motion.a>
           <motion.a
             href="https://www.linkedin.com/in/zinga/"
             target="_blank"
@@ -273,6 +371,8 @@ export default function AnimatedHero() {
             <Linkedin className="w-5 h-5" />
             LinkedIn Profile
           </motion.a>
+          
+
         </motion.div>
 
 
@@ -282,18 +382,18 @@ export default function AnimatedHero() {
       {floatingIcons.map((item, index) => (
         <motion.div
           key={index}
-          className="absolute text-white/10"
+          className="absolute text-cyan-400/20"
           style={{ left: item.x, top: item.y }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{ 
-            opacity: 1, 
-            scale: 1,
+            opacity: [0.2, 0.4, 0.2], 
+            scale: [1, 1.1, 1],
             y: [0, -20, 0],
             rotate: [0, 5, -5, 0]
           }}
           transition={{ 
             delay: item.delay,
-            duration: 3,
+            duration: 4,
             repeat: Infinity,
             repeatType: "reverse"
           }}

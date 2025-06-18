@@ -107,10 +107,10 @@ export default function ResearchAndAchievements() {
           whileInView={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+          <h2 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400">
             🎓 Academic Projects & Learning
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Academic projects and coursework showcasing technical skills and passion for AI and data science
           </p>
         </motion.div>
@@ -125,7 +125,7 @@ export default function ResearchAndAchievements() {
           {researchStats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              className="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700"
+              className="text-center p-6 bg-gray-800/50 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-700/50"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}

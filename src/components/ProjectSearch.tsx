@@ -131,17 +131,17 @@ export default function ProjectSearch() {
     (filters.query ? 1 : 0)
 
   return (
-    <section className="py-20 bg-white dark:bg-gray-800">
+    <section id="projects" className="py-20 bg-gradient-to-br from-gray-900 via-blue-900/20 to-purple-900/30">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+          <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400">
             Explore Projects
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Search and filter through my portfolio of AI and ML projects
           </p>
         </motion.div>
@@ -157,7 +157,7 @@ export default function ProjectSearch() {
                 placeholder="Search projects, technologies, or keywords..."
                 value={filters.query}
                 onChange={(e) => setFilters(prev => ({ ...prev, query: e.target.value }))}
-                className="w-full pl-12 pr-4 py-4 border border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white text-lg"
+                className="w-full pl-12 pr-4 py-4 border border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-gray-800/50 backdrop-blur-sm text-white text-lg placeholder-gray-400"
               />
             </div>
 
@@ -168,7 +168,7 @@ export default function ProjectSearch() {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="absolute top-full left-0 right-0 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg mt-2 shadow-lg z-10"
+                  className="absolute top-full left-0 right-0 bg-gray-800/90 backdrop-blur-md border border-gray-600 rounded-lg mt-2 shadow-lg z-10"
                 >
                   {suggestions.map((suggestion, index) => (
                     <motion.button
@@ -177,7 +177,7 @@ export default function ProjectSearch() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
                       onClick={() => setFilters(prev => ({ ...prev, query: suggestion }))}
-                      className="w-full text-left px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-600 first:rounded-t-lg last:rounded-b-lg"
+                      className="w-full text-left px-4 py-3 text-gray-300 hover:bg-gray-700/50 first:rounded-t-lg last:rounded-b-lg"
                     >
                       {suggestion}
                     </motion.button>
@@ -191,7 +191,7 @@ export default function ProjectSearch() {
           <div className="flex items-center justify-between mb-6">
             <motion.button
               onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-gray-800/50 backdrop-blur-sm rounded-lg hover:bg-gray-700/70 transition-colors text-gray-300"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -205,13 +205,13 @@ export default function ProjectSearch() {
             </motion.button>
 
             <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-600 dark:text-gray-300">
+              <span className="text-sm text-gray-300">
                 {filteredProjects.length} project{filteredProjects.length !== 1 ? 's' : ''} found
               </span>
               {activeFiltersCount > 0 && (
                 <motion.button
                   onClick={clearFilters}
-                  className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1"
+                  className="text-sm text-cyan-400 hover:text-cyan-300 flex items-center gap-1"
                   whileHover={{ scale: 1.05 }}
                 >
                   <X className="w-4 h-4" />
@@ -228,18 +228,18 @@ export default function ProjectSearch() {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
-                className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 mb-6"
+                className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 mb-6 border border-gray-700/50"
               >
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {/* Category Filter */}
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                    <label className="block text-sm font-medium mb-2 text-gray-300">
                       Category
                     </label>
                     <select
                       value={filters.category}
                       onChange={(e) => setFilters(prev => ({ ...prev, category: e.target.value }))}
-                      className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-800 dark:text-white"
+                      className="w-full p-2 border border-gray-600 rounded-lg bg-gray-800/50 text-white"
                     >
                       {categories.map(category => (
                         <option key={category} value={category}>
@@ -251,13 +251,13 @@ export default function ProjectSearch() {
 
                   {/* Sort By */}
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                    <label className="block text-sm font-medium mb-2 text-gray-300">
                       Sort By
                     </label>
                     <select
                       value={filters.sortBy}
                       onChange={(e) => setFilters(prev => ({ ...prev, sortBy: e.target.value as any }))}
-                      className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-800 dark:text-white"
+                      className="w-full p-2 border border-gray-600 rounded-lg bg-gray-800/50 text-white"
                     >
                       <option value="relevance">Relevance</option>
                       <option value="newest">Newest First</option>
@@ -267,7 +267,7 @@ export default function ProjectSearch() {
 
                   {/* Technology Tags */}
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                    <label className="block text-sm font-medium mb-2 text-gray-300">
                       Technologies
                     </label>
                     <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">
@@ -277,8 +277,8 @@ export default function ProjectSearch() {
                           onClick={() => toggleTechnology(tech)}
                           className={`px-3 py-1 text-xs rounded-full border transition-colors ${
                             filters.technologies.includes(tech)
-                              ? 'bg-blue-600 text-white border-blue-600'
-                              : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:border-blue-400'
+                              ? 'bg-cyan-600 text-white border-cyan-600'
+                              : 'bg-gray-800/50 text-gray-300 border-gray-600 hover:border-cyan-400'
                           }`}
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
