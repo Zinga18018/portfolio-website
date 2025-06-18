@@ -16,7 +16,10 @@ interface Message {
 let genAI: GoogleGenerativeAI | null = null
 
 try {
-  genAI = new GoogleGenerativeAI('AIzaSyBDYDhq9B51nyE55Ue4MwAMVF8PoOPr-2I')
+  const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || 'AIzaSyBDYDhq9B51nyE55Ue4MwAMVF8PoOPr-2I'
+  if (apiKey) {
+    genAI = new GoogleGenerativeAI(apiKey)
+  }
 } catch (error) {
   console.error('Failed to initialize Gemini AI:', error)
 }
