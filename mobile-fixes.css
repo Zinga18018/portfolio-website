@@ -1,0 +1,94 @@
+/* MOBILE FIXES - Add this to your globals.css */
+
+/* Fix horizontal scrolling */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
+/* Fix viewport on mobile */
+* {
+  box-sizing: border-box;
+}
+
+/* Make animations smoother on mobile */
+@media (max-width: 768px) {
+  * {
+    animation-duration: 0.3s !important;
+    transition-duration: 0.3s !important;
+  }
+  
+  /* Reduce complex transforms */
+  .framer-motion-div {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  
+  /* Fix button sizes for mobile */
+  button {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+  
+  /* Prevent zoom on input focus (iOS) */
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+  
+  /* Fix chatbot popup for mobile */
+  .chatbot-container {
+    bottom: 20px !important;
+    right: 20px !important;
+    z-index: 999999 !important;
+  }
+  
+  /* Improve scroll performance */
+  .scroll-container {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  /* Fix gradient performance */
+  .bg-gradient-to-br, .bg-gradient-to-r {
+    background-attachment: scroll !important;
+  }
+}
+
+/* Fix for iPhone notch */
+@supports (padding: max(0px)) {
+  .mobile-safe-area {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+    padding-top: max(16px, env(safe-area-inset-top));
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+}
+
+/* Performance improvements */
+.gpu-boost {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Disable hover effects on mobile */
+@media (hover: none) {
+  .hover\:scale-105:hover {
+    transform: none !important;
+  }
+  
+  .hover\:bg-gray-100:hover {
+    background-color: inherit !important;
+  }
+}
+
+/* Fix text selection issues */
+.selectable-text {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+} 
