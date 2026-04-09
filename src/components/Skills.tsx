@@ -1,47 +1,38 @@
-const groups = [
-  {
-    name: 'ML and AI',
-    skills: ['PyTorch', 'TensorFlow', 'Transformers', 'Scikit-learn', 'XGBoost', 'TinyLlama', 'DistilBERT', 'ViT'],
-  },
-  {
-    name: 'Infrastructure',
-    skills: ['FastAPI', 'Docker', 'AWS', 'GCP', 'Azure', 'CUDA', 'Airflow', 'Linux'],
-  },
-  {
-    name: 'Data',
-    skills: ['Python', 'SQL', 'Pandas', 'NumPy', 'Plotly', 'Tableau', 'Power BI', 'Seaborn'],
-  },
-  {
-    name: 'Databases',
-    skills: ['PostgreSQL', 'MongoDB', 'ChromaDB', 'MySQL', 'Hadoop', 'Spark'],
-  },
-  {
-    name: 'Languages',
-    skills: ['Python', 'Java', 'R', 'SQL', 'Git', 'Jupyter', 'Streamlit'],
-  },
-  {
-    name: 'Statistics',
-    skills: ['Hypothesis Testing', 'A/B Testing', 'Regression', 'Time Series', 'SciPy'],
-  },
-]
+'use client'
+
+import { useReveal } from '@/lib/useReveal'
+import { skillGroups } from '@/lib/data'
 
 export default function Skills() {
+  const ref = useReveal()
+
   return (
     <section id="skills" className="py-24">
       <div className="section-container">
-        <p className="text-sm font-mono text-accent mb-2">Skills</p>
-        <h2 className="text-3xl font-bold text-white mb-10">Technical stack</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {groups.map((g, i) => (
-            <div key={i} className="card">
-              <h3 className="text-white font-semibold mb-4">{g.name}</h3>
-              <div className="flex flex-wrap gap-1.5">
-                {g.skills.map(s => (
-                  <span key={s} className="tag">{s}</span>
-                ))}
+        <div ref={ref} className="reveal">
+          <p className="section-label">Skills</p>
+          <h2 className="section-title">Technical stack</h2>
+          <p className="text-zinc-400 mb-10 max-w-xl">
+            Tools and technologies I use to build, train, deploy, and monitor ML systems.
+          </p>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 stagger">
+            {skillGroups.map((g, i) => (
+              <div key={i} className="card">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-2 h-2 rounded-full bg-accent" />
+                  <h3 className="text-white font-semibold">{g.name}</h3>
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {g.skills.map((s) => (
+                    <span key={s} className="tag">
+                      {s}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

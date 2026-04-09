@@ -16,10 +16,7 @@ const nextConfig = {
   // Mobile optimization
   compress: true,
   poweredByHeader: false,
-  // Reduce bundle size for mobile
-  experimental: {
-    optimizeCss: true,
-  },
+  experimental: {},
 }
 
 module.exports = nextConfig 

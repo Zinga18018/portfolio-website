@@ -21,7 +21,7 @@ export default function Home() {
         <Contact />
       </main>
       <footer className="border-t border-zinc-800 py-8 text-center text-sm text-zinc-500">
-        <p>Yogesh Kuchimanchi -- 2026</p>
+        <p>Yogesh Kuchimanchi</p>
       </footer>
     </>
   )
