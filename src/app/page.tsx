@@ -14,14 +14,15 @@ export default function Home() {
       <main>
         <Hero />
         <About />
+        <Projects />
         <Experience />
         <Education />
-        <Projects />
         <SkillsConstellation />
         <Contact />
       </main>
-      <footer className="border-t border-zinc-800 py-8 text-center text-sm text-zinc-500">
-        <p>Yogesh Kuchimanchi</p>
+      <footer className="site-footer">
+        <p>Yogesh Kuchimanchi · Built with care in Rochester, NY</p>
+        <a href="#top">Back to top</a>
       </footer>
     </>
   )

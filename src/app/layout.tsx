@@ -6,28 +6,29 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
 
 export const metadata: Metadata = {
-  title: 'Yogesh Kuchimanchi | ML Engineer & Data Scientist',
+  metadataBase: new URL('https://portfolio-website-pied-tau-72.vercel.app'),
+  title: 'Yogesh Kuchimanchi | Data Scientist',
   description:
-    'Portfolio of Yogesh Kuchimanchi. MS Data Science at RIT. Building production ML systems with real transformer inference, RAG pipelines, and multi-agent AI.',
-  keywords: ['machine learning', 'data science', 'NLP', 'RAG', 'PyTorch', 'portfolio'],
+    'Data science portfolio of Yogesh Kuchimanchi: leakage-safe clinical risk modeling, transformer news classification, and model drift monitoring.',
+  keywords: ['machine learning', 'data science', 'NLP', 'model monitoring', 'PyTorch', 'portfolio'],
   authors: [{ name: 'Yogesh Kuchimanchi' }],
   openGraph: {
-    title: 'Yogesh Kuchimanchi | ML Engineer & Data Scientist',
-    description: 'Production ML systems with live demos. MS Data Science at RIT.',
+    title: 'Yogesh Kuchimanchi | Data Scientist',
+    description: 'Inspectable ML systems, honest evaluation, and working demos.',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Yogesh Kuchimanchi | ML Engineer & Data Scientist',
-    description: 'Production ML systems with live demos. MS Data Science at RIT.',
+    card: 'summary',
+    title: 'Yogesh Kuchimanchi | Data Scientist',
+    description: 'Inspectable ML systems, honest evaluation, and working demos.',
   },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${mono.variable} scroll-smooth dark`}>
-      <body className="font-sans bg-[#09090b] text-zinc-300 antialiased">{children}</body>
+    <html lang="en" className={`${inter.variable} ${mono.variable} scroll-smooth`}>
+      <body>{children}</body>
     </html>
   )
 }

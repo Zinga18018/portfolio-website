@@ -1,224 +1,80 @@
 export interface Project {
+  number: string
   title: string
+  shortTitle: string
   description: string
+  outcome: string
   stack: string[]
   github: string
-  demo?: string
-  category: 'ai' | 'ml' | 'data' | 'mlops'
-  featured: boolean
+  demo: string
+  status?: string
 }
 
 export const projects: Project[] = [
-  // Featured projects (top 5)
   {
-    title: 'AI Code Reviewer',
-    description: 'Code review server powered by TinyLlama-1.1B with streaming SSE responses, four review modes (general, security, performance, style), and KV-cache optimization for fast inference.',
-    stack: ['TinyLlama-1.1B', 'FastAPI', 'PyTorch', 'CUDA'],
-    github: 'https://github.com/Zinga18018/ai-code-reviewer',
-    demo: 'https://huggingface.co/spaces/Yogesh18018/ai-code-reviewer',
-    category: 'ai',
-    featured: true,
-  },
-  {
-    title: 'RAG Document Brain',
-    description: 'Retrieval-augmented generation pipeline that chunks documents, embeds with 384-dim sentence-transformers, indexes in ChromaDB, and synthesizes answers with TinyLlama.',
-    stack: ['Sentence-Transformers', 'ChromaDB', 'TinyLlama', 'FastAPI'],
-    github: 'https://github.com/Zinga18018/rag-document-brain',
-    demo: 'https://huggingface.co/spaces/Yogesh18018/rag-document-brain',
-    category: 'ai',
-    featured: true,
-  },
-  {
-    title: 'Multi-Agent Orchestrator',
-    description: 'Framework that coordinates specialized LLM agents through a three-phase pipeline: planning, parallel expert execution, and answer synthesis with chain-of-thought reasoning.',
-    stack: ['TinyLlama', 'Agent Framework', 'FastAPI', 'Streamlit'],
-    github: 'https://github.com/Zinga18018/multi-agent-orchestrator',
-    demo: 'https://huggingface.co/spaces/Yogesh18018/multi-agent',
-    category: 'ai',
-    featured: true,
-  },
-  {
-    title: 'MetalVision AI',
-    description: 'Surface defect detection system using PyTorch CNNs with attention mechanisms, ensemble learning, SMOTE augmentation, and cross-validation for industrial quality control.',
-    stack: ['PyTorch', 'CNN', 'Attention', 'SMOTE'],
-    github: 'https://github.com/Zinga18018/MetalVision-AI',
-    category: 'ml',
-    featured: true,
-  },
-  {
-    title: 'Clinical Readmission Risk Audit',
-    description: 'Leakage-safe 30-day readmission modeling with patient-aware evaluation, CatBoost and neural baselines, calibration, missingness analysis, and drift monitoring.',
+    number: '01',
+    title: 'Clinical Readmission Risk Modeling',
+    shortTitle: 'Readmission Risk',
+    description: 'A leakage-safe 30-day readmission pipeline with patient-disjoint cohorts, calibration, missingness analysis, and drift checks.',
+    outcome: 'Held-out test: 0.661 ROC-AUC, 0.175 PR-AUC, and 0.077 Brier score on 10,822 encounters.',
     stack: ['CatBoost', 'PyTorch', 'Calibration', 'Streamlit'],
     github: 'https://github.com/Zinga18018/readmission-risk-audit',
     demo: 'https://yogesh-readmission-risk-audit.streamlit.app/',
-    category: 'ml',
-    featured: true,
   },
   {
-    title: 'NewsSnap',
-    description: 'Four-class AG News classification platform with a DistilBERT training pipeline, FastAPI service, React monitoring dashboard, and transparent public inference modes.',
+    number: '02',
+    title: 'Transformer News Classification',
+    shortTitle: 'NewsSnap',
+    description: 'A four-class AG News system with a DistilBERT training pipeline, FastAPI service, React dashboard, and explicit inference modes.',
+    outcome: 'Held-out evaluation: 0.870 accuracy, 0.869 macro-F1, and 0.827 MCC on 12,000 articles.',
     stack: ['DistilBERT', 'FastAPI', 'React', 'CI/CD'],
     github: 'https://github.com/Zinga18018/NewsSnap',
     demo: 'https://news-snap-three.vercel.app/',
-    category: 'mlops',
-    featured: true,
-  },
-
-  // Grid projects
-  {
-    title: 'Sentiment Engine',
-    description: 'Real-time sentiment analysis with DistilBERT (67M params), batch processing, comparison mode, and trend visualization.',
-    stack: ['DistilBERT', 'FastAPI', 'Streamlit'],
-    github: 'https://github.com/Zinga18018/sentiment-engine',
-    demo: 'https://huggingface.co/spaces/Yogesh18018/sentiment-engine',
-    category: 'ai',
-    featured: false,
+    status: 'api',
   },
   {
-    title: 'Image Captioner',
-    description: 'Image-to-text generation with ViT encoder and GPT-2 decoder, beam search for multi-caption output.',
-    stack: ['ViT', 'GPT-2', 'FastAPI'],
-    github: 'https://github.com/Zinga18018/image-captioner',
-    demo: 'https://huggingface.co/spaces/Yogesh18018/image-captioner',
-    category: 'ai',
-    featured: false,
-  },
-  {
-    title: 'DriftLab Model Monitoring Simulator',
-    description: 'Interactive model monitoring simulator with PSI, approximate KS tests, performance decay, class-prior shift, and configurable alert thresholds.',
-    stack: ['NumPy', 'PSI', 'KS Test', 'Streamlit'],
+    number: '03',
+    title: 'Model Behavior Under Distribution Shift',
+    shortTitle: 'DriftLab',
+    description: 'A deterministic simulator for performance decay, class-prior shift, PSI, approximate KS, and configurable monitoring alerts.',
+    outcome: 'Verified mixed-shift run: ROC-AUC fell from 0.758 to 0.372; max PSI reached 0.608; three alerts fired.',
+    stack: ['NumPy', 'Pandas', 'PSI / KS', 'Streamlit'],
     github: 'https://github.com/Zinga18018/driftlab-model-monitoring-simulator',
     demo: 'https://yogesh-driftlab-monitoring.streamlit.app/',
-    category: 'mlops',
-    featured: false,
-  },
-  {
-    title: 'Knowledge Graph Engine',
-    description: 'NER-driven knowledge graph construction with interactive PyVis visualization and community detection.',
-    stack: ['spaCy', 'NetworkX', 'Streamlit'],
-    github: 'https://github.com/Zinga18018/Knowledge-Graph-Construction-and-Reasoning-Engine',
-    demo: 'https://huggingface.co/spaces/Yogesh18018/knowledge-graph-engine',
-    category: 'ml',
-    featured: false,
-  },
-  {
-    title: 'Neural Style Transfer Lab',
-    description: 'Gatys et al. style transfer with VGG19 plus procedural generative art with fractals and flow fields.',
-    stack: ['PyTorch', 'VGG19', 'Streamlit'],
-    github: 'https://github.com/Zinga18018/Neural-Style-Transfer-and-Generative-Art-Lab',
-    demo: 'https://huggingface.co/spaces/Yogesh18018/neural-style-transfer',
-    category: 'ml',
-    featured: false,
-  },
-  {
-    title: 'Time-Series Forecasting',
-    description: 'Multi-model benchmarking with ARIMA, Holt-Winters, and regression with automated feature engineering.',
-    stack: ['statsmodels', 'ARIMA', 'Streamlit'],
-    github: 'https://github.com/Zinga18018/Time-Series-Forecasting-with-Transformer-Architectures',
-    demo: 'https://huggingface.co/spaces/Yogesh18018/time-series-forecasting',
-    category: 'data',
-    featured: false,
-  },
-  {
-    title: 'Anomaly Detection',
-    description: 'Ensemble of five algorithms with voting and synthetic data augmentation for imbalanced datasets.',
-    stack: ['Isolation Forest', 'DBSCAN', 'Streamlit'],
-    github: 'https://github.com/Zinga18018/Multimodal-Anomaly-Detection-with-Synthetic-Augmentation',
-    demo: 'https://huggingface.co/spaces/Yogesh18018/anomaly-detection',
-    category: 'ml',
-    featured: false,
-  },
-  {
-    title: 'Stock Sentiment Dashboard',
-    description: 'Tracks public sentiment around stock tickers and compares with price trends using NLP and Yahoo Finance.',
-    stack: ['NLP', 'Yahoo Finance', 'Streamlit'],
-    github: 'https://github.com/Zinga18018/stock-sentiment-dashboard',
-    category: 'data',
-    featured: false,
-  },
-  {
-    title: 'Credit Card Default Prediction',
-    description: 'Ensemble ML models (XGBoost, Random Forest, Logistic Regression) exposed as a REST API via FastAPI.',
-    stack: ['XGBoost', 'FastAPI', 'scikit-learn'],
-    github: 'https://github.com/Zinga18018/credit-card-default-prediction',
-    category: 'ml',
-    featured: false,
-  },
-  {
-    title: 'Restaurant Analytics LLM',
-    description: 'Natural language to SQL queries using LangChain for intuitive restaurant data exploration and insights.',
-    stack: ['LangChain', 'SQLite', 'Streamlit'],
-    github: 'https://github.com/Zinga18018/restaurant-analytics-llm',
-    category: 'ai',
-    featured: false,
   },
 ]
 
 export const jobs = [
   {
-    title: 'GCCIS Technical Assistant',
-    org: 'Rochester Institute of Technology',
-    dates: 'Aug 2025 -- Present',
+    title: 'Graduate Researcher, Data Science', org: 'Rochester Institute of Technology', dates: '2025 — 2026',
     bullets: [
-      'Supporting lab infrastructure across 200+ machines with automated diagnostics',
-      'Created documentation system that reduced repeat service requests by 25%',
+      'Built Python and Pandas pipelines to analyze 351,501 Reddit and YouTube comments across 16 women-safety cases in India.',
+      'Applied Mann–Whitney U, chi-square, and G-tests; fine-tuned Qwen3.5-9B with LoRA and evaluated 3,000 held-out examples.',
+      'Authored a paper accepted at ASONAM 2026 and documented model limitations through high-confidence error review.',
     ],
   },
   {
-    title: 'Research Assistant',
-    org: 'Rochester Institute of Technology',
-    dates: 'Dec 2024 -- Apr 2025',
-    bullets: [
-      'Refactored Python data pipelines with Pandas and NumPy, cutting processing time by 75%',
-      'Validated research datasets using SQL queries for faculty-led analytics projects',
-    ],
+    title: 'GCCIS Technical Assistant', org: 'Rochester Institute of Technology', dates: 'Aug 2025 — Present',
+    bullets: ['Support 200+ Windows and Linux lab systems, troubleshoot access and software issues, and maintain Excel/VBA reports.'],
+  },
+  {
+    title: 'Research Assistant, Data Science', org: 'Rochester Institute of Technology', dates: 'Dec 2024 — Apr 2025',
+    bullets: ['Refactored Pandas and NumPy scripts and validated PostgreSQL and Excel data for accurate weekly research reporting.'],
   },
 ]
 
 export const degrees = [
-  {
-    degree: 'M.S. Data Science',
-    school: 'Rochester Institute of Technology, NY',
-    year: '2024 -- 2026',
-    courses: 'Machine Learning, Deep Learning, Cloud Computing, Big Data Analytics, NLP',
-  },
-  {
-    degree: 'PGP Data Science',
-    school: 'Vellore Institute of Technology, India',
-    year: '2023 -- 2024',
-  },
-  {
-    degree: 'B.C.A. Computer Applications',
-    school: 'New Shores International College, India',
-    year: '2020 -- 2023',
-  },
+  { degree: 'M.S. in Data Science', school: 'Rochester Institute of Technology · Rochester, NY', year: 'Aug 2024 — Expected Dec 2026', courses: 'Machine Learning, Deep Learning, Cloud Computing, Big Data Analytics' },
+  { degree: 'Postgraduate Program in Data Science', school: 'Vellore Institute of Technology · India', year: 'Aug 2023 — Jul 2024' },
+  { degree: 'B.C.A. in Computer Applications', school: 'New Shores International College · India', year: 'Nov 2020 — Dec 2023' },
 ]
 
 export const skillGroups = [
-  {
-    name: 'ML & AI',
-    skills: ['PyTorch', 'TensorFlow', 'Transformers', 'scikit-learn', 'XGBoost', 'LangChain', 'Hugging Face', 'spaCy'],
-  },
-  {
-    name: 'Models',
-    skills: ['TinyLlama', 'DistilBERT', 'ViT', 'GPT-2', 'VGG19', 'ARIMA', 'Isolation Forest', 'RAG'],
-  },
-  {
-    name: 'Infrastructure',
-    skills: ['FastAPI', 'Docker', 'AWS', 'GCP', 'CUDA', 'Airflow', 'CI/CD', 'Linux'],
-  },
-  {
-    name: 'Data',
-    skills: ['Python', 'SQL', 'Pandas', 'NumPy', 'Plotly', 'Tableau', 'Power BI', 'Streamlit'],
-  },
-  {
-    name: 'Databases',
-    skills: ['PostgreSQL', 'MongoDB', 'ChromaDB', 'Redis', 'Snowflake', 'Spark'],
-  },
-  {
-    name: 'Statistics',
-    skills: ['Hypothesis Testing', 'A/B Testing', 'Regression', 'Time Series', 'SciPy', 'SHAP'],
-  },
+  { name: 'Languages', skills: ['Python', 'SQL', 'R', 'Java'] },
+  { name: 'Machine Learning & NLP', skills: ['PyTorch', 'scikit-learn', 'CatBoost', 'XGBoost', 'Transformers', 'LoRA', 'DistilBERT', 'FT-Transformer'] },
+  { name: 'Statistics & Evaluation', skills: ['A/B testing', 'Mann–Whitney U', 'Chi-square', 'G-test', 'ROC-AUC', 'PR-AUC', 'Calibration', 'PSI / KS / JS'] },
+  { name: 'Data & Databases', skills: ['Pandas', 'NumPy', 'SciPy', 'Spark', 'PostgreSQL', 'SQLite', 'Window functions'] },
+  { name: 'ML Engineering', skills: ['FastAPI', 'Streamlit', 'React', 'Docker', 'GitHub Actions', 'Automated testing', 'Git', 'Excel / VBA'] },
 ]
 
 export const socialLinks = {
