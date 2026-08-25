@@ -1,8 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { FiArrowUpRight, FiGithub, FiRefreshCw } from 'react-icons/fi'
-import { projects } from '@/lib/data'
+import { useState } from 'react'
 
 type PartId = 'data' | 'features' | 'model' | 'monitor'
 
@@ -10,36 +8,30 @@ const parts = [
   { id: 'data', number: '01', hardware: 'DATA SSD', science: 'Data pipeline', detail: 'Clean, split, and protect against leakage.', slot: 'DATA BAY' },
   { id: 'features', number: '02', hardware: 'FEATURE RAM', science: 'Feature engineering', detail: 'Encode signal and handle missingness.', slot: 'MEMORY CHANNEL' },
   { id: 'model', number: '03', hardware: 'MODEL GPU', science: 'Model training', detail: 'Fit, tune, and compare candidates.', slot: 'COMPUTE SLOT' },
-  { id: 'monitor', number: '04', hardware: 'DRIFT SENSOR', science: 'Evaluation + monitoring', detail: 'Audit calibration, drift, and decay.', slot: 'TELEMETRY HEADER' },
+  { id: 'monitor', number: '04', hardware: 'DRIFT SENSOR', science: 'Evaluation', detail: 'Audit calibration, drift, and decay.', slot: 'TELEMETRY HEADER' },
+] as const
+
+const applications = [
+  { number: '01', title: 'Women’s Safety Narratives', detail: 'NLP research dashboard', href: '/projects/womens-safety-narratives' },
+  { number: '02', title: 'Readmission Risk Audit', detail: 'Healthcare model evaluation', href: '/projects/readmission-risk-audit' },
+  { number: '03', title: 'RAG Evaluation API', detail: 'Retrieval system evidence', href: '/projects/rag-evaluation-api' },
+  { number: '04', title: 'GitHub Project Archive', detail: '43 public repositories', href: '#project-atlas' },
 ] as const
 
 const emptyPlacement: Record<PartId, boolean> = { data: false, features: false, model: false, monitor: false }
-type ApiState = 'checking' | 'demo' | 'model' | 'offline'
 
 export default function PcWorkbench() {
-  const [placed, setPlaced] = useState<Record<PartId, boolean>>(emptyPlacement)
+  const [placed, setPlaced] = useState<Record<PartId, boolean>>({ ...emptyPlacement })
   const [selected, setSelected] = useState<PartId | null>(null)
   const [wrongSlot, setWrongSlot] = useState<PartId | null>(null)
   const [message, setMessage] = useState('Select a component, then fit it into the matching slot.')
-  const [apiState, setApiState] = useState<ApiState>('checking')
   const placedCount = parts.filter((part) => placed[part.id]).length
   const complete = placedCount === parts.length
-
-  useEffect(() => {
-    const controller = new AbortController()
-    const timeout = window.setTimeout(() => controller.abort(), 10000)
-    fetch('https://newssnap.onrender.com/health', { signal: controller.signal })
-      .then((response) => (response.ok ? response.json() : Promise.reject()))
-      .then((data) => setApiState(data?.mode === 'model' ? 'model' : 'demo'))
-      .catch(() => setApiState('offline'))
-      .finally(() => window.clearTimeout(timeout))
-    return () => { controller.abort(); window.clearTimeout(timeout) }
-  }, [])
 
   function fitPart(partId: PartId, slotId: PartId) {
     if (partId !== slotId) {
       setWrongSlot(slotId)
-      setMessage('That part does not fit there. Match the hardware label to its data-science job.')
+      setMessage('Wrong slot. Match the component label to its system stage.')
       window.setTimeout(() => setWrongSlot(null), 420)
       return
     }
@@ -47,42 +39,33 @@ export default function PcWorkbench() {
     setPlaced((current) => ({ ...current, [partId]: true }))
     setSelected(null)
     setWrongSlot(null)
-    setMessage(partId === 'monitor' && placedCount === parts.length - 1
-      ? 'System online. Project applications unlocked.'
-      : `${part?.hardware ?? 'Component'} connected.`)
+    setMessage(partId === 'monitor' && placedCount === parts.length - 1 ? 'System online. Project routes unlocked.' : `${part?.hardware ?? 'Component'} connected.`)
   }
 
   function resetPuzzle() {
-    setPlaced(emptyPlacement)
+    setPlaced({ ...emptyPlacement })
     setSelected(null)
     setWrongSlot(null)
     setMessage('System reset. Select a component and fit it into the case.')
   }
 
-  const apiLabel = {
-    checking: 'Checking API',
-    demo: 'API reachable · demo inference',
-    model: 'API reachable · model inference',
-    offline: 'API sleeping or unreachable',
-  }[apiState]
-
   return (
     <div className="workbench-wrap">
       <div className="workbench-head">
         <div>
-          <p className="eyebrow">Interactive build</p>
-          <h3>Assemble the data-science PC.</h3>
-          <p>Each computer part maps to one stage of a defensible ML system.</p>
+          <p className="system-label">INTERACTIVE SYSTEM BUILD</p>
+          <h3>Assemble the ML workstation.</h3>
+          <p>Each PC component maps to one stage of a measured data system.</p>
         </div>
         <div className="build-progress" aria-label={`${placedCount} of ${parts.length} components connected`}>
-          <span><b>{placedCount}</b> / {parts.length} connected</span>
+          <span><b>{placedCount}</b> / {parts.length} CONNECTED</span>
           <i><b style={{ width: `${(placedCount / parts.length) * 100}%` }} /></i>
         </div>
       </div>
 
       <div className="pc-workbench">
         <aside className="parts-tray" aria-label="Data science component tray">
-          <div className="tray-heading"><span>Parts tray</span><small>Click or drag</small></div>
+          <div className="tray-heading"><span>PARTS TRAY</span><small>CLICK OR DRAG</small></div>
           {parts.map((part) => (
             <button type="button" key={part.id}
               className={`pc-part pc-part-${part.id} ${selected === part.id ? 'selected' : ''} ${placed[part.id] ? 'installed' : ''}`}
@@ -97,7 +80,7 @@ export default function PcWorkbench() {
         </aside>
 
         <section className={`pc-case ${complete ? 'system-online' : ''}`} aria-label="PC case assembly area">
-          <div className="case-topbar"><span>YK-ML // CASE_01</span><div className="case-lights" aria-label={complete ? 'System online' : 'System waiting'}><i /><i /><i className={complete ? 'online' : ''} /></div></div>
+          <div className="case-topbar"><span>YK-ML // CASE_03</span><div className="case-lights" aria-hidden="true"><i /><i /><i className={complete ? 'online' : ''} /></div></div>
           <div className="case-window">
             <div className="case-fan fan-one"><i /><span>DATA<br />FLOW</span></div>
             <div className="case-fan fan-two"><i /></div>
@@ -120,27 +103,25 @@ export default function PcWorkbench() {
             <div className="case-cable cable-one" /><div className="case-cable cable-two" />
           </div>
           <div className="case-status" aria-live="polite">
-            <span className={complete ? 'online' : ''}>{complete ? 'System online' : 'Assembly mode'}</span>
+            <span className={complete ? 'online' : ''}>{complete ? 'SYSTEM ONLINE' : 'ASSEMBLY MODE'}</span>
             <p>{message}</p>
-            <button type="button" onClick={resetPuzzle}><FiRefreshCw /> Reset</button>
+            <button type="button" onClick={resetPuzzle}>RESET ↺</button>
           </div>
         </section>
       </div>
 
       <section className={`system-apps ${complete ? 'unlocked' : ''}`} aria-label="Project applications">
         <div className="system-apps-heading">
-          <div><p className="eyebrow">Installed applications</p><h3>{complete ? 'Build complete. Choose a project.' : 'Complete the build to unlock the demos.'}</h3></div>
-          <span>{complete ? 'Access granted' : 'System locked'}</span>
+          <div><p className="system-label">INSTALLED APPLICATIONS</p><h3>{complete ? 'Build complete. Open a project.' : 'Complete the build to unlock the routes.'}</h3></div>
+          <span>{complete ? 'ACCESS GRANTED' : 'SYSTEM LOCKED'}</span>
         </div>
         <div className="system-app-grid">
-          {projects.map((project) => complete ? (
-            <article key={project.number}>
-              <div className="app-index">{project.number}</div>
-              <div className="app-copy"><b>{project.shortTitle}</b><small>{project.stack.join(' · ')}</small>{project.status === 'api' && <span className={`api-status ${apiState}`}>{apiLabel}</span>}</div>
-              <div className="app-actions"><a href={project.demo} target="_blank" rel="noreferrer">Demo <FiArrowUpRight /></a><a href={project.github} target="_blank" rel="noreferrer" aria-label={`${project.title} source code`}><FiGithub /></a></div>
-            </article>
+          {applications.map((app) => complete ? (
+            <a href={app.href} key={app.number}>
+              <span>{app.number}</span><div><b>{app.title}</b><small>{app.detail}</small></div><i>↗</i>
+            </a>
           ) : (
-            <div className="locked-app" key={project.number} aria-disabled="true"><span>{project.number}</span><div><b>Application locked</b><small>Install all four components</small></div><i aria-hidden="true">×</i></div>
+            <div className="locked-app" key={app.number} aria-disabled="true"><span>{app.number}</span><div><b>APPLICATION LOCKED</b><small>Install all four components</small></div><i aria-hidden="true">×</i></div>
           ))}
         </div>
       </section>
