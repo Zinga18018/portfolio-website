@@ -103,9 +103,8 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .acceptance-flag { display: inline-block; margin-top: 22px; padding: 10px 12px; color: var(--night); background: var(--amber); font: 700 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
 
 .project-evidence { grid-column: 3 / 13; margin-top: 72px; padding-left: clamp(20px, 3vw, 48px); display: grid; grid-template-columns: minmax(0, 2.15fr) minmax(250px, .85fr); border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); }
-.evidence-image { position: relative; min-height: 510px; overflow: hidden; border-right: 1px solid var(--line-strong); background: #071016; }
-.evidence-image img { object-fit: cover; object-position: top center; filter: saturate(.88) contrast(1.02); transition: transform .45s ease; }
-.evidence-image:hover img { transform: scale(1.012); }
+.evidence-image { position: relative; display: block; width: 100%; min-height: 0; aspect-ratio: 14 / 9; overflow: hidden; border-right: 1px solid var(--line-strong); background: #071016; }
+.evidence-image img { object-fit: contain; object-position: center; filter: saturate(.88) contrast(1.02); }
 .evidence-image > span { position: absolute; right: 0; bottom: 0; z-index: 2; padding: 12px 14px; color: var(--night); background: var(--amber); font: 700 9px var(--mono); letter-spacing: .08em; }
 .evidence-ledger { display: grid; grid-template-columns: repeat(2, 1fr); background: #0e1215; }
 .evidence-ledger div { min-height: 150px; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -260,7 +259,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
 @media (max-width: 980px) {
   .project-evidence { grid-template-columns: 1fr; }
-  .evidence-image { min-height: 430px; border-right: 0; border-bottom: 1px solid var(--line-strong); }
+  .evidence-image { border-right: 0; border-bottom: 1px solid var(--line-strong); }
   .pc-workbench { grid-template-columns: 1fr; }
   .system-app-grid { grid-template-columns: repeat(2, 1fr); }
   .atlas-controls, .experience-grid { grid-template-columns: 1fr; }
@@ -275,7 +274,6 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   .chapter-heading, .project-evidence, .chapter-actions, .skill-ledger, .experience-grid, .contact-band { grid-column: 2; padding-left: 0; }
   .chapter-heading h2 { font-size: clamp(64px, 19vw, 100px); }
   .project-evidence { margin-top: 50px; }
-  .evidence-image { min-height: 260px; }
   .evidence-ledger div { min-height: 118px; padding: 17px; }
   .skill-ledger { margin-top: 46px; }
   .skill-ledger div { grid-template-columns: 92px 1fr; }

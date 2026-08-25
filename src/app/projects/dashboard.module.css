@@ -69,8 +69,8 @@
 .sectionHeading > p { margin: 0 0 5px; color: var(--dash-muted); font-size: 15px; line-height: 1.6; }
 
 .evidenceGrid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(300px, .75fr); gap: 18px; }
-.capture { position: relative; min-height: 520px; overflow: hidden; border: 1px solid var(--dash-line); background: #071016; }
-.capture img { object-fit: cover; object-position: top; }
+.capture { position: relative; width: 100%; min-height: 0; aspect-ratio: 14 / 9; overflow: hidden; border: 1px solid var(--dash-line); background: #071016; }
+.capture img { object-fit: contain; object-position: center; }
 .panel { padding: 27px; border: 1px solid var(--dash-line); background: var(--dash-panel); }
 .panelHead { display: flex; justify-content: space-between; gap: 18px; align-items: start; padding-bottom: 20px; border-bottom: 1px solid var(--dash-line); }
 .panelHead span { color: var(--dash-amber); font: 600 9px var(--mono); letter-spacing: .1em; }
@@ -145,7 +145,6 @@
   .metricStrip article { min-height: 112px; border-right: 0; border-bottom: 1px solid var(--dash-line); }
   .metricStrip article:last-child { border-bottom: 0; }
   .section { padding-top: 86px; }
-  .capture { min-height: 300px; }
   .matrix strong { font-size: 34px; }
   .calibrationReadout, .methodGrid, .pipeline { grid-template-columns: 1fr; }
   .calibrationReadout div, .methodGrid article, .pipeline article { min-height: auto; border-right: 0; border-bottom: 1px solid var(--dash-line); }
