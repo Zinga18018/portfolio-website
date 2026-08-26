@@ -23,7 +23,7 @@ export const projects: Project[] = [
   },
   {
     number: '02',
-    title: 'Transformer News Classification',
+    title: 'NewsSnap: Transformer News Classification System',
     shortTitle: 'NewsSnap',
     description: 'A four-class AG News system with a DistilBERT training pipeline, FastAPI service, React dashboard, and explicit inference modes.',
     outcome: 'Held-out evaluation: 0.870 accuracy, 0.869 macro-F1, and 0.827 MCC on 12,000 articles.',
@@ -90,6 +90,6 @@ export const skillGroups = [
 export const socialLinks = {
   email: 'kuchimanchiyogesh@gmail.com',
   github: 'https://github.com/Zinga18018',
-  linkedin: 'https://linkedin.com/in/yogesh-kuchimanchi',
+  linkedin: 'https://www.linkedin.com/in/yogeshkuchimanchi/',
   huggingface: 'https://huggingface.co/Yogesh18018',
 }
