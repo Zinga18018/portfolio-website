@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FiArrowUpRight, FiGithub, FiRefreshCw } from 'react-icons/fi'
 import { projects } from '@/lib/data'
 
@@ -14,27 +14,14 @@ const parts = [
 ] as const
 
 const emptyPlacement: Record<PartId, boolean> = { data: false, features: false, model: false, monitor: false }
-type ApiState = 'checking' | 'demo' | 'model' | 'offline'
 
 export default function PcWorkbench() {
   const [placed, setPlaced] = useState<Record<PartId, boolean>>(emptyPlacement)
   const [selected, setSelected] = useState<PartId | null>(null)
   const [wrongSlot, setWrongSlot] = useState<PartId | null>(null)
   const [message, setMessage] = useState('Select a component, then fit it into the matching slot.')
-  const [apiState, setApiState] = useState<ApiState>('checking')
   const placedCount = parts.filter((part) => placed[part.id]).length
   const complete = placedCount === parts.length
-
-  useEffect(() => {
-    const controller = new AbortController()
-    const timeout = window.setTimeout(() => controller.abort(), 10000)
-    fetch('https://newssnap.onrender.com/health', { signal: controller.signal })
-      .then((response) => (response.ok ? response.json() : Promise.reject()))
-      .then((data) => setApiState(data?.mode === 'model' ? 'model' : 'demo'))
-      .catch(() => setApiState('offline'))
-      .finally(() => window.clearTimeout(timeout))
-    return () => { controller.abort(); window.clearTimeout(timeout) }
-  }, [])
 
   function fitPart(partId: PartId, slotId: PartId) {
     if (partId !== slotId) {
@@ -58,13 +45,6 @@ export default function PcWorkbench() {
     setWrongSlot(null)
     setMessage('System reset. Select a component and fit it into the case.')
   }
-
-  const apiLabel = {
-    checking: 'Checking API',
-    demo: 'API reachable · demo inference',
-    model: 'API reachable · model inference',
-    offline: 'API sleeping or unreachable',
-  }[apiState]
 
   return (
     <div className="workbench-wrap">
@@ -136,7 +116,7 @@ export default function PcWorkbench() {
           {projects.map((project) => complete ? (
             <article key={project.number}>
               <div className="app-index">{project.number}</div>
-              <div className="app-copy"><b>{project.shortTitle}</b><small>{project.stack.join(' · ')}</small>{project.status === 'api' && <span className={`api-status ${apiState}`}>{apiLabel}</span>}</div>
+              <div className="app-copy"><b>{project.shortTitle}</b><small>{project.stack.join(' · ')}</small></div>
               <div className="app-actions"><a href={project.demo} target="_blank" rel="noreferrer">{project.demoLabel ?? 'Demo'} <FiArrowUpRight /></a>{project.github && <a href={project.github} target="_blank" rel="noreferrer" aria-label={`${project.title} source code`}><FiGithub /></a>}</div>
             </article>
           ) : (

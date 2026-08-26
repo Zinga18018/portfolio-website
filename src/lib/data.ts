@@ -8,7 +8,6 @@ export interface Project {
   github?: string
   demo: string
   demoLabel?: string
-  status?: string
 }
 
 export const projects: Project[] = [
@@ -30,8 +29,8 @@ export const projects: Project[] = [
     outcome: 'Held-out evaluation: 0.870 accuracy, 0.869 macro-F1, and 0.827 MCC on 12,000 articles.',
     stack: ['DistilBERT', 'FastAPI', 'React', 'CI/CD'],
     github: 'https://github.com/Zinga18018/NewsSnap',
-    demo: 'https://news-snap-three.vercel.app/',
-    status: 'api',
+    demo: 'https://yogesh-newssnap-classifier.streamlit.app/',
+    demoLabel: 'Streamlit demo',
   },
   {
     number: '03',
