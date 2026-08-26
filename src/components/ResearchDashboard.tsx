@@ -120,7 +120,7 @@ export default function ResearchDashboard() {
       </section>
 
       <section className="paper-section evidence-section">
-        <div><p className="paper-kicker">Evidence and responsibility</p><h2>What this dashboard does—and does not—claim.</h2></div>
+        <div><p className="paper-kicker">Notes</p><h2>Evidence and limitations</h2></div>
         <div className="evidence-grid">
           <article><span>Submitted-paper</span><p>Corpus scale, 16-case framing, 2012–2024 span, paper-facing tests, and annotator agreement mirror the accepted manuscript.</p></article>
           <article><span>Local-verified</span><p>The model audit uses later reproducibility artifacts and is labeled separately so it does not rewrite the submitted pilot.</p></article>
