@@ -137,7 +137,7 @@ export default function PcWorkbench() {
             <article key={project.number}>
               <div className="app-index">{project.number}</div>
               <div className="app-copy"><b>{project.shortTitle}</b><small>{project.stack.join(' · ')}</small>{project.status === 'api' && <span className={`api-status ${apiState}`}>{apiLabel}</span>}</div>
-              <div className="app-actions"><a href={project.demo} target="_blank" rel="noreferrer">Demo <FiArrowUpRight /></a><a href={project.github} target="_blank" rel="noreferrer" aria-label={`${project.title} source code`}><FiGithub /></a></div>
+              <div className="app-actions"><a href={project.demo} target="_blank" rel="noreferrer">{project.demoLabel ?? 'Demo'} <FiArrowUpRight /></a>{project.github && <a href={project.github} target="_blank" rel="noreferrer" aria-label={`${project.title} source code`}><FiGithub /></a>}</div>
             </article>
           ) : (
             <div className="locked-app" key={project.number} aria-disabled="true"><span>{project.number}</span><div><b>Application locked</b><small>Install all four components</small></div><i aria-hidden="true">×</i></div>

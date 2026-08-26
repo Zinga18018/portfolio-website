@@ -5,8 +5,9 @@ export interface Project {
   description: string
   outcome: string
   stack: string[]
-  github: string
+  github?: string
   demo: string
+  demoLabel?: string
   status?: string
 }
 
@@ -41,6 +42,16 @@ export const projects: Project[] = [
     stack: ['NumPy', 'Pandas', 'PSI / KS', 'Streamlit'],
     github: 'https://github.com/Zinga18018/driftlab-model-monitoring-simulator',
     demo: 'https://yogesh-driftlab-monitoring.streamlit.app/',
+  },
+  {
+    number: '04',
+    title: 'Women-Safety Public Discourse Research',
+    shortTitle: 'Women-Safety Research',
+    description: 'An interactive research dashboard covering 351,501 Reddit and YouTube comments across 16 women-safety cases in India.',
+    outcome: 'Paper accepted at ASONAM 2026. The dashboard separates submitted-paper findings from later model audits.',
+    stack: ['Python', 'Pandas', 'Qwen', 'Statistical testing'],
+    demo: '/research/women-safety',
+    demoLabel: 'Research dashboard',
   },
 ]
 

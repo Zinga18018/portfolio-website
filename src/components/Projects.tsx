@@ -11,9 +11,9 @@ export default function Projects() {
     <section id="projects" className="section projects-section">
       <div className="section-container">
         <div ref={ref} className="reveal section-intro">
-          <p className="eyebrow">Selected projects</p>
-          <h2>Three systems. Three different failure modes.</h2>
-          <p>Build the machine first, then open the working demos. Every result shown below comes from a saved project artifact or test run.</p>
+          <p className="eyebrow">Projects</p>
+          <h2>Projects and demos.</h2>
+          <p>Build the machine, then open each project&apos;s working demo.</p>
         </div>
         <PcWorkbench />
         <div className="project-ledger">
@@ -27,8 +27,8 @@ export default function Projects() {
                 <div className="tags">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
               </div>
               <div className="project-links">
-                <a href={project.demo} target="_blank" rel="noreferrer">Live demo <FiArrowUpRight /></a>
-                <a href={project.github} target="_blank" rel="noreferrer"><FiGithub /> Source</a>
+                <a href={project.demo} target="_blank" rel="noreferrer">{project.demoLabel ?? 'Live demo'} <FiArrowUpRight /></a>
+                {project.github && <a href={project.github} target="_blank" rel="noreferrer"><FiGithub /> Source</a>}
               </div>
             </article>
           ))}

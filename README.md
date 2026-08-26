@@ -7,7 +7,7 @@ An editorial-style data science portfolio built around an interactive PC assembl
 ## What is included
 
 - Interactive click-or-drag PC build with accessible button controls
-- Three projects with verified demos and saved evaluation results
+- Four projects with working demos and evidence-backed results
 - Live NewsSnap API health check with honest model/demo-mode labeling
 - Résumé-backed experience, education, and technical skills
 - Responsive desktop and mobile layouts
@@ -17,6 +17,7 @@ An editorial-style data science portfolio built around an interactive PC assembl
 - [Clinical Readmission Risk Audit](https://github.com/Zinga18018/readmission-risk-audit)
 - [NewsSnap](https://github.com/Zinga18018/NewsSnap)
 - [DriftLab](https://github.com/Zinga18018/driftlab-model-monitoring-simulator)
+- [Women-Safety Research Dashboard](https://portfolio-website-pied-tau-72.vercel.app/research/women-safety)
 
 ## Run locally
 
