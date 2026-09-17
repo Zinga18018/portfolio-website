@@ -11,9 +11,10 @@ export default function Projects() {
     <section id="projects" className="section projects-section">
       <div className="section-container">
         <div ref={ref} className="reveal section-intro">
-          <p className="eyebrow">Projects</p>
+          <p className="eyebrow">Featured projects</p>
           <h2>Projects and demos.</h2>
           <p>Build the machine, then open each project&apos;s working demo.</p>
+          <a className="repo-jump" href="#github-projects">Explore all GitHub projects <FiArrowUpRight /></a>
         </div>
         <PcWorkbench />
         <div className="project-ledger">
