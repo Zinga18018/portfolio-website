@@ -6,29 +6,29 @@ import styles from './About.module.css'
 
 const chapters = [
   {
-    title: 'What am I actually comparing?',
-    body: 'Choosing parts means making trade-offs. A bigger number on a spec sheet only tells you so much; the workload and the rest of the build matter too. That is a question I now bring to models: did the comparison give each one a fair test?',
+    title: 'Compare like with like.',
+    body: 'A benchmark needs context. In my readmission project, I keep patients separate across splits and check how well predicted risks match outcomes.',
     project: 'Clinical Readmission Risk Modeling',
     connection: 'Patient-disjoint splits and calibration, so a good score has something behind it.',
     href: '#project-01',
   },
   {
-    title: 'Which information is useful?',
-    body: 'Collecting parts also means collecting information: specs, reviews, recommendations. Making sense of all that is part of what drew me to data. With text, the same problem gets much bigger.',
+    title: 'Make the information usable.',
+    body: 'NewsSnap turns a news classifier into an application where someone can inspect predictions. The training pipeline, API, and interface are all part of the project.',
     project: 'NewsSnap',
     connection: 'A transformer-based news classifier, with a working interface to explore its predictions.',
     href: '#project-02',
   },
   {
-    title: 'Does the answer change over time?',
-    body: 'A PC build is a choice made at a particular moment. Workloads change, and what was enough before may not be enough later. I’m interested in that with models too: what happens when the data they meet changes?',
+    title: 'Check again later.',
+    body: 'A model’s inputs can change after training. DriftLab lets me explore what happens to performance and monitoring alerts when they do.',
     project: 'DriftLab',
     connection: 'A simulator for watching model performance change as the input distribution shifts.',
     href: '#project-03',
   },
   {
-    title: 'And when the data is about people?',
-    body: 'At RIT, my research takes that interest in change into a very different setting: public conversations about women’s safety in India. The question is how those conversations change after an incident, and what remains months or years later.',
+    title: 'Follow a conversation.',
+    body: 'My capstone looks at how discussions about women’s safety change after an incident and what people return to months or years later.',
     project: 'Women’s Safety Discourse Research',
     connection: 'A paper accepted at ASONAM 2026, with an interactive dashboard of the findings.',
     href: '/research/women-safety/',
@@ -47,10 +47,10 @@ export default function About() {
     <section id="about" className="section about-section" aria-labelledby="about-heading">
       <div className="section-container">
         <div className={styles.intro}>
-          <div><p className="eyebrow">A little about me</p><h2 id="about-heading">It started with collecting parts.</h2></div>
+          <div><p className="eyebrow">A little about me</p><h2 id="about-heading">It started with PC parts.</h2></div>
           <div className="about-copy">
-            <p>I like building PCs. Somewhere between collecting parts and comparing them, I started enjoying the comparisons as much as the build itself. Why this component? What am I getting for the difference in price? Will it make a difference for what I want to do?</p>
-            <p>That is how I got interested in data. I’m now studying data science at Rochester Institute of Technology, and those questions have followed me into my projects.</p>
+            <p>I like building PCs. Collecting parts meant comparing specs, prices, and performance. Somewhere along the way, I got as interested in those comparisons as I was in the build.</p>
+            <p>That interest brought me to data science. At RIT, I’ve worked on readmission models, news classification, and research on women’s safety in India. The subject changes, but I still want to understand what the numbers say and what I can build with them.</p>
           </div>
         </div>
         <ol className={styles.chapters} aria-label="From PC building to my projects">
@@ -63,7 +63,7 @@ export default function About() {
           ))}
         </ol>
         <div className={styles.time}>
-          <div><p className="eyebrow">One question, at different moments</p><h3>Time is part of the data.</h3><p>These are the three time windows in our women’s safety research. Choose a window to see the question it helps us ask.</p></div>
+          <div><p className="eyebrow">One question, at different moments</p><h3>How discourse changes over time.</h3><p>These windows are measured from the incident, not a verdict. Choose one to explore the research question.</p></div>
           <div>
             <div className={styles.phaseButtons} role="group" aria-label="Research time window">
               {phases.map((item, index) => <button type="button" key={item.name} aria-pressed={phase === index} onClick={() => setPhase(index)}><span>{item.range}</span>{item.label}</button>)}
@@ -74,7 +74,7 @@ export default function About() {
         <div className={styles.crossroads}>
           <p className="eyebrow">The crossroads</p>
           <h3>I want to keep doing both.</h3>
-          <p>Research gives me room to investigate a question properly. Engineering lets me turn what I learn into something someone can use. As I finish my master’s, I’m looking for a data science role where I can keep asking questions and building things.</p>
+          <p>I like investigating a question and building something from the answer. As I finish my master’s, I’m looking for work that gives me room to do both.</p>
           <div className={styles.paths}><a href="/research/women-safety/">Follow the research <FiArrowUpRight aria-hidden="true" /></a><a href="#projects">Explore the builds <FiArrowUpRight aria-hidden="true" /></a></div>
         </div>
       </div>

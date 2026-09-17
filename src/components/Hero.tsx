@@ -22,7 +22,7 @@ export default function Hero() {
         <aside className="hero-note" aria-label="Current focus">
           <span className="note-pin" />
           <p>What I’m working on</p>
-          <h2>From comparisons to questions.</h2>
+          <h2>Python, models, and applications.</h2>
           <ul>
             <li>Comparing models fairly</li>
             <li>Making sense of language</li>

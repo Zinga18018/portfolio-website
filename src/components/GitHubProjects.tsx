@@ -35,6 +35,7 @@ export default function GitHubProjects() {
       }
       if (active) {
         setRepos(collected)
+        window.dispatchEvent(new CustomEvent('portfolio-repositories', { detail: collected }))
         setStatus('ready')
       }
     }
@@ -56,7 +57,7 @@ export default function GitHubProjects() {
         <div className="section-intro">
           <p className="eyebrow">The full collection</p>
           <h2 id="github-heading">All GitHub Projects.</h2>
-          <p>Explore my public repositories, from machine learning systems to experiments and tools. New public repositories appear automatically.</p>
+          <p>Search my public repositories by name or language. This list updates from GitHub.</p>
         </div>
         <div className="repo-toolbar">
           <label>Search projects<input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="Search by name, topic, or language" /></label>
@@ -75,6 +76,7 @@ export default function GitHubProjects() {
               <div className="repo-meta"><span>{repo.language || 'Repository'}</span>{repo.fork && <span>Fork</span>}{repo.archived && <span>Archived</span>}</div>
               <h3><a href={`${profile}/${encodeURIComponent(repo.name)}`} target="_blank" rel="noreferrer">{repo.name.replace(/[-_]/g, ' ')} <FiArrowUpRight aria-hidden="true" /></a></h3>
               <p>{repo.description || 'Explore the source code and project files on GitHub.'}</p>
+              <a className="repo-jump" href="#project-dashboards" onClick={() => window.dispatchEvent(new CustomEvent('portfolio-project', { detail: repo.name }))}>Project overview <FiArrowUpRight /></a>
               <div className="repo-footer"><span>{repo.pushed_at ? `Updated ${repo.pushed_at.slice(0, 10)}` : 'Public repository'}</span>{repo.stargazers_count > 0 && <span><FiStar aria-hidden="true" /> {repo.stargazers_count} stars</span>}</div>
             </article>
           ))}

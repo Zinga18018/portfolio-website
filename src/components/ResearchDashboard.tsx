@@ -54,7 +54,7 @@ export default function ResearchDashboard() {
 
       <section className="paper-section" id="findings">
         <div className="paper-section-head">
-          <div><p className="paper-kicker">RQ1 · Triggering incidents</p><h2>Political implication changes who receives blame.</h2></div>
+          <div><p className="paper-kicker">RQ1 · Triggering incidents</p><h2>Government criticism by case.</h2></div>
           <aside><strong>36.67%</strong><span>median government criticism in political cases</span><small>vs 16.65% in the submitted-paper non-political comparison</small></aside>
         </div>
         <div className="result-ribbon"><b>Mann–Whitney U = 59</b><span>p = 0.0005</span><span>r = 0.786</span><em>Large case-level effect</em></div>
@@ -80,7 +80,7 @@ export default function ResearchDashboard() {
 
       <section className="paper-section temporal-section">
         <div className="paper-section-head simple">
-          <div><p className="paper-kicker">RQ2 · Evolving narratives</p><h2>Attention shifts, but not along one universal curve.</h2><p>Among 15 eligible cases with at least 20 rows in both windows, the acute-to-retrospective change was not statistically uniform.</p></div>
+          <div><p className="paper-kicker">RQ2 · Evolving narratives</p><h2>Stance across time windows.</h2><p>Among 15 eligible cases with at least 20 rows in both windows, the acute-to-retrospective change was not statistically uniform.</p></div>
           <aside><strong>W = 43</strong><span>Wilcoxon signed-rank</span><small>p = 0.359 · n = 15</small></aside>
         </div>
         <div className="stance-legend"><span><i className="cg" /> Critical of government</span><span><i className="cs" /> Critical of society</span><span><i className="nr" /> Neutral reporting</span><span><i className="sv" /> Supportive of victim</span></div>
@@ -101,7 +101,7 @@ export default function ResearchDashboard() {
       </section>
 
       <section className="paper-section outcomes-section">
-        <div className="paper-section-head simple"><div><p className="paper-kicker">RQ3 · Institutional response</p><h2>Association map, not a causation claim.</h2><p>The response taxonomy is descriptive. It does not establish that online discourse caused policy or legal action.</p></div></div>
+        <div className="paper-section-head simple"><div><p className="paper-kicker">RQ3 · Institutional response</p><h2>Recorded institutional responses.</h2><p>The response taxonomy is descriptive. It does not establish that online discourse caused policy or legal action.</p></div></div>
         <div className="outcome-grid">
           <article><span>02</span><h3>Legislative</h3><p>Nirbhaya 2012 · Kathua 2018</p></article>
           <article><span>03</span><h3>Regulatory / state action</h3><p>Uber Delhi 2014 · Hyderabad Vet 2019 · RG Kar 2024</p></article>
@@ -110,7 +110,7 @@ export default function ResearchDashboard() {
       </section>
 
       <section className="paper-section model-section">
-        <div className="paper-section-head simple"><div><p className="paper-kicker">Post-submission local audit</p><h2>Adaptation improved classification, not every reliability measure.</h2><p>This panel reports the later fixed 3,000-row validation matrix. It is deliberately separated from the submitted paper&apos;s pilot results.</p></div><aside className="evidence-tag">Local-verified lane</aside></div>
+        <div className="paper-section-head simple"><div><p className="paper-kicker">Post-submission local audit</p><h2>Classification and confidence audit.</h2><p>This panel reports the later fixed 3,000-row validation matrix. It is deliberately separated from the submitted paper&apos;s pilot results.</p></div><aside className="evidence-tag">Later model audit</aside></div>
         <div className="model-grid">
           <div className="model-bars">
             {modelMetrics.map((metric) => <article key={metric.name}><h3>{metric.name}</h3><div><span>Base</span><i><b style={{ width: `${metric.base}%` }} /></i><strong>{metric.base.toFixed(2)}</strong></div><div><span>Adapted</span><i><b className="adapted" style={{ width: `${metric.adapted}%` }} /></i><strong>{metric.adapted.toFixed(2)}</strong></div></article>)}

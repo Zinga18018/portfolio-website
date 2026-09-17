@@ -9,7 +9,7 @@ export default function Experience() {
     <section id="experience" className="section experience-section">
       <div className="section-container">
         <div ref={ref} className="reveal experience-grid">
-          <div className="section-intro"><p className="eyebrow">Experience</p><h2>Work that made the models more defensible.</h2></div>
+          <div className="section-intro"><p className="eyebrow">Experience</p><h2>Where I’ve worked.</h2></div>
           <div className="timeline">
             {jobs.map((job, index) => (
               <article key={`${job.title}-${job.dates}`}>
