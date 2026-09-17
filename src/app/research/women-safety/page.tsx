@@ -3,6 +3,8 @@ import Link from 'next/link'
 import ResearchDashboard from '@/components/ResearchDashboard'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/research/women-safety/' },
+  openGraph: { url: '/research/women-safety/', title: "Women's Safety Narratives in India | Research Dashboard", description: 'Research accepted at ASONAM 2026 on women’s safety discourse in India.', type: 'article' },
   title: "Women's Safety Narratives in India | Research Dashboard",
   description: 'An evidence-labeled dashboard for an ASONAM 2026 accepted paper analyzing 351,501 Reddit and YouTube comments across 16 cases in India.',
 }
