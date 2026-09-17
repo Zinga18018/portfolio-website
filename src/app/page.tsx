@@ -7,6 +7,11 @@ import SkillsConstellation from '@/components/SkillsConstellation'
 import Contact from '@/components/Contact'
 import Nav from '@/components/Nav'
 
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+  openGraph: { url: '/', title: 'Yogesh Kuchimanchi | Data Scientist', description: 'Inspectable ML systems, honest evaluation, and working demos.', type: 'website' },
+}
+
 export default function Home() {
   return (
     <>
@@ -15,6 +20,7 @@ export default function Home() {
         <Hero />
         <About />
         <Projects />
+        <GitHubProjects />
         <Experience />
         <Education />
         <SkillsConstellation />
@@ -27,3 +33,5 @@ export default function Home() {
     </>
   )
 }
+import type { Metadata } from 'next'
+import GitHubProjects from '@/components/GitHubProjects'

@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://portfolio-website-pied-tau-72.vercel.app'),
+  metadataBase: new URL('https://yogeshkuchimanchi.com'),
   title: 'Yogesh Kuchimanchi | Data Scientist',
   description:
     'Data science portfolio of Yogesh Kuchimanchi: leakage-safe clinical risk modeling, transformer news classification, and model drift monitoring.',
