@@ -50,9 +50,9 @@ export default function PcWorkbench() {
     <div className="workbench-wrap">
       <div className="workbench-head">
         <div>
-          <p className="eyebrow">Interactive build</p>
-          <h3>Assemble the data-science PC.</h3>
-          <p>Each computer part maps to one stage of a defensible ML system.</p>
+          <p className="eyebrow">A nod to where it started</p>
+          <h3>Put the parts together.</h3>
+          <p>A small interactive build, with each part representing a step in an ML project.</p>
         </div>
         <div className="build-progress" aria-label={`${placedCount} of ${parts.length} components connected`}>
           <span><b>{placedCount}</b> / {parts.length} connected</span>

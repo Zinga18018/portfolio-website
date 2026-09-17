@@ -12,14 +12,14 @@ export default function Projects() {
       <div className="section-container">
         <div ref={ref} className="reveal section-intro">
           <p className="eyebrow">Featured projects</p>
-          <h2>Projects and demos.</h2>
-          <p>Build the machine, then open each project&apos;s working demo.</p>
+          <h2>Here’s what those questions became.</h2>
+          <p>Four projects to explore. There’s a small PC build below if you want to try it; each project is also linked directly underneath.</p>
           <a className="repo-jump" href="#github-projects">Explore all GitHub projects <FiArrowUpRight /></a>
         </div>
         <PcWorkbench />
         <div className="project-ledger">
           {projects.map((project) => (
-            <article key={project.number} className="project-row">
+            <article key={project.number} id={`project-${project.number}`} className="project-row">
               <span className="project-number">{project.number}</span>
               <div className="project-main">
                 <h3>{project.title}</h3>
