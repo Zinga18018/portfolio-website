@@ -11,6 +11,7 @@ export default function GitHubProjects() {
   const [repos, setRepos] = useState<Repository[]>(initialRepos)
   const [query, setQuery] = useState('')
   const [language, setLanguage] = useState('All')
+  const [showAll, setShowAll] = useState(false)
   const [status, setStatus] = useState<'loading' | 'ready' | 'fallback'>('loading')
   const [attempt, setAttempt] = useState(0)
 
@@ -50,14 +51,16 @@ export default function GitHubProjects() {
     (language === 'All' || repo.language === language) &&
     `${repo.name} ${repo.description ?? ''} ${repo.language ?? ''}`.toLowerCase().includes(search)
   ).sort((a, b) => (b.pushed_at ?? '').localeCompare(a.pushed_at ?? '') || a.name.localeCompare(b.name))
+  const hasActiveFilter = search.length > 0 || language !== 'All'
+  const visible = showAll || hasActiveFilter ? filtered : filtered.slice(0, 9)
 
   return (
     <section id="github-projects" className="section github-section" aria-labelledby="github-heading">
       <div className="section-container">
         <div className="section-intro">
-          <p className="eyebrow">The full collection</p>
-          <h2 id="github-heading">All GitHub Projects.</h2>
-          <p>Search my public repositories by name or language. This list updates from GitHub.</p>
+          <p className="eyebrow">Repository archive</p>
+          <h2 id="github-heading">More work on GitHub.</h2>
+          <p>This is an automatically updated index of my public repositories. The selected projects above are the ones with fully documented results.</p>
         </div>
         <div className="repo-toolbar">
           <label>Search projects<input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="Search by name, topic, or language" /></label>
@@ -65,23 +68,28 @@ export default function GitHubProjects() {
           <a className="repo-profile" href={`${profile}?tab=repositories`} target="_blank" rel="noreferrer"><FiGithub /> View GitHub <FiArrowUpRight /></a>
         </div>
         <p className="repo-status" role="status">
-          {filtered.length} of {repos.length} repositories · Most recently updated first
+          {visible.length} shown · {repos.length} public repositories · Most recently updated first
           {status === 'loading' && ' · Refreshing from GitHub…'}
           {status === 'ready' && ' · Updated from GitHub'}
           {status === 'fallback' && <> · Showing saved projects; GitHub could not be refreshed. <button type="button" onClick={() => setAttempt(value => value + 1)}>Retry</button></>}
         </p>
         <div className="repo-grid">
-          {filtered.map(repo => (
+          {visible.map(repo => (
             <article key={repo.id} className="repo-card">
               <div className="repo-meta"><span>{repo.language || 'Repository'}</span>{repo.fork && <span>Fork</span>}{repo.archived && <span>Archived</span>}</div>
               <h3><a href={`${profile}/${encodeURIComponent(repo.name)}`} target="_blank" rel="noreferrer">{repo.name.replace(/[-_]/g, ' ')} <FiArrowUpRight aria-hidden="true" /></a></h3>
               <p>{repo.description || 'Explore the source code and project files on GitHub.'}</p>
-              <a className="repo-jump" href="#project-dashboards" onClick={() => window.dispatchEvent(new CustomEvent('portfolio-project', { detail: repo.name }))}>Project overview <FiArrowUpRight /></a>
+              <a className="repo-jump" href={`${profile}/${encodeURIComponent(repo.name)}`} target="_blank" rel="noreferrer">Open repository <FiArrowUpRight /></a>
               <div className="repo-footer"><span>{repo.pushed_at ? `Updated ${repo.pushed_at.slice(0, 10)}` : 'Public repository'}</span>{repo.stargazers_count > 0 && <span><FiStar aria-hidden="true" /> {repo.stargazers_count} stars</span>}</div>
             </article>
           ))}
         </div>
         {filtered.length === 0 && <p className="repo-empty">No matching projects. Try another search or language.</p>}
+        {!hasActiveFilter && filtered.length > 9 && (
+          <button className="repo-show-all" type="button" onClick={() => setShowAll(value => !value)}>
+            {showAll ? 'Show the latest nine' : `Show all ${filtered.length} repositories`}
+          </button>
+        )}
       </div>
     </section>
   )

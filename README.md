@@ -1,23 +1,24 @@
 # Yogesh Kuchimanchi — Portfolio
 
-An editorial-style data science portfolio built around an interactive PC assembly. Each hardware component maps to a stage of an ML system: data, features, training, and monitoring.
+A personal data science portfolio focused on selected research and machine-learning projects, with direct links to source code, results, and live demos.
 
-**Live site:** [portfolio-website-pied-tau-72.vercel.app](https://portfolio-website-pied-tau-72.vercel.app/)
+**Live site:** [yogeshkuchimanchi.com](https://yogeshkuchimanchi.com/)
 
 ## What is included
 
-- Interactive click-or-drag PC build with accessible button controls
-- Four projects with working demos and evidence-backed results
-- Live NewsSnap API health check with honest model/demo-mode labeling
+- Five selected projects with working demos and evidence-backed results
+- A plain-language current-project introduction
+- A searchable index of public GitHub repositories
 - Résumé-backed experience, education, and technical skills
 - Responsive desktop and mobile layouts
 
 ## Projects
 
+- [Cardiometabolic GWAS Evidence Explorer](https://github.com/Zinga18018/cardiometabolic-gwas-evidence-explorer)
 - [Clinical Readmission Risk Audit](https://github.com/Zinga18018/readmission-risk-audit)
 - [NewsSnap](https://github.com/Zinga18018/NewsSnap)
 - [DriftLab](https://github.com/Zinga18018/driftlab-model-monitoring-simulator)
-- [Women-Safety Research Dashboard](https://portfolio-website-pied-tau-72.vercel.app/research/women-safety)
+- [Women-Safety Research Dashboard](https://yogeshkuchimanchi.com/research/women-safety)
 
 ## Run locally
 

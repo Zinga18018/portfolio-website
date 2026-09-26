@@ -1,8 +1,6 @@
 'use client'
 
 import { FiArrowUpRight, FiGithub } from 'react-icons/fi'
-import PcWorkbench from './PcWorkbench'
-import ProjectDashboards from './ProjectDashboards'
 import { projects } from '@/lib/data'
 import { useReveal } from '@/lib/useReveal'
 
@@ -14,11 +12,9 @@ export default function Projects() {
         <div ref={ref} className="reveal section-intro">
           <p className="eyebrow">Featured projects</p>
           <h2>Selected projects.</h2>
-          <p>Source code, evaluation results, and demos for four projects.</p>
-          <a className="repo-jump" href="#github-projects">Explore all GitHub projects <FiArrowUpRight /></a>
+          <p>Five projects I can discuss in detail, with source code, observed results, and the limits of each analysis.</p>
+          <a className="repo-jump" href="#github-projects">Browse the repository archive <FiArrowUpRight /></a>
         </div>
-        <ProjectDashboards />
-        <PcWorkbench />
         <div className="project-ledger">
           {projects.map((project) => (
             <article key={project.number} id={`project-${project.number}`} className="project-row">

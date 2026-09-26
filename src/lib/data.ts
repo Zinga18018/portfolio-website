@@ -13,6 +13,17 @@ export interface Project {
 export const projects: Project[] = [
   {
     number: '01',
+    title: 'Cardiometabolic GWAS Evidence Explorer',
+    shortTitle: 'GWAS Evidence Explorer',
+    description: 'A public-data study of five FinnGen type 2 diabetes regions, following each signal from plausible DNA variants to candidate genes and molecular evidence.',
+    outcome: 'Open Targets 26.09 snapshot: 5 selected regions, 65 variant rows, 11 returned L2G candidates, and 44 colocalisation rows. Source QC flags remain visible.',
+    stack: ['Python', 'Open Targets', 'Statistical genetics', 'GitHub Pages'],
+    github: 'https://github.com/Zinga18018/cardiometabolic-gwas-evidence-explorer',
+    demo: 'https://zinga18018.github.io/cardiometabolic-gwas-evidence-explorer/',
+    demoLabel: 'Evidence explorer',
+  },
+  {
+    number: '02',
     title: 'Clinical Readmission Risk Modeling',
     shortTitle: 'Readmission Risk',
     description: 'A leakage-safe 30-day readmission pipeline with patient-disjoint cohorts, calibration, missingness analysis, and drift checks.',
@@ -22,7 +33,7 @@ export const projects: Project[] = [
     demo: 'https://yogesh-readmission-risk-audit.streamlit.app/',
   },
   {
-    number: '02',
+    number: '03',
     title: 'NewsSnap: Transformer News Classification System',
     shortTitle: 'NewsSnap',
     description: 'A four-class AG News system with a DistilBERT training pipeline, FastAPI service, React dashboard, and explicit inference modes.',
@@ -33,7 +44,7 @@ export const projects: Project[] = [
     demoLabel: 'Streamlit demo',
   },
   {
-    number: '03',
+    number: '04',
     title: 'Model Behavior Under Distribution Shift',
     shortTitle: 'DriftLab',
     description: 'A deterministic simulator for performance decay, class-prior shift, PSI, approximate KS, and configurable monitoring alerts.',
@@ -43,7 +54,7 @@ export const projects: Project[] = [
     demo: 'https://yogesh-driftlab-monitoring.streamlit.app/',
   },
   {
-    number: '04',
+    number: '05',
     title: 'Women-Safety Public Discourse Research',
     shortTitle: 'Women-Safety Research',
     description: 'An interactive research dashboard covering 351,501 Reddit and YouTube comments across 16 women-safety cases in India.',
@@ -56,7 +67,7 @@ export const projects: Project[] = [
 
 export const jobs = [
   {
-    title: 'Graduate Researcher, Data Science', org: 'Rochester Institute of Technology', dates: '2025 — 2026',
+    title: 'Graduate Researcher, Data Science', org: 'Rochester Institute of Technology', dates: 'Aug 2025 — Present',
     bullets: [
       'Built Python and Pandas pipelines to analyze 351,501 Reddit and YouTube comments across 16 women-safety cases in India.',
       'Applied Mann–Whitney U, chi-square, and G-tests; fine-tuned Qwen3.5-9B with LoRA and evaluated 3,000 held-out examples.',

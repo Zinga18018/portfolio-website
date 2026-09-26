@@ -9,7 +9,7 @@ import Nav from '@/components/Nav'
 
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
-  openGraph: { url: '/', title: 'Yogesh Kuchimanchi | Data Scientist', description: 'Inspectable ML systems, honest evaluation, and working demos.', type: 'website' },
+  openGraph: { url: '/', title: 'Yogesh Kuchimanchi | Data Scientist', description: 'Statistical genetics, machine learning, and public-data research with traceable results.', type: 'website' },
 }
 
 export default function Home() {

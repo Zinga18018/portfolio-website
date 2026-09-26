@@ -9,19 +9,19 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://yogeshkuchimanchi.com'),
   title: 'Yogesh Kuchimanchi | Data Scientist',
   description:
-    'Data science portfolio of Yogesh Kuchimanchi: leakage-safe clinical risk modeling, transformer news classification, and model drift monitoring.',
-  keywords: ['machine learning', 'data science', 'NLP', 'model monitoring', 'PyTorch', 'portfolio'],
+    'Data science portfolio of Yogesh Kuchimanchi: statistical genetics, clinical risk modeling, model evaluation, NLP, and public-data research.',
+  keywords: ['statistical genetics', 'GWAS', 'machine learning', 'data science', 'NLP', 'model evaluation', 'portfolio'],
   authors: [{ name: 'Yogesh Kuchimanchi' }],
   openGraph: {
     title: 'Yogesh Kuchimanchi | Data Scientist',
-    description: 'Inspectable ML systems, honest evaluation, and working demos.',
+    description: 'Statistical genetics, machine learning, and public-data research with traceable results.',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary',
     title: 'Yogesh Kuchimanchi | Data Scientist',
-    description: 'Inspectable ML systems, honest evaluation, and working demos.',
+    description: 'Statistical genetics, machine learning, and public-data research with traceable results.',
   },
 }
 

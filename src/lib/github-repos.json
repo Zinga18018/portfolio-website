@@ -1,5 +1,38 @@
 [
   {
+    "id": 1388308533,
+    "name": "cardiometabolic-gwas-evidence-explorer",
+    "description": "Auditable Python explorer for Open Targets type 2 diabetes credible sets, L2G predictions, molecular-QTL colocalisation, and provenance.",
+    "html_url": "https://github.com/Zinga18018/cardiometabolic-gwas-evidence-explorer",
+    "language": "HTML",
+    "stargazers_count": 0,
+    "fork": false,
+    "archived": false,
+    "pushed_at": "2026-09-26T13:27:51Z"
+  },
+  {
+    "id": 1388306512,
+    "name": "coregene-bayes-benchmark",
+    "description": "Synthetic Bayesian benchmark for propagating mapping and network uncertainty through a four-gene core-membership model, with calibration and misspecification checks.",
+    "html_url": "https://github.com/Zinga18018/coregene-bayes-benchmark",
+    "language": "Python",
+    "stargazers_count": 0,
+    "fork": false,
+    "archived": false,
+    "pushed_at": "2026-09-26T13:27:51Z"
+  },
+  {
+    "id": 1003157582,
+    "name": "portfolio-website",
+    "description": "A modern, interactive portfolio website built with Next.js, TypeScript, and Tailwind CSS",
+    "html_url": "https://github.com/Zinga18018/portfolio-website",
+    "language": "TypeScript",
+    "stargazers_count": 0,
+    "fork": false,
+    "archived": false,
+    "pushed_at": "2026-09-17T12:26:31Z"
+  },
+  {
     "id": 1270712063,
     "name": "rag-evaluation-deployment-api",
     "description": "Deployable FastAPI RAG evaluation API with source citations, vector retrieval, Docker, and reproducible metrics.",
@@ -110,15 +143,15 @@
     "pushed_at": "2026-08-26T17:16:46Z"
   },
   {
-    "id": 1003157582,
-    "name": "portfolio-website",
-    "description": "A modern, interactive portfolio website built with Next.js, TypeScript, and Tailwind CSS",
-    "html_url": "https://github.com/Zinga18018/portfolio-website",
-    "language": "TypeScript",
-    "stargazers_count": 0,
+    "id": 987742246,
+    "name": "DataGuard-AI",
+    "description": "FixMyData is a smart AI-powered application designed to automatically detect and explain data quality issues in CSV files  including missing values, outliers, duplicate entries, type mismatches, and more.",
+    "html_url": "https://github.com/Zinga18018/DataGuard-AI",
+    "language": "Python",
+    "stargazers_count": 1,
     "fork": false,
     "archived": false,
-    "pushed_at": "2026-08-26T17:06:04Z"
+    "pushed_at": "2026-06-19T13:10:20Z"
   },
   {
     "id": 1186483797,
@@ -209,37 +242,15 @@
     "pushed_at": "2026-04-09T01:55:56Z"
   },
   {
-    "id": 1188985102,
-    "name": "Multimodal-Anomaly-Detection-with-Synthetic-Augmentation",
-    "description": "Ensemble anomaly detection with Isolation Forest, LOF, DBSCAN, and synthetic data augmentation for imbalanced datasets",
-    "html_url": "https://github.com/Zinga18018/Multimodal-Anomaly-Detection-with-Synthetic-Augmentation",
+    "id": 1188985073,
+    "name": "ML-Model-Monitoring-and-Data-Drift-Detection",
+    "description": "Real-time model monitoring dashboard with KS test, PSI, and Jensen-Shannon divergence for data drift detection",
+    "html_url": "https://github.com/Zinga18018/ML-Model-Monitoring-and-Data-Drift-Detection",
     "language": "Python",
     "stargazers_count": 0,
     "fork": false,
     "archived": false,
-    "pushed_at": "2026-04-07T15:27:22Z"
-  },
-  {
-    "id": 1188985123,
-    "name": "Time-Series-Forecasting-with-Transformer-Architectures",
-    "description": "Multi-model time series benchmarking with ARIMA, Holt-Winters, and automated feature engineering",
-    "html_url": "https://github.com/Zinga18018/Time-Series-Forecasting-with-Transformer-Architectures",
-    "language": "Python",
-    "stargazers_count": 0,
-    "fork": false,
-    "archived": false,
-    "pushed_at": "2026-04-07T15:27:52Z"
-  },
-  {
-    "id": 1188985060,
-    "name": "Knowledge-Graph-Construction-and-Reasoning-Engine",
-    "description": "NER-driven knowledge graph construction with interactive PyVis visualization and community detection",
-    "html_url": "https://github.com/Zinga18018/Knowledge-Graph-Construction-and-Reasoning-Engine",
-    "language": "Python",
-    "stargazers_count": 0,
-    "fork": false,
-    "archived": false,
-    "pushed_at": "2026-04-07T15:28:30Z"
+    "pushed_at": "2026-04-07T15:29:51Z"
   },
   {
     "id": 1188985112,
@@ -253,15 +264,37 @@
     "pushed_at": "2026-04-07T15:29:25Z"
   },
   {
-    "id": 1188985073,
-    "name": "ML-Model-Monitoring-and-Data-Drift-Detection",
-    "description": "Real-time model monitoring dashboard with KS test, PSI, and Jensen-Shannon divergence for data drift detection",
-    "html_url": "https://github.com/Zinga18018/ML-Model-Monitoring-and-Data-Drift-Detection",
+    "id": 1188985060,
+    "name": "Knowledge-Graph-Construction-and-Reasoning-Engine",
+    "description": "NER-driven knowledge graph construction with interactive PyVis visualization and community detection",
+    "html_url": "https://github.com/Zinga18018/Knowledge-Graph-Construction-and-Reasoning-Engine",
     "language": "Python",
     "stargazers_count": 0,
     "fork": false,
     "archived": false,
-    "pushed_at": "2026-04-07T15:29:51Z"
+    "pushed_at": "2026-04-07T15:28:30Z"
+  },
+  {
+    "id": 1188985123,
+    "name": "Time-Series-Forecasting-with-Transformer-Architectures",
+    "description": "Multi-model time series benchmarking with ARIMA, Holt-Winters, and automated feature engineering",
+    "html_url": "https://github.com/Zinga18018/Time-Series-Forecasting-with-Transformer-Architectures",
+    "language": "Python",
+    "stargazers_count": 0,
+    "fork": false,
+    "archived": false,
+    "pushed_at": "2026-04-07T15:27:52Z"
+  },
+  {
+    "id": 1188985102,
+    "name": "Multimodal-Anomaly-Detection-with-Synthetic-Augmentation",
+    "description": "Ensemble anomaly detection with Isolation Forest, LOF, DBSCAN, and synthetic data augmentation for imbalanced datasets",
+    "html_url": "https://github.com/Zinga18018/Multimodal-Anomaly-Detection-with-Synthetic-Augmentation",
+    "language": "Python",
+    "stargazers_count": 0,
+    "fork": false,
+    "archived": false,
+    "pushed_at": "2026-04-07T15:27:22Z"
   },
   {
     "id": 1150833383,
@@ -319,17 +352,6 @@
     "pushed_at": "2025-11-03T23:11:39Z"
   },
   {
-    "id": 987742246,
-    "name": "DataGuard-AI",
-    "description": "FixMyData is a smart AI-powered application designed to automatically detect and explain data quality issues in CSV files  including missing values, outliers, duplicate entries, type mismatches, and more.",
-    "html_url": "https://github.com/Zinga18018/DataGuard-AI",
-    "language": "Python",
-    "stargazers_count": 1,
-    "fork": false,
-    "archived": false,
-    "pushed_at": "2026-06-19T13:10:20Z"
-  },
-  {
     "id": 1047456750,
     "name": "Job-Hustles",
     "description": null,
@@ -343,7 +365,7 @@
   {
     "id": 1008522241,
     "name": "imdb-sentiment-analysis-deep-learning",
-    "description": "\ud83c\udfac Advanced Deep Learning for IMDB Movie Review Sentiment Analysis - Achieving 90%+ accuracy with LSTM, BiLSTM, CNN, and Hybrid models",
+    "description": "🎬 Advanced Deep Learning for IMDB Movie Review Sentiment Analysis - Achieving 90%+ accuracy with LSTM, BiLSTM, CNN, and Hybrid models",
     "html_url": "https://github.com/Zinga18018/imdb-sentiment-analysis-deep-learning",
     "language": null,
     "stargazers_count": 0,
@@ -365,7 +387,7 @@
   {
     "id": 1004512382,
     "name": "NeuroCanvas",
-    "description": "\ud83c\udfa8 An AI-powered creative platform that generates art, analyzes emotions, and creates narratives through an intuitive web interface. Built with React, Flask, and multiple AI APIs.",
+    "description": "🎨 An AI-powered creative platform that generates art, analyzes emotions, and creates narratives through an intuitive web interface. Built with React, Flask, and multiple AI APIs.",
     "html_url": "https://github.com/Zinga18018/NeuroCanvas",
     "language": null,
     "stargazers_count": 0,
@@ -387,7 +409,7 @@
   {
     "id": 1003173841,
     "name": "NeuroCanvas-AI-Art-Generator",
-    "description": "\ud83e\udde0\ud83c\udfa8 AI-Powered Emotional Art Generation Platform - Transform emotions into stunning neuromorphic art through advanced multimodal AI analysis with contextual memory and narrative generation",
+    "description": "🧠🎨 AI-Powered Emotional Art Generation Platform - Transform emotions into stunning neuromorphic art through advanced multimodal AI analysis with contextual memory and narrative generation",
     "html_url": "https://github.com/Zinga18018/NeuroCanvas-AI-Art-Generator",
     "language": "Python",
     "stargazers_count": 0,
@@ -418,59 +440,15 @@
     "pushed_at": "2025-06-13T17:39:10Z"
   },
   {
-    "id": 989258288,
-    "name": "ml-digits-exploration",
-    "description": "Machine Learning project for ml-digits-exploration",
-    "html_url": "https://github.com/Zinga18018/ml-digits-exploration",
+    "id": 1001528085,
+    "name": "echo-muse-therapeutic-storytelling",
+    "description": "🎭 Echo-Muse: AI-Powered Therapeutic Storytelling Companion - Personalized healing through AI-generated stories and ambient soundscapes",
+    "html_url": "https://github.com/Zinga18018/echo-muse-therapeutic-storytelling",
     "language": "Python",
     "stargazers_count": 1,
     "fork": false,
     "archived": false,
-    "pushed_at": "2025-05-23T18:57:07Z"
-  },
-  {
-    "id": 989266091,
-    "name": "ml-iris-data-analysis",
-    "description": "Machine Learning project for ml-iris-data-analysis",
-    "html_url": "https://github.com/Zinga18018/ml-iris-data-analysis",
-    "language": "Python",
-    "stargazers_count": 1,
-    "fork": false,
-    "archived": false,
-    "pushed_at": "2025-05-23T19:17:13Z"
-  },
-  {
-    "id": 996427955,
-    "name": "ollama-image-recognition-tool",
-    "description": "A Flask web application for image recognition using Ollama and a multimodal model.",
-    "html_url": "https://github.com/Zinga18018/ollama-image-recognition-tool",
-    "language": "HTML",
-    "stargazers_count": 1,
-    "fork": false,
-    "archived": false,
-    "pushed_at": "2025-06-05T00:04:15Z"
-  },
-  {
-    "id": 996431256,
-    "name": "Python-Script",
-    "description": "Python Script to check file duplicacies",
-    "html_url": "https://github.com/Zinga18018/Python-Script",
-    "language": "Python",
-    "stargazers_count": 1,
-    "fork": false,
-    "archived": false,
-    "pushed_at": "2025-06-05T00:14:45Z"
-  },
-  {
-    "id": 1001021289,
-    "name": "mycelial-memories",
-    "description": "An AI-powered exploration of emotional connections through historical letters, visualized as living fungal networks",
-    "html_url": "https://github.com/Zinga18018/mycelial-memories",
-    "language": "JavaScript",
-    "stargazers_count": 1,
-    "fork": false,
-    "archived": false,
-    "pushed_at": "2025-06-12T17:43:42Z"
+    "pushed_at": "2025-06-13T15:12:08Z"
   },
   {
     "id": 1001030869,
@@ -484,15 +462,59 @@
     "pushed_at": "2025-06-12T17:59:09Z"
   },
   {
-    "id": 1001528085,
-    "name": "echo-muse-therapeutic-storytelling",
-    "description": "\ud83c\udfad Echo-Muse: AI-Powered Therapeutic Storytelling Companion - Personalized healing through AI-generated stories and ambient soundscapes",
-    "html_url": "https://github.com/Zinga18018/echo-muse-therapeutic-storytelling",
+    "id": 1001021289,
+    "name": "mycelial-memories",
+    "description": "An AI-powered exploration of emotional connections through historical letters, visualized as living fungal networks",
+    "html_url": "https://github.com/Zinga18018/mycelial-memories",
+    "language": "JavaScript",
+    "stargazers_count": 1,
+    "fork": false,
+    "archived": false,
+    "pushed_at": "2025-06-12T17:43:42Z"
+  },
+  {
+    "id": 996431256,
+    "name": "Python-Script",
+    "description": "Python Script to check file duplicacies",
+    "html_url": "https://github.com/Zinga18018/Python-Script",
     "language": "Python",
     "stargazers_count": 1,
     "fork": false,
     "archived": false,
-    "pushed_at": "2025-06-13T15:12:08Z"
+    "pushed_at": "2025-06-05T00:14:45Z"
+  },
+  {
+    "id": 996427955,
+    "name": "ollama-image-recognition-tool",
+    "description": "A Flask web application for image recognition using Ollama and a multimodal model.",
+    "html_url": "https://github.com/Zinga18018/ollama-image-recognition-tool",
+    "language": "HTML",
+    "stargazers_count": 1,
+    "fork": false,
+    "archived": false,
+    "pushed_at": "2025-06-05T00:04:15Z"
+  },
+  {
+    "id": 989266091,
+    "name": "ml-iris-data-analysis",
+    "description": "Machine Learning project for ml-iris-data-analysis",
+    "html_url": "https://github.com/Zinga18018/ml-iris-data-analysis",
+    "language": "Python",
+    "stargazers_count": 1,
+    "fork": false,
+    "archived": false,
+    "pushed_at": "2025-05-23T19:17:13Z"
+  },
+  {
+    "id": 989258288,
+    "name": "ml-digits-exploration",
+    "description": "Machine Learning project for ml-digits-exploration",
+    "html_url": "https://github.com/Zinga18018/ml-digits-exploration",
+    "language": "Python",
+    "stargazers_count": 1,
+    "fork": false,
+    "archived": false,
+    "pushed_at": "2025-05-23T18:57:07Z"
   },
   {
     "id": 984358676,
