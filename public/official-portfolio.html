@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yogesh Kuchimanchi | Data Scientist</title>
+<meta name="description" content="Data science portfolio of Yogesh Kuchimanchi: statistical genetics, clinical risk modeling, model evaluation, NLP, and public-data research.">
+<link rel="canonical" href="https://yogeshkuchimanchi.com/">
+<meta property="og:url" content="https://yogeshkuchimanchi.com/">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23000' stroke='%238ec5e8' stroke-width='6'/%3E%3Cpath d='M16 66C30 66 38 28 50 28S70 66 84 66' fill='none' stroke='%238ec5e8' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Manrope:wght@300;400;500;600&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  --acc:#8ec5e8;--glow:142,197,232;--edge:79,107,128;--amber:#f0b46a;
+  --frost:#e3f1fa;--ink:#dde5eb;--muted:#8f9da8;--soft:#b4c0c9;--dim:#7193aa;
+  --panel:#0a0d10;--panel2:#0f1418;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --display:'Big Shoulders Display',Impact,'Arial Narrow',sans-serif;
+  --body:'Manrope',system-ui,-apple-system,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --pad:clamp(16px,5vw,80px);
+}
+*{box-sizing:border-box}
+html{background:#000;scroll-behavior:smooth}
+body{margin:0;background:#000;color:var(--ink);font:400 15px/1.75 var(--body);-webkit-font-smoothing:antialiased}
+::selection{background:#bfe0f5;color:#000}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:1px solid var(--acc);outline-offset:4px}
+h1,h2,h3{text-wrap:balance}
+section{position:relative;overflow-x:clip;padding:120px 0}
+.wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 var(--pad)}
+
+/* film grain over everything */
+body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none;opacity:.05;animation:grain 1s steps(4) infinite;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+@keyframes grain{25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}}
+
+/* opening shot: letterbox bars slide away */
+.curtain{display:none}
+.js .curtain{display:block;position:fixed;left:0;right:0;height:50vh;background:#000;z-index:200;pointer-events:none;transition:transform 1.5s var(--ease) .1s}
+.curtain.top{top:0}.curtain.bot{bottom:0}
+.loaded .curtain.top{transform:translateY(-100%)}.loaded .curtain.bot{transform:translateY(100%)}
+
+/* reveal on scroll */
+.js .r{opacity:0;transform:translateY(26px);filter:blur(8px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease),filter 1.1s var(--ease);transition-delay:var(--d,0s)}
+.js .r.in{opacity:1;transform:none;filter:none}
+
+/* type */
+.g1,.g2,.g3{display:block;color:transparent;-webkit-background-clip:text;background-clip:text}
+.g1{background-image:linear-gradient(180deg,#fff,#cdd6de 55%,#4c5863);filter:drop-shadow(0 4px 12px rgba(0,0,0,.85))}
+.g2{background-image:linear-gradient(180deg,#eef8ff,#8ec5e8 55%,#1d3e54);filter:drop-shadow(0 8px 25px rgba(142,197,232,.3))}
+.g3{background-image:linear-gradient(180deg,#c6e3f5,#5b8fb3 55%,#132637);filter:drop-shadow(0 10px 30px rgba(91,143,179,.35))}
+.h1{margin:0 0 18px;font:800 clamp(4.2rem,11vw,8.4rem)/.84 var(--display);text-transform:uppercase;letter-spacing:.005em}
+.h2{margin:0;font:800 clamp(3rem,8vw,5.6rem)/.88 var(--display);text-transform:uppercase}
+.eyebrow{display:flex;align-items:center;gap:16px;margin:0 0 28px;font:600 11px/1 var(--body);letter-spacing:.35em;text-transform:uppercase;color:var(--acc)}
+.eyebrow::after{content:'';width:80px;height:1px;background:linear-gradient(90deg,rgba(var(--glow),.8),rgba(var(--edge),.4),transparent)}
+.lead{margin:0;max-width:36rem;color:var(--muted);font-size:15px;line-height:1.85}
+.label{margin:0 0 12px;font:10px/1.5 var(--mono);letter-spacing:.25em;text-transform:uppercase;color:var(--dim)}
+.sig{font:400 2.6rem/1 'Mrs Saint Delafield',cursive;color:#bfe0f5}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--acc);box-shadow:0 0 10px var(--acc);animation:blink 2.4s ease-in-out infinite}
+.dot.live{background:var(--amber);box-shadow:0 0 10px var(--amber)}
+@keyframes blink{50%{opacity:.35}}
+.glow{position:absolute;width:34rem;height:34rem;border-radius:50%;background:var(--acc);opacity:.05;filter:blur(150px);pointer-events:none}
+
+/* corner brackets */
+.brackets::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:2;--c:var(--acc);--l:22px;--w:2px;background:
+  linear-gradient(var(--c),var(--c)) top left/var(--l) var(--w),linear-gradient(var(--c),var(--c)) top left/var(--w) var(--l),
+  linear-gradient(var(--c),var(--c)) top right/var(--l) var(--w),linear-gradient(var(--c),var(--c)) top right/var(--w) var(--l),
+  linear-gradient(var(--c),var(--c)) bottom left/var(--l) var(--w),linear-gradient(var(--c),var(--c)) bottom left/var(--w) var(--l),
+  linear-gradient(var(--c),var(--c)) bottom right/var(--l) var(--w),linear-gradient(var(--c),var(--c)) bottom right/var(--w) var(--l);
+  background-repeat:no-repeat}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border:1px solid rgba(var(--edge),.9);background:rgba(10,13,16,.8);color:#dbe8f1;font:600 11px/1 var(--body);letter-spacing:.24em;text-transform:uppercase;cursor:pointer;transition:border-color .3s,color .3s,box-shadow .3s}
+.btn:hover{border-color:var(--acc);color:#fff;box-shadow:0 0 25px rgba(var(--glow),.18)}
+.btn.ghost{background:transparent;border-color:rgba(var(--edge),.55);color:var(--soft)}
+.btn.small{padding:9px 16px;font-weight:500;backdrop-filter:blur(4px)}
+
+/* ===== hero ===== */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;overflow:hidden}
+#cloud{position:absolute;inset:0;width:100%;height:100%}
+.beam{position:absolute;top:-8%;left:49%;width:28%;height:100%;filter:blur(26px);pointer-events:none;animation:flicker 7s ease-in-out infinite}
+.beam::before{content:'';position:absolute;inset:0;clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);background:linear-gradient(180deg,rgba(220,236,255,.15),rgba(220,236,255,.035) 70%,transparent)}
+@keyframes flicker{50%{opacity:.7}}
+.light{position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(ellipse 30% 7% at 63% 86%,rgba(var(--glow),.1),transparent 70%),
+  linear-gradient(90deg,#000 0%,rgba(0,0,0,.9) 26%,rgba(0,0,0,.25) 52%,transparent 68%),
+  radial-gradient(ellipse 120% 95% at 60% 50%,transparent 55%,rgba(0,0,0,.8))}
+.nav{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:24px var(--pad)}
+.logo{font:700 13px/1 var(--body);letter-spacing:.35em;color:#dbe8f1}
+.links{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:36px;font:400 11px/1 var(--body);letter-spacing:.28em;text-transform:uppercase;color:var(--soft)}
+.links a{position:relative;padding:5px 0;transition:color .3s}
+.links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:rgba(var(--glow),.6);transition:width .3s}
+.links a:hover{color:#fff}.links a:hover::after{width:100%}
+.hero-body{position:relative;z-index:4;flex:1;display:flex;align-items:center;padding:24px var(--pad)}
+.hero-copy{max-width:42rem}
+.hello{margin:0 0 4px;font:400 clamp(2.6rem,4.4vw,3.6rem)/1 'Mrs Saint Delafield',cursive;color:#bfe0f5;text-shadow:0 0 18px rgba(var(--glow),.35)}
+.tagline{margin:0 0 16px;font:500 11px/1.7 var(--body);letter-spacing:.28em;text-transform:uppercase;color:#b9c7d2}
+.tagline i{font-style:normal;color:var(--dim);margin:0 2px}
+.tagline span{white-space:nowrap}
+.hero-copy .lead{max-width:33rem;margin-bottom:30px;font-size:14.5px}
+.ctas{display:flex;flex-wrap:wrap;gap:14px}
+.showing{position:absolute;right:calc(var(--pad) + 1vw);top:50%;translate:0 -50%;width:16.5rem;padding:22px 22px 20px;border:1px solid rgba(var(--edge),.4);background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.showing.brackets::before{--l:14px;--w:1.5px}
+.showing .label{display:flex;align-items:center;gap:10px;color:var(--amber)}
+.show-title{margin:0;font:800 1.9rem/.95 var(--display);text-transform:uppercase;color:var(--frost)}
+.showing hr{width:100%;height:1px;margin:16px 0 12px;border:0;background:linear-gradient(90deg,var(--acc),rgba(var(--edge),.5),transparent)}
+.show-note{margin:0 0 14px;font:10px/1.6 var(--mono);letter-spacing:.06em;color:var(--muted)}
+.show-link{font:600 10px/1.5 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--acc);transition:color .3s}
+.show-link:hover{color:#fff}
+.hero-foot{position:relative;z-index:4;display:flex;justify-content:space-between;align-items:flex-end;padding:0 var(--pad) 28px}
+.status{display:flex;align-items:center;gap:10px;font:10px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.emblem{width:92px;height:92px;filter:drop-shadow(0 0 14px rgba(var(--glow),.3));animation:float 4.5s ease-in-out infinite}
+.emblem .beat{stroke-dasharray:60 40;animation:sweep 3s linear infinite}
+@keyframes float{50%{transform:translateY(-6px) scale(1.03)}}
+@keyframes sweep{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+@media(max-width:1100px){.showing{display:none}}
+@media(max-width:900px){
+  .links,.beam{display:none}
+  .light{background:radial-gradient(ellipse 60% 45% at 85% 0%,rgba(220,236,255,.08),transparent 70%),linear-gradient(180deg,transparent 15%,rgba(0,0,0,.7) 50%,#000 95%)}
+  .hero-body{align-items:flex-end;padding-bottom:40px}
+  .emblem{width:64px;height:64px}
+}
+
+/* ===== about ===== */
+.about-grid{display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center}
+.about-grid .h2{margin-bottom:26px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:36px;padding-top:24px;border-top:1px solid rgba(var(--edge),.3)}
+.stat b{display:block;font:800 2.6rem/1 var(--display);color:#eef4f8}
+.stat:nth-child(even) b{color:var(--acc)}
+.stat span{display:block;margin-top:6px;font:600 10px/1.5 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.tilt-wrap{position:relative;display:flex;justify-content:center;perspective:1400px}
+.tilt-wrap::after{content:'';position:absolute;inset:-24px;z-index:-1;border-radius:24px;background:conic-gradient(from 0deg,var(--acc),#3d5f78 30%,transparent 60%,var(--acc));filter:blur(42px);opacity:.14;transition:opacity 1s,transform 3s var(--ease)}
+.tilt-wrap:hover::after{opacity:.3;transform:scale(1.08) rotate(180deg)}
+.now-card{--rx:0deg;--ry:0deg;--mx:50%;--my:50%;position:relative;width:100%;max-width:410px;padding:28px;border:1px solid rgba(var(--edge),.5);background:rgba(10,13,16,.88);backdrop-filter:blur(16px);box-shadow:0 25px 70px rgba(0,0,0,.95);transform:rotateX(var(--rx)) rotateY(var(--ry));transition:transform .3s ease-out,border-color .5s}
+.now-card:hover{border-color:rgba(var(--glow),.8)}
+.now-card::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(circle 220px at var(--mx) var(--my),rgba(255,255,255,.12),rgba(var(--glow),.08),transparent 80%)}
+.now-card:hover::after{opacity:1}
+.hc-top{display:flex;justify-content:space-between;align-items:center;font:10px/1 var(--mono);letter-spacing:.25em;color:var(--dim)}
+.hc-big{margin-top:26px;font:800 5.6rem/.8 var(--display);text-transform:uppercase;color:#eef4f8}
+.hc-big small{margin-left:8px;font-size:1.8rem;color:var(--acc)}
+.hc-label{margin:10px 0 0;font:600 10px/1.5 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.curve{display:block;width:100%;height:56px;margin:18px 0 10px;overflow:visible}
+.curve path{fill:none;stroke-width:1.6;stroke-linecap:round}
+.curve .base{stroke:rgba(var(--edge),.35)}
+.curve .trace{stroke:var(--acc);stroke-dasharray:24 76;animation:sweep 3.2s linear infinite;filter:drop-shadow(0 0 4px rgba(var(--glow),.7))}
+.rows{margin:0}
+.rows div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-top:1px solid rgba(var(--edge),.22);font:11px/1.4 var(--mono)}
+.rows dt{flex-shrink:0;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-size:10px}
+.rows dd{margin:0;color:var(--frost);text-align:right}
+.rows a{color:var(--acc);transition:color .3s}
+.rows a:hover{color:#fff}
+.now-card .sig{display:block;margin-top:12px;text-align:right;color:#d6ecfa;text-shadow:0 0 12px rgba(var(--glow),.4)}
+
+/* ===== projects: stacked cards ===== */
+.work-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:56px}
+.work-head .lead{max-width:24rem;font-size:14px}
+.stack{display:grid;gap:36px;padding-bottom:10vh}
+.stack-item{position:sticky;top:calc(10vh + var(--i) * 24px)}
+.card{position:relative;overflow:hidden;padding:clamp(26px,4vw,46px);border:1px solid rgba(var(--edge),.55);border-radius:4px;background:var(--panel);box-shadow:0 -10px 60px rgba(0,0,0,.9),0 25px 70px rgba(0,0,0,.98);transform-origin:top center;transform:scale(var(--s,1));filter:brightness(var(--b,1));transition:border-color .5s}
+.card:hover{border-color:var(--acc)}
+.card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(var(--glow),.8),transparent)}
+.num{position:absolute;right:-4px;bottom:-34px;font:800 10rem/1 var(--display);color:rgba(220,236,255,.045);pointer-events:none}
+.card-grid{position:relative;display:grid;grid-template-columns:7fr 5fr;gap:40px}
+.kicker{margin:0 0 14px;font:10.5px/1.5 var(--mono);letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
+.kicker b{margin-right:8px;color:var(--acc)}
+.card h3{margin:0 0 16px;font:800 clamp(2rem,3.8vw,3.1rem)/.95 var(--display);text-transform:uppercase;color:#fff;transition:color .3s}
+.card:hover h3{color:var(--frost)}
+.desc{margin:0 0 26px;color:#aab7c1;font-size:14.5px;line-height:1.85}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:22px 0 0;list-style:none;border-top:1px solid rgba(var(--edge),.28)}
+.pills li{padding:5px 12px;border:1px solid rgba(var(--edge),.45);border-radius:2px;background:var(--panel2);color:#d6e2ea;font:600 10px/1.5 var(--body);letter-spacing:.16em;text-transform:uppercase;transition:border-color .3s}
+.card:hover .pills li,.tile:hover .pills li{border-color:rgba(var(--glow),.5)}
+.card aside{padding-left:28px;border-left:1px solid rgba(var(--edge),.28)}
+.metrics{display:grid;gap:10px;margin:0}
+.metrics div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border:1px solid rgba(var(--edge),.28);background:#030405;font:10px/1.3 var(--mono)}
+.metrics dt{color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.metrics dd{margin:0;color:var(--frost);font-size:12px;font-weight:500;text-align:right}
+.note{margin:12px 0 0;font:10.5px/1.6 var(--mono);color:var(--dim)}
+.go{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.go a{padding:9px 14px;border:1px solid rgba(var(--edge),.55);font:600 10px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--soft);transition:border-color .3s,color .3s}
+.go a:hover{border-color:var(--acc);color:#fff}
+
+/* repository archive, set like end credits */
+.credits{text-align:center}
+.credits h3{margin:0 0 10px;font:800 clamp(2rem,4vw,3rem)/1 var(--display);text-transform:uppercase;color:#fff}
+.credits .lead{margin:0 auto 36px;font-size:14px}
+.roll{display:grid;gap:12px;max-width:780px;margin:0 auto 38px}
+.roll div{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:baseline}
+.roll dt{text-align:right;font:600 10.5px/1.6 var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--dim)}
+.roll dd{margin:0;text-align:left;font:12.5px/1.6 var(--mono);color:var(--frost);overflow-wrap:anywhere}
+.roll a{transition:color .3s}
+.roll a:hover{color:var(--acc)}
+
+/* ===== skills: bento ===== */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.tile{grid-column:span 6;position:relative;padding:clamp(26px,3vw,34px);border:1px solid rgba(var(--edge),.38);background:rgba(10,13,16,.85);transition:translate .25s,border-color .5s,box-shadow .5s}
+.tile.s4{grid-column:span 4}.tile.s5{grid-column:span 5}.tile.s7{grid-column:span 7}.tile.s8{grid-column:span 8}.tile.s12{grid-column:1/-1}
+.tile:hover{translate:0 -5px;border-color:rgba(var(--glow),.8);box-shadow:0 16px 45px rgba(var(--glow),.12)}
+.tile-top{margin-bottom:14px;font:10px/1 var(--mono);letter-spacing:.25em;color:var(--acc)}
+.tile h3{margin:0 0 20px;font:800 clamp(1.9rem,3vw,2.5rem)/1 var(--display);text-transform:uppercase;letter-spacing:.01em;color:#fff;transition:color .3s}
+.tile:hover h3{color:var(--frost)}
+
+/* ===== experience: timeline ===== */
+.timeline{--x:180px;position:relative;max-width:940px;margin-top:56px}
+.timeline::before,.tl-line{content:'';position:absolute;left:var(--x);top:8px}
+.timeline::before{bottom:8px;width:1px;background:rgba(var(--edge),.3)}
+.tl-line{width:2px;margin-left:-.5px;height:calc((100% - 16px) * var(--p,0));background:linear-gradient(var(--acc),#5b8fb3,rgba(var(--edge),.1));box-shadow:0 0 10px var(--acc)}
+.stop{position:relative;display:grid;grid-template-columns:var(--x) 1fr;column-gap:46px;margin-bottom:46px}
+.stop:last-child{margin-bottom:0}
+.when{margin:0;padding:3px 24px 0 0;text-align:right;font:10px/1.7 var(--mono);letter-spacing:.14em;white-space:nowrap;text-transform:uppercase;color:var(--dim);transition:color .3s}
+.node{position:absolute;left:var(--x);top:8px;width:11px;height:11px;margin-left:-5.5px;border-radius:50%;background:#0b0f12;border:1px solid #4f6b80;transition:background .3s,box-shadow .3s,border-color .3s}
+.stop:hover .when{color:var(--acc)}
+.stop:hover .node{background:var(--acc);border-color:var(--acc);box-shadow:0 0 12px var(--acc)}
+.stop h3{margin:0 0 4px;font:800 clamp(1.7rem,3vw,2.3rem)/1 var(--display);text-transform:uppercase;letter-spacing:.01em;color:#fff;transition:color .3s}
+.stop:hover h3{color:var(--frost)}
+.org{margin:0 0 10px;font:600 10px/1.6 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.stop p:last-child{margin:0;max-width:36rem;color:var(--muted);font-size:14px;line-height:1.75}
+.bul{margin:0;padding:0;list-style:none;max-width:36rem;color:var(--muted);font-size:14px;line-height:1.75}
+.bul li{position:relative;padding-left:18px}
+.bul li+li{margin-top:6px}
+.bul li::before{content:'';position:absolute;left:0;top:.85em;width:8px;height:1px;background:var(--acc)}
+.stop.sub{margin-bottom:30px}
+.stop.sub .when{color:var(--acc);font-weight:600;letter-spacing:.3em}
+.stop.edu h3{color:#cdd6de}
+
+/* ===== contact ===== */
+.contact-grid{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+.contact-grid .h2{margin-bottom:24px}
+.console{position:relative;padding:clamp(24px,4vw,40px);border:1px solid rgba(var(--edge),.45);background:#06080a;box-shadow:0 20px 50px rgba(0,0,0,.9)}
+.console::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(var(--glow),.7),transparent)}
+.row{display:grid;grid-template-columns:110px 1fr auto;align-items:center;gap:12px;padding:15px 0;border-bottom:1px solid rgba(var(--edge),.22);font:12.5px/1.5 var(--mono)}
+.row .k{font-size:10px;letter-spacing:.2em;color:var(--dim)}
+.row a,.row span.v{color:var(--frost);overflow-wrap:anywhere;transition:color .3s}
+.row a:hover{color:#fff}
+.copy{padding:7px 10px;border:1px solid rgba(var(--edge),.5);background:none;color:var(--soft);font:10px/1 var(--mono);letter-spacing:.15em;cursor:pointer;transition:border-color .3s,color .3s}
+.copy:hover{border-color:var(--acc);color:#fff}
+.console .btn{width:100%;justify-content:center;margin-top:28px}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:96px;padding-top:28px;border-top:1px solid rgba(var(--edge),.2);font:10px/1.6 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+
+/* ===== small screens ===== */
+@media(max-width:960px){
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:56px}
+  .card-grid{grid-template-columns:1fr;gap:28px}
+  .card aside{padding-left:0;border-left:0}
+  .tile.s4,.tile.s5,.tile.s7,.tile.s8{grid-column:1/-1}
+}
+@media(max-width:760px),(max-height:640px){.stack-item{position:relative;top:auto}}
+@media(max-width:700px){
+  section{padding:88px 0}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .roll div{grid-template-columns:1fr;gap:2px}
+  .roll dt,.roll dd{text-align:center}
+  .timeline{--x:6px}
+  .stop{grid-template-columns:1fr;padding-left:34px}
+  .when{padding:0;margin-bottom:6px;text-align:left;color:var(--acc)}
+  .row{grid-template-columns:1fr auto}
+  .row .k{grid-column:1/-1}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .r{opacity:1;transform:none;filter:none}
+  .js .curtain{display:none}
+  html{scroll-behavior:auto}
+}
+
+.project-plot{margin:0;padding:18px 14px 12px;background:linear-gradient(145deg,#101a23,#05080c);border:1px solid rgba(var(--edge),.4);border-radius:8px}
+.project-plot figcaption{font:600 14px/1.4 var(--body);color:var(--frost);margin-bottom:12px}
+.project-plot svg{width:100%;height:auto;display:block;overflow:visible}
+.project-plot svg text{font:12px var(--body);fill:#b4c0c9}
+.project-plot .value{fill:#e3f1fa;font-weight:600}
+.project-plot .grid{stroke:#29404f;stroke-width:1;stroke-dasharray:3 5}
+.project-plot .mark{transition:filter .2s,opacity .2s}
+.project-plot .mark:hover{filter:brightness(1.4)}
+.project-plot .plot-foot{margin:10px 0 0;color:#8f9da8;font:12px/1.6 var(--body)}
+</style>
+</head>
+<body>
+<div class="curtain top" aria-hidden="true"></div>
+<div class="curtain bot" aria-hidden="true"></div>
+
+<header class="hero" id="top">
+  <canvas id="cloud" aria-hidden="true"></canvas>
+  <div class="beam" aria-hidden="true"></div>
+  <div class="light" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <a class="logo" href="#top">YOGESH.</a>
+    <div class="links">
+      <a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+    </div>
+    <a class="btn small" href="#contact">Email me <span aria-hidden="true">↗</span></a>
+  </nav>
+
+  <div class="hero-body">
+    <div class="hero-copy">
+      <p class="hello r" style="--d:.35s">Hi, I'm Yogesh.</p>
+      <h1 class="h1 r" style="--d:.45s"><span class="g1">Trace it</span><span class="g2">back to</span><span class="g3">the data.</span></h1>
+      <p class="tagline r" style="--d:.6s"><span>M.S. Data Science</span> <i>•</i> <span>Rochester, New York</span></p>
+      <p class="lead r" style="--d:.75s">I'm a graduate student at RIT working on statistical genetics, clinical prediction, model evaluation, and public-discourse research. I like projects where I can trace a result back to the data and explain what it shows without hiding its limits.</p>
+      <div class="ctas r" style="--d:.9s">
+        <a class="btn" href="#projects">View selected work <span aria-hidden="true">↗</span></a>
+        <a class="btn ghost" href="https://github.com/Zinga18018" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/yogesh-kuchimanchi" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <aside class="showing brackets r" style="--d:1.1s">
+      <p class="label"><i class="dot live"></i>Now showing</p>
+      <p class="show-title">Type 2 diabetes genetic evidence</p>
+      <hr>
+      <p class="show-note">Public aggregate data · no participant records</p>
+      <a class="show-link" href="https://zinga18018.github.io/cardiometabolic-gwas-evidence-explorer/" target="_blank" rel="noopener">Open the evidence explorer&nbsp;↗</a>
+    </aside>
+  </div>
+
+  <div class="hero-foot">
+    <span class="status"><i class="dot"></i>Graduating December 2026</span>
+    <svg class="emblem" viewBox="0 0 100 100" aria-hidden="true">
+      <defs><linearGradient id="eg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef8ff"/><stop offset=".5" stop-color="#8ec5e8"/><stop offset="1" stop-color="#2a4d66"/></linearGradient></defs>
+      <circle cx="50" cy="50" r="45" fill="#07090b" stroke="url(#eg)" stroke-width="2"/>
+      <circle cx="50" cy="50" r="39" fill="none" stroke="rgba(142,197,232,.22)" stroke-width=".6"/>
+      <path d="M18 64H82" stroke="rgba(142,197,232,.25)" stroke-width="1.2"/>
+      <path d="M18 64C31 64 38 30 50 30S69 64 82 64" fill="none" stroke="rgba(142,197,232,.22)" stroke-width="3" stroke-linecap="round"/>
+      <path class="beat" pathLength="100" d="M18 64C31 64 38 30 50 30S69 64 82 64" fill="none" stroke="url(#eg)" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+  </div>
+</header>
+
+<main>
+  <section id="about">
+    <div class="glow" style="top:15%;left:5%" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow r">01 / About</p>
+      <div class="about-grid">
+        <div>
+          <h2 class="h2 r"><span class="g1">Computers</span><span class="g2">came first.</span></h2>
+          <p class="lead r" style="--d:.15s">My father brought home the first computer I ever saw. That early curiosity eventually took me from computer applications to data science and, now, an M.S. at RIT.</p>
+          <p class="lead r" style="--d:.25s;margin-top:16px">Research changed what I look for in a project. I want to know whether the comparison is fair, where a label came from, and whether a conclusion says more than the data allows. I am bringing that habit into statistical genetics while continuing my work in machine learning and public-data research.</p>
+          <div class="stats r" style="--d:.35s">
+            <div class="stat"><b>351,501</b><span>Reddit and YouTube comments analyzed</span></div>
+            <div class="stat"><b>5</b><span>Projects with documented results</span></div>
+            <div class="stat"><b class="repo-count">48</b><span>Public repositories</span></div>
+            <div class="stat"><b>2026</b><span>Paper accepted at ASONAM</span></div>
+          </div>
+        </div>
+
+        <div class="tilt-wrap r" style="--d:.2s">
+          <div class="now-card brackets" id="now">
+            <div class="hc-top"><span>NOW</span><i class="dot"></i></div>
+            <div class="hc-big">Dec<small>2026</small></div>
+            <p class="hc-label">Expected graduation, M.S. Data Science at RIT</p>
+            <svg class="curve" viewBox="0 0 320 60" preserveAspectRatio="none" aria-hidden="true">
+              <path class="base" d="M0 6C34 32 62 42 112 47S228 54 320 55"/>
+              <path class="trace" pathLength="100" d="M0 6C34 32 62 42 112 47S228 54 320 55"/>
+            </svg>
+            <dl class="rows">
+              <div><dt>Current study</dt><dd>Genetic evidence for type 2 diabetes</dd></div>
+              <div><dt>Recent research</dt><dd>Public discourse and women's safety</dd></div>
+              <div><dt>Paper</dt><dd>Accepted at ASONAM 2026</dd></div>
+              <div><dt>Dashboard</dt><dd><a href="https://yogeshkuchimanchi.com/research/women-safety/" target="_blank" rel="noopener">Open the research dashboard ↗</a></dd></div>
+            </dl>
+            <span class="sig">Yogesh</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="glow" style="top:20%;left:30%" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow r">02 / Selected work</p>
+      <div class="work-head">
+        <h2 class="h2 r"><span class="g1">Selected</span><span class="g2">projects.</span></h2>
+        <p class="lead r" style="--d:.15s">Five projects I can discuss in detail, with source code, observed results, and the limits of each analysis.</p>
+      </div>
+
+      <div class="stack">
+        <article class="stack-item" style="--i:0"><div class="card brackets">
+          <span class="num" aria-hidden="true">01</span>
+          <div class="card-grid">
+            <div>
+              <p class="kicker"><b>01 //</b>Statistical genetics</p>
+              <h3>Cardiometabolic GWAS Evidence Explorer</h3>
+              <p class="desc">A public-data study of five FinnGen type 2 diabetes regions, following each signal from plausible DNA variants to candidate genes and molecular evidence.</p>
+              <ul class="pills"><li>Python</li><li>Open Targets</li><li>Statistical genetics</li><li>GitHub Pages</li></ul>
+            </div>
+            <aside>
+              <p class="label">// Open Targets 26.09 snapshot</p>
+              <figure class="project-plot"><figcaption>Evidence in the selected regions</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Evidence in the selected regions"><title>Evidence in the selected regions</title><path class="grid" d="M130.0 15V185"/><text x="130.0" y="211" text-anchor="middle">0</text><path class="grid" d="M172.5 15V185"/><text x="172.5" y="211" text-anchor="middle">20</text><path class="grid" d="M215.0 15V185"/><text x="215.0" y="211" text-anchor="middle">40</text><path class="grid" d="M257.5 15V185"/><text x="257.5" y="211" text-anchor="middle">60</text><path class="grid" d="M300.0 15V185"/><text x="300.0" y="211" text-anchor="middle">80</text><text x="0" y="39" text-anchor="start">Regions</text><rect class="mark" x="130" y="23" width="10.625" height="18" rx="4" fill="#8ec5e8"><title>Regions: 5</title></rect><text x="147.625" y="38" class="value" text-anchor="start">5</text><text x="0" y="82" text-anchor="start">Variant rows</text><rect class="mark" x="130" y="66" width="138.125" height="18" rx="4" fill="#e3f1fa"><title>Variant rows: 65</title></rect><text x="275.125" y="81" class="value" text-anchor="start">65</text><text x="0" y="125" text-anchor="start">L2G candidates</text><rect class="mark" x="130" y="109" width="23.375000000000004" height="18" rx="4" fill="#f0b46a"><title>L2G candidates: 11</title></rect><text x="160.375" y="124" class="value" text-anchor="start">11</text><text x="0" y="168" text-anchor="start">Colocalisation</text><rect class="mark" x="130" y="152" width="93.50000000000001" height="18" rx="4" fill="#7193aa"><title>Colocalisation: 44</title></rect><text x="230.5" y="167" class="value" text-anchor="start">44</text></svg><p class="plot-foot">Counts by evidence type · not mutually exclusive.</p></figure>
+              <p class="note">Source QC flags remain visible.</p>
+              <div class="go"><a href="https://zinga18018.github.io/cardiometabolic-gwas-evidence-explorer/" target="_blank" rel="noopener">Evidence explorer ↗</a><a href="https://github.com/Zinga18018/cardiometabolic-gwas-evidence-explorer" target="_blank" rel="noopener">Source ↗</a></div>
+            </aside>
+          </div>
+        </div></article>
+
+        <article class="stack-item" style="--i:1"><div class="card brackets">
+          <span class="num" aria-hidden="true">02</span>
+          <div class="card-grid">
+            <div>
+              <p class="kicker"><b>02 //</b>Clinical prediction</p>
+              <h3>Clinical Readmission Risk Modeling</h3>
+              <p class="desc">A leakage-safe 30-day readmission pipeline with patient-disjoint cohorts, calibration, missingness analysis, and drift checks.</p>
+              <ul class="pills"><li>CatBoost</li><li>PyTorch</li><li>Calibration</li><li>Streamlit</li></ul>
+            </div>
+            <aside>
+              <p class="label">// Held-out test · 10,822 encounters</p>
+              <figure class="project-plot"><figcaption>Held-out prediction scores</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Held-out prediction scores"><title>Held-out prediction scores</title><text x="0" y="35" text-anchor="start">ROC-AUC</text><text x="335" y="35" class="value" text-anchor="end">0.661</text><path d="M8 54H332" stroke="#29404f" stroke-width="4" stroke-linecap="round"/><circle class="mark" cx="222.16400000000002" cy="54" r="7" fill="#8ec5e8"><title>ROC-AUC: 0.661</title></circle><text x="0" y="93" text-anchor="start">PR-AUC</text><text x="335" y="93" class="value" text-anchor="end">0.175</text><path d="M8 112H332" stroke="#29404f" stroke-width="4" stroke-linecap="round"/><circle class="mark" cx="64.69999999999999" cy="112" r="7" fill="#e3f1fa"><title>PR-AUC: 0.175</title></circle><text x="0" y="151" text-anchor="start">Brier score</text><text x="335" y="151" class="value" text-anchor="end">0.077</text><path d="M8 170H332" stroke="#29404f" stroke-width="4" stroke-linecap="round"/><circle class="mark" cx="32.948" cy="170" r="7" fill="#f0b46a"><title>Brier score: 0.077</title></circle><text x="8" y="217" text-anchor="start">0</text><text x="332" y="217" text-anchor="end">1</text></svg><p class="plot-foot">ROC-AUC / PR-AUC: higher is better. Brier: lower is better.</p></figure>
+              <div class="go"><a href="https://yogesh-readmission-risk-audit.streamlit.app/" target="_blank" rel="noopener">Live demo ↗</a><a href="https://github.com/Zinga18018/readmission-risk-audit" target="_blank" rel="noopener">Source ↗</a></div>
+            </aside>
+          </div>
+        </div></article>
+
+        <article class="stack-item" style="--i:2"><div class="card brackets">
+          <span class="num" aria-hidden="true">03</span>
+          <div class="card-grid">
+            <div>
+              <p class="kicker"><b>03 //</b>NLP</p>
+              <h3>NewsSnap: Transformer News Classification System</h3>
+              <p class="desc">A four-class AG News system with a DistilBERT training pipeline, FastAPI service, React dashboard, and explicit inference modes.</p>
+              <ul class="pills"><li>DistilBERT</li><li>FastAPI</li><li>React</li><li>CI/CD</li></ul>
+            </div>
+            <aside>
+              <p class="label">// Held-out evaluation · 12,000 articles</p>
+              <figure class="project-plot"><figcaption>Classification performance</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Classification performance"><title>Classification performance</title><circle cx="57" cy="78" r="43" fill="none" stroke="#20323f" stroke-width="7"/><circle class="mark" cx="57" cy="78" r="43" fill="none" stroke="#8ec5e8" stroke-width="7" stroke-linecap="round" stroke-dasharray="235.05396234158832 270.1769682087222" transform="rotate(-90 57 78)"><title>Accuracy: 0.87</title></circle><text x="57" y="83" class="value" text-anchor="middle">0.870</text><text x="57" y="151" text-anchor="middle">Accuracy</text><circle cx="170" cy="78" r="43" fill="none" stroke="#20323f" stroke-width="7"/><circle class="mark" cx="170" cy="78" r="43" fill="none" stroke="#e3f1fa" stroke-width="7" stroke-linecap="round" stroke-dasharray="234.7837853733796 270.1769682087222" transform="rotate(-90 170 78)"><title>Macro-F1: 0.869</title></circle><text x="170" y="83" class="value" text-anchor="middle">0.869</text><text x="170" y="151" text-anchor="middle">Macro-F1</text><circle cx="283" cy="78" r="43" fill="none" stroke="#20323f" stroke-width="7"/><circle class="mark" cx="283" cy="78" r="43" fill="none" stroke="#f0b46a" stroke-width="7" stroke-linecap="round" stroke-dasharray="223.43635270861324 270.1769682087222" transform="rotate(-90 283 78)"><title>MCC: 0.827</title></circle><text x="283" y="83" class="value" text-anchor="middle">0.827</text><text x="283" y="151" text-anchor="middle">MCC</text><text x="170" y="198" text-anchor="middle">Held-out AG News evaluation</text></svg><p class="plot-foot">Accuracy and F1: 0–1. MCC: −1–1; arc shows its positive score.</p></figure>
+              <div class="go"><a href="https://yogesh-newssnap-classifier.streamlit.app/" target="_blank" rel="noopener">Streamlit demo ↗</a><a href="https://github.com/Zinga18018/NewsSnap" target="_blank" rel="noopener">Source ↗</a></div>
+            </aside>
+          </div>
+        </div></article>
+
+        <article class="stack-item" style="--i:3"><div class="card brackets">
+          <span class="num" aria-hidden="true">04</span>
+          <div class="card-grid">
+            <div>
+              <p class="kicker"><b>04 //</b>Model evaluation</p>
+              <h3>Model Behavior Under Distribution Shift</h3>
+              <p class="desc">A deterministic simulator for performance decay, class-prior shift, PSI, approximate KS, and configurable monitoring alerts.</p>
+              <ul class="pills"><li>NumPy</li><li>Pandas</li><li>PSI / KS</li><li>Streamlit</li></ul>
+            </div>
+            <aside>
+              <p class="label">// Verified mixed-shift run</p>
+              <figure class="project-plot"><figcaption>Performance under distribution shift</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Performance under distribution shift"><title>Performance under distribution shift</title><path class="grid" d="M20 44V150"/><text x="20" y="177" text-anchor="middle">0</text><path class="grid" d="M95.0 44V150"/><text x="95.0" y="177" text-anchor="middle">0.25</text><path class="grid" d="M170.0 44V150"/><text x="170.0" y="177" text-anchor="middle">0.5</text><path class="grid" d="M245.0 44V150"/><text x="245.0" y="177" text-anchor="middle">0.75</text><path class="grid" d="M320 44V150"/><text x="320" y="177" text-anchor="middle">1</text><path d="M131.6 99H247.4" stroke="#7193aa" stroke-width="4"/><circle class="mark" cx="247.4" cy="99" r="8" fill="#8ec5e8"><title>Before: 0.758</title></circle><text x="247.4" y="66" class="value" text-anchor="middle">Before · 0.758</text><circle class="mark" cx="131.6" cy="99" r="8" fill="#f0b46a"><title>After: 0.372</title></circle><text x="131.6" y="137" class="value" text-anchor="middle">After · 0.372</text><text x="170" y="210" text-anchor="middle">ROC-AUC</text></svg><p class="plot-foot">Two measured endpoints · max PSI 0.608 · 3 alerts.</p></figure>
+              <div class="go"><a href="https://yogesh-driftlab-monitoring.streamlit.app/" target="_blank" rel="noopener">Live demo ↗</a><a href="https://github.com/Zinga18018/driftlab-model-monitoring-simulator" target="_blank" rel="noopener">Source ↗</a></div>
+            </aside>
+          </div>
+        </div></article>
+
+        <article class="stack-item" style="--i:4"><div class="card brackets">
+          <span class="num" aria-hidden="true">05</span>
+          <div class="card-grid">
+            <div>
+              <p class="kicker"><b>05 //</b>Public-discourse research</p>
+              <h3>Women-Safety Public Discourse Research</h3>
+              <p class="desc">An interactive research dashboard covering 351,501 Reddit and YouTube comments across 16 women-safety cases in India.</p>
+              <ul class="pills"><li>Python</li><li>Pandas</li><li>Qwen</li><li>Statistical testing</li></ul>
+            </div>
+            <aside>
+              <p class="label">// Paper accepted at ASONAM 2026</p>
+              <figure class="project-plot"><figcaption>Stance across time windows</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Stance across time windows"><title>Stance across time windows</title><path class="grid" d="M38 165H326"/><text x="29" y="169" text-anchor="end">0%</text><path class="grid" d="M38 125H326"/><text x="29" y="129" text-anchor="end">20%</text><path class="grid" d="M38 85H326"/><text x="29" y="89" text-anchor="end">40%</text><path class="grid" d="M38 45H326"/><text x="29" y="49" text-anchor="end">60%</text><polyline points="52,97.276 179,106.414 306,117.124" fill="none" stroke="#8ec5e8" stroke-width="3"/><circle class="mark" cx="52" cy="97.276" r="5" fill="#8ec5e8"><title>Government criticism: 33.9%</title></circle><circle class="mark" cx="179" cy="106.414" r="5" fill="#8ec5e8"><title>Government criticism: 29.3%</title></circle><circle class="mark" cx="306" cy="117.124" r="5" fill="#8ec5e8"><title>Government criticism: 23.9%</title></circle><polyline points="52,112.814 179,105.806 306,104.67" fill="none" stroke="#f0b46a" stroke-width="3"/><circle class="mark" cx="52" cy="112.814" r="5" fill="#f0b46a"><title>Safety discussion: 26.1%</title></circle><circle class="mark" cx="179" cy="105.806" r="5" fill="#f0b46a"><title>Safety discussion: 29.6%</title></circle><circle class="mark" cx="306" cy="104.67" r="5" fill="#f0b46a"><title>Safety discussion: 30.2%</title></circle><text x="52" y="190" text-anchor="middle">Acute</text><text x="179" y="190" text-anchor="middle">Sustained</text><text x="306" y="190" text-anchor="middle">Retrospective</text><circle cx="8" cy="210" r="4" fill="#8ec5e8"/><text x="18" y="214" text-anchor="start">Govt criticism</text><circle cx="177" cy="210" r="4" fill="#f0b46a"/><text x="187" y="214" text-anchor="start">Safety discussion</text></svg><p class="plot-foot">Phase summaries from the research dashboard · hover for exact values.</p></figure>
+              <p class="note">The dashboard separates submitted-paper findings from later model audits.</p>
+              <div class="go"><a href="https://yogeshkuchimanchi.com/research/women-safety/" target="_blank" rel="noopener">Research dashboard ↗</a></div>
+            </aside>
+          </div>
+        </div></article>
+      </div>
+
+      <div class="credits r">
+        <p class="label">// Repository archive</p>
+        <h3>More work on GitHub.</h3>
+        <p class="lead">The selected projects above are the ones with fully documented results.</p>
+        <dl class="roll">
+          <div><dt>Bayesian benchmark</dt><dd><a href="https://github.com/Zinga18018/coregene-bayes-benchmark" target="_blank" rel="noopener">coregene-bayes-benchmark</a></dd></div>
+          <div><dt>RAG evaluation API</dt><dd><a href="https://github.com/Zinga18018/rag-evaluation-deployment-api" target="_blank" rel="noopener">rag-evaluation-deployment-api</a></dd></div>
+          <div><dt>AI engineering lab</dt><dd><a href="https://github.com/Zinga18018/ai-engineering-lab" target="_blank" rel="noopener">ai-engineering-lab</a></dd></div>
+          <div><dt>Product analytics and A/B testing</dt><dd><a href="https://github.com/Zinga18018/product-analytics-experimentation-lab" target="_blank" rel="noopener">product-analytics-experimentation-lab</a></dd></div>
+          <div><dt>Service monitoring</dt><dd><a href="https://github.com/Zinga18018/nyc-311-service-monitor" target="_blank" rel="noopener">nyc-311-service-monitor</a></dd></div>
+        </dl>
+        <a class="btn ghost" href="https://github.com/Zinga18018?tab=repositories" target="_blank" rel="noopener">Browse all <span class="repo-count">48</span> repositories <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="glow" style="top:40%;left:45%" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow r">03 / Experience</p>
+      <h2 class="h2 r"><span class="g1">Where</span><span class="g2">I've worked.</span></h2>
+
+      <div class="timeline" id="timeline">
+        <div class="tl-line" aria-hidden="true"></div>
+        <div class="stop r">
+          <p class="when">Aug 2025 - Present</p><i class="node" aria-hidden="true"></i>
+          <div><h3>Graduate Researcher, Data Science</h3><p class="org">Rochester Institute of Technology</p>
+          <ul class="bul">
+            <li>Built Python and Pandas pipelines to analyze 351,501 Reddit and YouTube comments across 16 women-safety cases in India.</li>
+            <li>Applied Mann-Whitney U, chi-square, and G-tests; fine-tuned Qwen3.5-9B with LoRA and evaluated 3,000 held-out examples.</li>
+            <li>Authored a paper accepted at ASONAM 2026 and documented model limitations through high-confidence error review.</li>
+          </ul></div>
+        </div>
+        <div class="stop r">
+          <p class="when">Aug 2025 - Present</p><i class="node" aria-hidden="true"></i>
+          <div><h3>GCCIS Technical Assistant</h3><p class="org">Rochester Institute of Technology</p>
+          <p>Support 200+ Windows and Linux lab systems, troubleshoot access and software issues, and maintain Excel/VBA reports.</p></div>
+        </div>
+        <div class="stop r">
+          <p class="when">Dec 2024 - Apr 2025</p><i class="node" aria-hidden="true"></i>
+          <div><h3>Research Assistant</h3><p class="org">Rochester Institute of Technology</p>
+          <p>Refactored Pandas and NumPy scripts and validated PostgreSQL and Excel data for accurate weekly research reporting.</p></div>
+        </div>
+        <div class="stop sub r"><p class="when">Education</p></div>
+        <div class="stop edu r">
+          <p class="when">Aug 2024 - Dec 2026</p><i class="node" aria-hidden="true"></i>
+          <div><h3>M.S. in Data Science</h3><p class="org">Rochester Institute of Technology · Rochester, NY</p>
+          <p>Expected December 2026. Machine Learning, Deep Learning, Cloud Computing, Big Data Analytics.</p></div>
+        </div>
+        <div class="stop edu r">
+          <p class="when">Aug 2023 - Jul 2024</p><i class="node" aria-hidden="true"></i>
+          <div><h3>Postgraduate Program in Data Science</h3><p class="org">Vellore Institute of Technology · India</p></div>
+        </div>
+        <div class="stop edu r">
+          <p class="when">Nov 2020 - Dec 2023</p><i class="node" aria-hidden="true"></i>
+          <div><h3>B.C.A. in Computer Applications</h3><p class="org">New Shores International College · India</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="glow" style="top:30%;left:20%" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow r">04 / Skills</p>
+      <div class="work-head">
+        <h2 class="h2 r"><span class="g1">Tools</span><span class="g2">I use.</span></h2>
+        <p class="lead r" style="--d:.15s">Languages, modeling libraries, databases, and tools used in my projects.</p>
+      </div>
+
+      <div class="bento">
+        <div class="tile s4 r">
+          <p class="tile-top">01</p>
+          <h3>Languages</h3>
+          <ul class="pills"><li>Python</li><li>SQL</li><li>R</li><li>Java</li></ul>
+        </div>
+        <div class="tile s8 r" style="--d:.1s">
+          <p class="tile-top">02</p>
+          <h3>Machine Learning &amp; NLP</h3>
+          <ul class="pills"><li>PyTorch</li><li>scikit-learn</li><li>CatBoost</li><li>XGBoost</li><li>Transformers</li><li>LoRA</li><li>DistilBERT</li><li>FT-Transformer</li></ul>
+        </div>
+        <div class="tile s7 r">
+          <p class="tile-top">03</p>
+          <h3>Statistics &amp; Evaluation</h3>
+          <ul class="pills"><li>A/B testing</li><li>Mann-Whitney U</li><li>Chi-square</li><li>G-test</li><li>ROC-AUC</li><li>PR-AUC</li><li>Calibration</li><li>PSI / KS / JS</li></ul>
+        </div>
+        <div class="tile s5 r" style="--d:.1s">
+          <p class="tile-top">04</p>
+          <h3>Data &amp; Databases</h3>
+          <ul class="pills"><li>Pandas</li><li>NumPy</li><li>SciPy</li><li>Spark</li><li>PostgreSQL</li><li>SQLite</li><li>Window functions</li></ul>
+        </div>
+        <div class="tile s12 r">
+          <p class="tile-top">05</p>
+          <h3>ML Engineering</h3>
+          <ul class="pills"><li>FastAPI</li><li>Streamlit</li><li>React</li><li>Docker</li><li>GitHub Actions</li><li>Automated testing</li><li>Git</li><li>Excel / VBA</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <p class="eyebrow r">05 / Contact</p>
+          <h2 class="h2 r"><span class="g1">Get in</span><span class="g2">touch.</span></h2>
+          <p class="lead r" style="--d:.15s">I'm looking for data science and ML engineering roles. Email me about a role, a project, or a research collaboration.</p>
+        </div>
+        <div class="console brackets r" style="--d:.1s">
+          <div class="row"><span class="k">// EMAIL</span><a href="mailto:kuchimanchiyogesh@gmail.com">kuchimanchiyogesh@gmail.com</a><button class="copy" type="button" data-copy="kuchimanchiyogesh@gmail.com">COPY</button></div>
+          <div class="row"><span class="k">// GITHUB</span><a href="https://github.com/Zinga18018" target="_blank" rel="noopener">github.com/Zinga18018 ↗</a></div>
+          <div class="row"><span class="k">// LINKEDIN</span><a href="https://www.linkedin.com/in/yogesh-kuchimanchi" target="_blank" rel="noopener">linkedin.com/in/yogesh-kuchimanchi ↗</a></div>
+          <div class="row"><span class="k">// BASED IN</span><span class="v">Rochester, New York</span></div>
+          <a class="btn" href="mailto:kuchimanchiyogesh@gmail.com?subject=Hello%20Yogesh">Email me <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <footer class="foot">
+        <span>© <span id="year">2026</span> Yogesh Kuchimanchi</span>
+        <span>Built with care in Rochester, NY</span>
+      </footer>
+    </div>
+  </section>
+</main>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // opening shot once fonts are in (or after 1.2s)
+  Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1200))]).then(() => root.classList.add('loaded'));
+
+  // reveal on scroll
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.r').forEach(el => io.observe(el));
+
+  // live repository count, same source as the GitHub profile
+  fetch('https://api.github.com/users/Zinga18018').then(r => (r.ok ? r.json() : null)).then(u => {
+    if (u && u.public_repos) document.querySelectorAll('.repo-count').forEach(el => (el.textContent = u.public_repos));
+  }).catch(() => {});
+
+  // stacked cards shrink and dim as the next one lands; timeline line draws with scroll
+  const items = [...document.querySelectorAll('.stack-item')];
+  const sticky = matchMedia('(min-width: 761px) and (min-height: 641px)');
+  const tl = document.getElementById('timeline');
+  const GAP = 36, STEP = 24;
+  let queued = false;
+  function onScroll() {
+    queued = false;
+    items.forEach((it, i) => {
+      const card = it.firstElementChild, next = items[i + 1];
+      let p = 0;
+      if (next && sticky.matches) {
+        const dist = next.getBoundingClientRect().top - it.getBoundingClientRect().top;
+        p = clamp(1 - (dist - STEP) / (it.offsetHeight + GAP - STEP), 0, 1);
+      }
+      card.style.setProperty('--s', 1 - p * 0.06);
+      card.style.setProperty('--b', 1 - p * 0.45);
+    });
+    const r = tl.getBoundingClientRect();
+    tl.style.setProperty('--p', clamp((innerHeight * 0.7 - r.top) / r.height, 0, 1));
+  }
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(onScroll); } };
+  addEventListener('scroll', queue, { passive: true });
+  addEventListener('resize', queue);
+  onScroll();
+
+  // tilt card with a light that follows the pointer
+  const card = document.getElementById('now');
+  if (!reduce && matchMedia('(hover: hover)').matches) {
+    card.addEventListener('pointermove', e => {
+      const b = card.getBoundingClientRect(), x = (e.clientX - b.left) / b.width, y = (e.clientY - b.top) / b.height;
+      card.style.setProperty('--rx', (0.5 - y) * 14 + 'deg');
+      card.style.setProperty('--ry', (x - 0.5) * 14 + 'deg');
+      card.style.setProperty('--mx', x * 100 + '%');
+      card.style.setProperty('--my', y * 100 + '%');
+    });
+    card.addEventListener('pointerleave', () => { card.style.setProperty('--rx', '0deg'); card.style.setProperty('--ry', '0deg'); });
+  }
+
+  // copy email
+  document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', () => {
+    navigator.clipboard?.writeText(b.dataset.copy).then(() => {
+      b.textContent = 'COPIED';
+      setTimeout(() => (b.textContent = 'COPY'), 1600);
+    });
+  }));
+
+  // hero: a slowly turning cloud of points under a spotlight. The points drift out of noise
+  // into five clusters (centroids and assignment lines fade in), hold, then loosen again.
+  const cv = document.getElementById('cloud'), ctx = cv.getContext('2d');
+  let seed = 11;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647; // seeded so the shot frames the same way every visit
+  const N = 260, K = 5, CYCLE = 14;
+  const TINT = [[227, 241, 250], [142, 197, 232], [240, 180, 106], [176, 196, 212], [96, 150, 190]];
+  const C = Array.from({ length: K }, (_, k) => {
+    const y = 1 - (2 * k + 1) / K, r = Math.sqrt(1 - y * y), t = k * 2.399963;
+    return [Math.cos(t) * r * 0.62, y * 0.62, Math.sin(t) * r * 0.62];
+  });
+  const pts = Array.from({ length: N }, (_, i) => {
+    let a;
+    do a = [rnd() * 2 - 1, rnd() * 2 - 1, rnd() * 2 - 1]; while (a[0] ** 2 + a[1] ** 2 + a[2] ** 2 > 1);
+    const k = i % K, g = () => (rnd() + rnd() + rnd() - 1.5) * 0.17;
+    return { a, b: [C[k][0] + g(), C[k][1] + g(), C[k][2] + g()], k, d: rnd(), ph: rnd() * 6.2832, s: null };
+  });
+  const ease = x => (x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x));
+  const mix = (t, d) => ease((t - 1 - d * 1.6) / 2.6) - ease((t - 10.4 - d * 1.2) / 2.2);
+  let W, H, cx, cy, R, fade, rot = 0.6, tilt = 0.35, tiltT = 0.35, yaw = 0, yawT = 0, last = 0, clock = 0, T = 0, running = false;
+
+  function size() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const wide = W > 900;
+    cx = wide ? W * 0.63 : W * 0.78;
+    cy = wide ? H * 0.5 : H * 0.25;
+    R = wide ? Math.min(H * 0.36, W * 0.24) : Math.min(W * 0.48, H * 0.28);
+    fade = wide ? 1 : 0.6;
+  }
+
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000 || 0);
+    last = now;
+    T += dt;
+    clock = (clock + dt) % CYCLE;
+    rot += dt * 0.1;
+    tilt += (tiltT - tilt) * 0.04;
+    yaw += (yawT - yaw) * 0.04;
+    const ca = Math.cos(rot + yaw), sa = Math.sin(rot + yaw), ct = Math.cos(tilt), st = Math.sin(tilt);
+    const proj = (x, y, z) => {
+      const X = x * ca + z * sa, Z1 = z * ca - x * sa, Y = y * ct - Z1 * st, Z = y * st + Z1 * ct, s = 3 / (3 - Z);
+      return [cx + X * R * s, cy + Y * R * s, (Z + 1) / 2, s]; // depth: 0 back, 1 front
+    };
+    const cs = C.map(c => proj(c[0], c[1], c[2]));
+    let together = 0;
+    for (const p of pts) {
+      const u = mix(clock, p.d), w = Math.sin(T * 0.7 + p.ph) * 0.025 * (1 - u * 0.6);
+      together += u;
+      p.s = proj(p.a[0] + (p.b[0] - p.a[0]) * u + w, p.a[1] + (p.b[1] - p.a[1]) * u - w, p.a[2] + (p.b[2] - p.a[2]) * u);
+      p.s.push(u);
+    }
+    together /= N;
+    ctx.clearRect(0, 0, W, H);
+
+    ctx.lineWidth = 1;
+    for (const p of pts) { // assignment lines to each centroid
+      const [x, y, d, , u] = p.s;
+      if (u < 0.05) continue;
+      ctx.strokeStyle = `rgba(${TINT[p.k]},${u * (0.03 + d * 0.1) * fade})`;
+      ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(cs[p.k][0], cs[p.k][1]); ctx.stroke();
+    }
+    for (const p of pts) { // points go from silver noise to their cluster's tint
+      const [x, y, d, s, u] = p.s, t = TINT[p.k];
+      ctx.fillStyle = `rgba(${205 + (t[0] - 205) * u | 0},${214 + (t[1] - 214) * u | 0},${222 + (t[2] - 222) * u | 0},${(0.15 + d * 0.75) * fade})`;
+      ctx.beginPath(); ctx.arc(x, y, (0.7 + d * 1.6) * s, 0, 6.2832); ctx.fill();
+    }
+    if (together > 0.02) {
+      ctx.lineWidth = 1.2;
+      cs.forEach(([x, y, d], k) => { // centroid markers
+        ctx.strokeStyle = `rgba(${TINT[k]},${together * (0.3 + d * 0.6) * fade})`;
+        ctx.beginPath(); ctx.arc(x, y, 7 + d * 4, 0, 6.2832); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + 4, y); ctx.moveTo(x, y - 4); ctx.lineTo(x, y + 4); ctx.stroke();
+      });
+    }
+
+    if (running) requestAnimationFrame(frame);
+  }
+
+  size();
+  addEventListener('resize', () => { size(); if (!running) frame(last); });
+  if (reduce) { clock = 7; frame(0); }
+  else {
+    addEventListener('pointermove', e => {
+      tiltT = 0.35 + (e.clientY / innerHeight - 0.5) * 0.3;
+      yawT = (e.clientX / innerWidth - 0.5) * 0.6;
+    }, { passive: true });
+    new IntersectionObserver(([e]) => { // only animate while the hero is on screen
+      const was = running;
+      running = e.isIntersecting;
+      if (running && !was) { last = performance.now(); requestAnimationFrame(frame); }
+    }).observe(cv);
+  }
+})();
+</script>
+</body>
+</html>
