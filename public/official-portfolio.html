@@ -12,7 +12,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Manrope:wght@300;400;500;600&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
-<script>document.documentElement.classList.add('js')</script>
 <style>
 :root{
   --acc:#8ec5e8;--glow:142,197,232;--edge:79,107,128;--amber:#f0b46a;
@@ -35,15 +34,8 @@ section{position:relative;overflow-x:clip;padding:120px 0}
 .wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 var(--pad)}
 
 /* film grain over everything */
-body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none;opacity:.05;animation:grain 1s steps(4) infinite;
+body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none;opacity:.05;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-@keyframes grain{25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}}
-
-/* opening shot: letterbox bars slide away */
-.curtain{display:none}
-.js .curtain{display:block;position:fixed;left:0;right:0;height:50vh;background:#000;z-index:200;pointer-events:none;transition:transform 1.5s var(--ease) .1s}
-.curtain.top{top:0}.curtain.bot{bottom:0}
-.loaded .curtain.top{transform:translateY(-100%)}.loaded .curtain.bot{transform:translateY(100%)}
 
 /* reveal on scroll */
 .js .r{opacity:0;transform:translateY(26px);filter:blur(8px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease),filter 1.1s var(--ease);transition-delay:var(--d,0s)}
@@ -81,65 +73,104 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
 .btn.small{padding:9px 16px;font-weight:500;backdrop-filter:blur(4px)}
 
 /* ===== hero ===== */
-.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;overflow:hidden}
-.hero{--acc:#91d1c2;--glow:145,209,194;--edge:77,123,116}
-@media(min-width:1101px){.hero{min-height:max(100svh,720px)}}
+.hero{--acc:#91d1c2;--glow:145,209,194;--edge:77,123,116;position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;overflow:hidden;background:radial-gradient(ellipse 60% 65% at 75% 47%,rgba(25,75,70,.28),transparent 72%),radial-gradient(ellipse 40% 80% at 12% 55%,rgba(10,35,39,.3),transparent 80%),#000}
 .hero .g2{background-image:linear-gradient(180deg,#f2fffb,#91d1c2 55%,#234b48)}
 .hero .g3{background-image:linear-gradient(180deg,#c7ece2,#5ca597 55%,#173a39)}
-#evidence-flow{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.evidence-caption{position:absolute;z-index:4;right:calc(var(--pad) + 110px);bottom:68px;width:min(36vw,680px);margin:0;color:#b5cbd8;font:10px/1.55 var(--mono);letter-spacing:.05em;text-align:left;text-shadow:0 2px 8px #000}
-.evidence-caption strong{display:block;margin-bottom:3px;color:var(--acc);font:600 10px/1.5 var(--body);letter-spacing:.2em;text-transform:uppercase}
-.beam{position:absolute;top:-8%;left:49%;width:28%;height:100%;filter:blur(26px);pointer-events:none;animation:flicker 7s ease-in-out infinite}
-.beam::before{content:'';position:absolute;inset:0;clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);background:linear-gradient(180deg,rgba(220,236,255,.15),rgba(220,236,255,.035) 70%,transparent)}
-@keyframes flicker{50%{opacity:.7}}
-.light{position:absolute;inset:0;pointer-events:none;background:
-  radial-gradient(ellipse 30% 7% at 63% 86%,rgba(var(--glow),.1),transparent 70%),
-  linear-gradient(90deg,#000 0%,rgba(0,0,0,.9) 26%,rgba(0,0,0,.25) 52%,transparent 68%),
-  radial-gradient(ellipse 120% 95% at 60% 50%,transparent 55%,rgba(0,0,0,.8))}
 .nav{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:24px var(--pad)}
 .logo{font:700 13px/1 var(--body);letter-spacing:.35em;color:#dbe8f1}
 .links{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:36px;font:400 11px/1 var(--body);letter-spacing:.28em;text-transform:uppercase;color:var(--soft)}
 .links a{position:relative;padding:5px 0;transition:color .3s}
 .links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:rgba(var(--glow),.6);transition:width .3s}
 .links a:hover{color:#fff}.links a:hover::after{width:100%}
-.hero-body{position:relative;z-index:4;flex:1;display:flex;align-items:center;padding:24px var(--pad)}
-.hero-copy{max-width:42rem}
+.hero-body{position:relative;z-index:4;flex:1;display:grid;grid-template-columns:minmax(0,.94fr) minmax(470px,1.06fr);align-items:center;gap:clamp(28px,4vw,68px);width:100%;max-width:1600px;margin:0 auto;padding:38px var(--pad)}
+.hero-copy{min-width:0;max-width:39rem}
+.hero .h1{font-size:clamp(4.2rem,7.2vw,7.8rem)}
 .hello{margin:0 0 4px;font:400 clamp(2.6rem,4.4vw,3.6rem)/1 'Mrs Saint Delafield',cursive;color:#bfe0f5;text-shadow:0 0 18px rgba(var(--glow),.35)}
 .tagline{margin:0 0 16px;font:500 11px/1.7 var(--body);letter-spacing:.28em;text-transform:uppercase;color:#b9c7d2}
 .tagline i{font-style:normal;color:var(--dim);margin:0 2px}
 .tagline span{white-space:nowrap}
 .hero-copy .lead{max-width:33rem;margin-bottom:30px;font-size:14.5px}
 .ctas{display:flex;flex-wrap:wrap;gap:14px}
-.showing{position:absolute;right:calc(var(--pad) + 1vw);bottom:10px;width:16.5rem;padding:22px 22px 20px;border:1px solid rgba(var(--edge),.4);background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.showing.brackets::before{--l:14px;--w:1.5px}
-.showing .label{display:flex;align-items:center;gap:10px;color:var(--amber)}
-.show-title{margin:0;font:800 1.9rem/.95 var(--display);text-transform:uppercase;color:var(--frost)}
-.showing hr{width:100%;height:1px;margin:16px 0 12px;border:0;background:linear-gradient(90deg,var(--acc),rgba(var(--edge),.5),transparent)}
-.show-note{margin:0 0 14px;font:10px/1.6 var(--mono);letter-spacing:.06em;color:var(--muted)}
-.show-link{font:600 10px/1.5 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--acc);transition:color .3s}
-.show-link:hover{color:#fff}
+/* A native radio group keeps all five records selectable without JavaScript. */
+.atlas{position:relative;isolation:isolate;width:100%;min-width:0;padding:clamp(18px,2.2vw,30px);border:1px solid rgba(145,209,194,.38);background:linear-gradient(145deg,rgba(9,30,31,.96),rgba(2,12,15,.97) 58%,rgba(4,19,22,.98));box-shadow:0 26px 90px rgba(0,0,0,.65),inset 0 0 80px rgba(99,193,169,.035);overflow:hidden}
+.atlas::after{content:'';position:absolute;z-index:0;inset:0;pointer-events:none;opacity:.2;background-image:linear-gradient(rgba(145,209,194,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(145,209,194,.09) 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(90deg,transparent 12%,#000)}
+.atlas>*{position:relative;z-index:1}
+.atlas.brackets::before{--l:18px;--w:1px}
+.atlas-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:20px}
+.atlas-kicker{margin:0 0 6px;color:var(--acc);font:600 10px/1.3 var(--mono);letter-spacing:.17em;text-transform:uppercase}
+.atlas h2{margin:0;color:#f1faf7;font:800 clamp(2.2rem,3vw,3rem)/.92 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.atlas-subtitle{margin:6px 0 0;color:#a8c7be;font:11px/1.5 var(--mono)}
+.atlas-motion{flex:none;min-height:36px;border:1px solid rgba(145,209,194,.35);background:#061617;color:#b8ded2;padding:7px 9px;font:11px/1.2 var(--mono);cursor:pointer}
+.atlas-motion:hover{border-color:var(--acc);color:#fff}
+.atlas-motion[hidden]{display:none}
+.atlas-picker{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;min-width:0;margin:0;padding:0;border:0}
+.atlas-picker legend{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.atlas-radio{position:absolute;width:1px;height:1px;opacity:0}
+.atlas-picker label{display:flex;flex-direction:column;justify-content:center;min-width:0;min-height:52px;padding:7px 6px;border:1px solid rgba(145,209,194,.17);background:rgba(3,13,16,.76);color:#a6bdb8;cursor:pointer;text-align:center;transition:border-color .2s,background .2s,color .2s}
+.atlas-picker label span{color:#739a92;font:9px/1.2 var(--mono);letter-spacing:.12em}
+.atlas-picker label strong{overflow:hidden;text-overflow:ellipsis;font:600 clamp(9px,.85vw,11px)/1.5 var(--mono);letter-spacing:.015em}
+.atlas-radio:checked+label{border-color:rgba(145,209,194,.8);background:rgba(61,126,112,.23);color:#edfff9;box-shadow:inset 0 -2px 0 var(--acc)}
+.atlas-radio:checked+label span{color:var(--acc)}
+.atlas-radio:focus-visible+label{outline:2px solid #e2fff5;outline-offset:2px}
+.atlas-scenes{grid-column:1/-1;min-width:0;margin-top:17px}
+.atlas-scene{display:none}
+#atlas-tcf7l2:checked~.atlas-scenes .scene-tcf7l2,#atlas-ccnd2:checked~.atlas-scenes .scene-ccnd2,#atlas-fto:checked~.atlas-scenes .scene-fto,#atlas-hnf4a:checked~.atlas-scenes .scene-hnf4a,#atlas-cdkal1:checked~.atlas-scenes .scene-cdkal1{display:block}
+.atlas-signal{position:relative;padding:13px 16px;border:1px solid rgba(145,209,194,.36);background:linear-gradient(90deg,rgba(145,209,194,.11),rgba(145,209,194,.025))}
+.atlas-signal::after{content:'';position:absolute;left:50%;bottom:-21px;width:1px;height:21px;background:rgba(145,209,194,.55)}
+.atlas-tag{display:block;margin-bottom:4px;color:#8dbfb2;font:600 10px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.atlas-signal h3{margin:0;color:#f0faf6;font:700 clamp(1.45rem,2.1vw,2rem)/1.1 var(--display);letter-spacing:.03em}
+.atlas-signal p{margin:3px 0 0;color:#afc8c0;font:11px/1.5 var(--body)}
+.atlas-signal p strong{color:#e7f7f1}
+.atlas-branches{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+.atlas-branches::before{content:'';position:absolute;left:25%;right:25%;top:-9px;height:1px;background:rgba(145,209,194,.55)}
+.atlas-track{position:relative;min-width:0;min-height:142px;padding:13px 13px 9px;border:1px solid rgba(145,209,194,.22);background:rgba(2,12,14,.72);overflow:hidden}
+.atlas-track::before{content:'';position:absolute;left:50%;top:-9px;width:1px;height:9px;background:rgba(145,209,194,.55)}
+.atlas-track::after{content:'';position:absolute;top:0;left:0;width:35%;height:1px;background:linear-gradient(90deg,transparent,#c8fff0,transparent);box-shadow:0 0 12px rgba(145,209,194,.8);opacity:0;transform:translateX(-100%)}
+.hero.is-playing .atlas-track::after{opacity:1;animation:atlas-trace 7s linear infinite}
+.hero.is-playing .atlas-track:nth-child(2)::after{animation-delay:1.8s}
+@keyframes atlas-trace{0%{transform:translateX(-100%)}48%,100%{transform:translateX(286%)}}
+.atlas-track h4{margin:0 0 8px;color:#c2e5da;font:600 10px/1.5 var(--mono);letter-spacing:.09em;text-transform:uppercase}
+.atlas-track.parallel h4{color:#efc696}
+.atlas-track dl{margin:0}
+.atlas-track dl div{display:flex;justify-content:space-between;gap:8px;align-items:baseline;padding:6px 0;border-top:1px solid rgba(145,209,194,.13)}
+.atlas-track dt{color:#a7bab4;font:12px/1.45 var(--body)}
+.atlas-track dd{flex:none;margin:0;color:#f3fff9;font:700 1.35rem/1 var(--display);text-align:right}
+.atlas-track dd.missing{color:#e7c397;font:500 10px/1.4 var(--mono)}
+.atlas-interpretation{margin:14px 0 0;color:#bdd7ce;font:12px/1.55 var(--body)}
+.atlas-source{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 16px;margin-top:12px;padding-top:11px;border-top:1px solid rgba(145,209,194,.2)}
+.atlas-source span{max-width:24rem;color:#a8beb6;font:11px/1.55 var(--mono)}
+.atlas-source a{color:#b7ebd8;font:600 11px/1.5 var(--body);letter-spacing:.08em;text-transform:uppercase}
+.atlas-source a:hover{text-decoration:underline;text-underline-offset:3px}
 .hero-foot{position:relative;z-index:4;display:flex;justify-content:space-between;align-items:flex-end;padding:0 var(--pad) 28px}
 .status{display:flex;align-items:center;gap:10px;font:10px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
-.emblem{width:92px;height:92px;filter:drop-shadow(0 0 14px rgba(var(--glow),.3));animation:float 4.5s ease-in-out infinite}
-.emblem .beat{stroke-dasharray:60 40;animation:sweep 3s linear infinite}
-@keyframes float{50%{transform:translateY(-6px) scale(1.03)}}
-@keyframes sweep{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+.emblem{width:92px;height:92px;filter:drop-shadow(0 0 14px rgba(var(--glow),.3))}
+.emblem .beat{stroke-dasharray:60 40}
 @media(max-width:1100px){
-  .showing{display:none}
-  .light{background:radial-gradient(ellipse 60% 45% at 85% 0%,rgba(220,236,255,.08),transparent 70%),linear-gradient(180deg,transparent 15%,rgba(0,0,0,.7) 50%,#000 95%)}
-  .hero-copy{display:flex;flex-direction:column}
-  .hero-copy .ctas{order:1}
-  .hero-copy .lead{order:2;margin:22px 0 0}
-}
-@media(min-width:901px) and (max-width:1100px){
-  .hero-body{align-items:flex-end;padding-top:280px;padding-bottom:40px}
-  .evidence-caption{top:290px;bottom:auto;left:calc(50% - 240px);right:auto;width:480px}
+  .hero{min-height:0}
+  .hero-body{grid-template-columns:minmax(0,.9fr) minmax(420px,1.1fr);gap:24px;padding-top:30px;padding-bottom:34px}
+  .hero .h1{font-size:clamp(3.7rem,6.8vw,5.5rem)}
 }
 @media(max-width:900px){
-  .links,.beam{display:none}
-  .hero-body{align-items:flex-end;padding-top:320px;padding-bottom:40px}
+  .links{display:none}
   .emblem{width:64px;height:64px}
-  .evidence-caption{top:310px;bottom:auto;left:var(--pad);right:var(--pad);width:auto;font-size:9px}
+  .hero-body{grid-template-columns:1fr;gap:34px}
+  .hero-copy{max-width:44rem}
+  .hero .h1{font-size:clamp(4.2rem,11vw,7.5rem)}
+  .atlas{max-width:760px}
+}
+@media(max-width:600px){
+  .hero-body{gap:27px;padding-top:22px}
+  .hero .h1{font-size:clamp(3.7rem,15vw,5.8rem)}
+  .ctas .btn{padding:12px 16px;letter-spacing:.16em}
+  .atlas-picker{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .atlas-picker label{min-height:46px;padding:6px 2px}
+  .atlas-picker label span{display:none}
+  .atlas-picker label strong{font-size:11px}
+  .atlas-branches{grid-template-columns:1fr;gap:9px;margin-top:13px}
+  .atlas-signal::after,.atlas-branches::before,.atlas-track::before{display:none}
+  .atlas-track{min-height:0}
+  .atlas-source{display:block}
+  .atlas-source a{display:inline-block;margin-top:7px}
 }
 
 /* ===== about ===== */
@@ -283,7 +314,6 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .js .r{opacity:1;transform:none;filter:none}
-  .js .curtain{display:none}
   html{scroll-behavior:auto}
 }
 
@@ -299,14 +329,7 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
 </style>
 </head>
 <body>
-<div class="curtain top" aria-hidden="true"></div>
-<div class="curtain bot" aria-hidden="true"></div>
-
 <header class="hero" id="top">
-  <canvas id="evidence-flow" aria-hidden="true"></canvas>
-  <div class="beam" aria-hidden="true"></div>
-  <div class="light" aria-hidden="true"></div>
-
   <nav class="nav">
     <a class="logo" href="#top">YOGESH.</a>
     <div class="links">
@@ -317,26 +340,75 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
 
   <div class="hero-body">
     <div class="hero-copy">
-      <p class="hello r" style="--d:.35s">Hi, I'm Yogesh.</p>
-      <h1 class="h1 r" style="--d:.45s"><span class="g1">From signal</span><span class="g2">to evidence.</span></h1>
-      <p class="tagline r" style="--d:.6s"><span>M.S. Data Science</span> <i>•</i> <span>Rochester, New York</span></p>
-      <p class="lead r" style="--d:.75s">A recent project compares available Open Targets variant, candidate-gene, and molecular evidence for five selected FinnGen type 2 diabetes regions. It is an evidence explorer, not a new GWAS or causal proof.</p>
-      <div class="ctas r" style="--d:.9s">
-        <a class="btn" href="#gene-explorer">Explore the gene project <span aria-hidden="true">↗</span></a>
+      <p class="hello">Hi, I'm Yogesh.</p>
+      <h1 class="h1"><span class="g1">From signal</span><span class="g2">to evidence.</span></h1>
+      <p class="tagline"><span>M.S. Data Science</span> <i>•</i> <span>Rochester, New York</span></p>
+      <p class="lead">A recent project audits public evidence for five type 2 diabetes loci. Select one to compare returned variants, candidate-gene rows, and molecular evidence. This is not a new GWAS or a causal-gene finding.</p>
+      <div class="ctas">
+        <a class="btn" href="#gene-explorer">View gene project <span aria-hidden="true">↗</span></a>
         <a class="btn ghost" href="https://github.com/Zinga18018" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
-        <a class="btn ghost" href="https://www.linkedin.com/in/yogesh-kuchimanchi" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
       </div>
     </div>
-    <aside class="showing brackets r" style="--d:1.1s">
-      <p class="label"><i class="dot live"></i>Now showing</p>
-      <p class="show-title">Cardiometabolic GWAS Evidence Explorer</p>
-      <hr>
-      <p class="show-note">Five selected T2D regions · FinnGen R12 / Open Targets evidence</p>
-      <a class="show-link" href="#gene-explorer">Explore the evidence&nbsp;↗</a>
+    <aside class="atlas brackets" aria-labelledby="atlas-title">
+      <div class="atlas-top">
+        <div>
+          <p class="atlas-kicker">Recent project 01 / Five selected regions</p>
+          <h2 id="atlas-title">Evidence atlas</h2>
+          <p class="atlas-subtitle">FinnGen R12 T2D · Open Targets 26.09</p>
+        </div>
+        <button class="atlas-motion" id="atlas-motion" type="button" hidden>Pause motion</button>
+      </div>
+      <fieldset class="atlas-picker">
+        <legend>Select a type 2 diabetes region</legend>
+        <input class="atlas-radio" id="atlas-tcf7l2" name="atlas-locus" type="radio" checked><label for="atlas-tcf7l2"><span>01 / 05</span><strong>TCF7L2</strong></label>
+        <input class="atlas-radio" id="atlas-ccnd2" name="atlas-locus" type="radio"><label for="atlas-ccnd2"><span>02 / 05</span><strong>CCND2</strong></label>
+        <input class="atlas-radio" id="atlas-fto" name="atlas-locus" type="radio"><label for="atlas-fto"><span>03 / 05</span><strong>FTO</strong></label>
+        <input class="atlas-radio" id="atlas-hnf4a" name="atlas-locus" type="radio"><label for="atlas-hnf4a"><span>04 / 05</span><strong>HNF4A</strong></label>
+        <input class="atlas-radio" id="atlas-cdkal1" name="atlas-locus" type="radio"><label for="atlas-cdkal1"><span>05 / 05</span><strong>CDKAL1</strong></label>
+        <div class="atlas-scenes" aria-live="off">
+          <!-- Source: reports/locus_summary.csv in the Gene Explorer repository. Counts are returned rows, not scores. -->
+          <article class="atlas-scene scene-tcf7l2" aria-label="TCF7L2 region evidence">
+            <div class="atlas-signal"><span class="atlas-tag">Lead variant location</span><h3>chr10:112,998,590</h3><p>Top returned L2G candidate: <strong>TCF7L2</strong> · not a causal-gene call</p></div>
+            <div class="atlas-branches">
+              <div class="atlas-track"><h4>Fine-mapping → candidate ranking</h4><dl><div><dt>Variant rows</dt><dd>1</dd></div><div><dt>L2G candidate rows</dt><dd>1</dd></div></dl></div>
+              <div class="atlas-track parallel"><h4>Parallel molecular-QTL record</h4><dl><div><dt>Colocalisation rows</dt><dd class="missing">not returned</dd></div><div><dt>Candidate-matched rows</dt><dd class="missing">not returned</dd></div></dl></div>
+            </div>
+          </article>
+          <article class="atlas-scene scene-ccnd2" aria-label="CCND2 region evidence">
+            <div class="atlas-signal"><span class="atlas-tag">Lead variant location</span><h3>chr12:4,275,678</h3><p>Top returned L2G candidate: <strong>CCND2</strong> · not a causal-gene call</p></div>
+            <div class="atlas-branches">
+              <div class="atlas-track"><h4>Fine-mapping → candidate ranking</h4><dl><div><dt>Variant rows</dt><dd>1</dd></div><div><dt>L2G candidate rows</dt><dd>2</dd></div></dl></div>
+              <div class="atlas-track parallel"><h4>Parallel molecular-QTL record</h4><dl><div><dt>Colocalisation rows</dt><dd>38</dd></div><div><dt>Candidate-matched rows</dt><dd>11</dd></div></dl></div>
+            </div>
+          </article>
+          <article class="atlas-scene scene-fto" aria-label="FTO region evidence">
+            <div class="atlas-signal"><span class="atlas-tag">Lead variant location</span><h3>chr16:53,793,567</h3><p>Top returned L2G candidate: <strong>FTO</strong> · not a causal-gene call</p></div>
+            <div class="atlas-branches">
+              <div class="atlas-track"><h4>Fine-mapping → candidate ranking</h4><dl><div><dt>Variant rows</dt><dd>56</dd></div><div><dt>L2G candidate rows</dt><dd>3</dd></div></dl></div>
+              <div class="atlas-track parallel"><h4>Parallel molecular-QTL record</h4><dl><div><dt>Colocalisation rows</dt><dd>2</dd></div><div><dt>Candidate-matched rows</dt><dd class="missing">not returned</dd></div></dl></div>
+            </div>
+          </article>
+          <article class="atlas-scene scene-hnf4a" aria-label="HNF4A region evidence">
+            <div class="atlas-signal"><span class="atlas-tag">Lead variant location</span><h3>chr20:44,354,839</h3><p>Top returned L2G candidate: <strong>HNF4A</strong> · not a causal-gene call</p></div>
+            <div class="atlas-branches">
+              <div class="atlas-track"><h4>Fine-mapping → candidate ranking</h4><dl><div><dt>Variant rows</dt><dd>1</dd></div><div><dt>L2G candidate rows</dt><dd>4</dd></div></dl></div>
+              <div class="atlas-track parallel"><h4>Parallel molecular-QTL record</h4><dl><div><dt>Colocalisation rows</dt><dd class="missing">not returned</dd></div><div><dt>Candidate-matched rows</dt><dd class="missing">not returned</dd></div></dl></div>
+            </div>
+          </article>
+          <article class="atlas-scene scene-cdkal1" aria-label="CDKAL1 region evidence">
+            <div class="atlas-signal"><span class="atlas-tag">Lead variant location</span><h3>chr6:20,703,721</h3><p>Top returned L2G candidate: <strong>CDKAL1</strong> · not a causal-gene call</p></div>
+            <div class="atlas-branches">
+              <div class="atlas-track"><h4>Fine-mapping → candidate ranking</h4><dl><div><dt>Variant rows</dt><dd>6</dd></div><div><dt>L2G candidate rows</dt><dd>1</dd></div></dl></div>
+              <div class="atlas-track parallel"><h4>Parallel molecular-QTL record</h4><dl><div><dt>Colocalisation rows</dt><dd>4</dd></div><div><dt>Candidate-matched rows</dt><dd>2</dd></div></dl></div>
+            </div>
+          </article>
+        </div>
+      </fieldset>
+      <p class="atlas-interpretation">Counts show returned-record availability, not evidence strength. “Not returned” is missingness, not a negative biological finding. L2G means locus-to-gene; its score may already include colocalisation, so the molecular track is not independent validation.</p>
+      <div class="atlas-source"><span>All five source regions carry an unspecified quality-control flag.</span><a href="https://zinga18018.github.io/cardiometabolic-gwas-evidence-explorer/" target="_blank" rel="noopener">Open full explorer ↗</a></div>
     </aside>
   </div>
 
-  <p class="evidence-caption"><strong>Signal → variants → candidate genes → QTL check</strong>TCF7L2 · CCND2 · FTO · HNF4A · CDKAL1<br>Schematic workflow, not per-region results or causal proof.</p>
   <div class="hero-foot">
     <span class="status"><i class="dot"></i>Graduating December 2026</span>
     <svg class="emblem" viewBox="0 0 100 100" aria-hidden="true">
@@ -637,20 +709,19 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
 
 <script>
 (() => {
-  const root = document.documentElement;
   const motionQuery = matchMedia('(prefers-reduced-motion: reduce)');
   let reduce = motionQuery.matches;
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  // opening shot once fonts are in (or after 1.2s)
-  Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1200))]).then(() => root.classList.add('loaded'));
 
   // reveal on scroll
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
   }), { rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.r').forEach(el => io.observe(el));
+  // Enable decorative reveals only after the observer is ready. Content stays
+  // visible if this script fails or JavaScript is disabled.
+  document.documentElement.classList.add('js');
 
   // live repository count, same source as the GitHub profile
   fetch('https://api.github.com/users/Zinga18018').then(r => (r.ok ? r.json() : null)).then(u => {
@@ -705,128 +776,43 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
     });
   }));
 
-  // The five rows are region labels, not per-locus scores. The same abstract
-  // inspection path is drawn for each; moving light marks workflow, not evidence strength.
-  const cv = document.getElementById('evidence-flow'), ctx = cv.getContext('2d');
-  if (!ctx) return;
-  const regions = ['TCF7L2', 'CCND2', 'FTO', 'HNF4A', 'CDKAL1'];
-  let W = 0, H = 0, board, clock = reduce ? 4 : 0, last = 0, running = false, inView = false, raf = 0;
+  // The atlas is readable and selectable without JavaScript. Its only scripted
+  // behavior is decorative motion, paused when hidden, off-screen, or touched.
+  const hero = document.querySelector('.hero');
+  const atlas = document.querySelector('.atlas');
+  const motionButton = document.getElementById('atlas-motion');
+  let atlasVisible = false;
+  let motionPaused = false;
 
-  function size() {
-    const dpr = Math.min(devicePixelRatio || 1, 2);
-    W = cv.clientWidth; H = cv.clientHeight;
-    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const compact = W <= 1100;
-    const w = compact ? Math.min(W - 32, 480) : Math.min(W * .38, 700);
-    const h = compact ? 190 : Math.min(270, Math.max(210, H * .31));
-    const x = compact ? (W - w) / 2 : W - w - Math.max(32, W * .05);
-    const y = compact
-      ? (W > 900 ? Math.max(88, Math.min(100, H * .1)) : Math.max(88, Math.min(118, H * .13)))
-      : Math.max(88, Math.min(104, H * .14));
-    board = { x, y, w, h, compact };
-    draw();
+  function syncAtlasMotion() {
+    const playing = !reduce && atlasVisible && !document.hidden && !motionPaused;
+    hero.classList.toggle('is-playing', playing);
+    motionButton.hidden = reduce;
+    motionButton.textContent = motionPaused ? 'Play motion' : 'Pause motion';
   }
 
-  function glyph(kind, x, y, lit) {
-    ctx.save();
-    ctx.strokeStyle = `rgba(145,209,194,${.55 + lit * .4})`;
-    ctx.fillStyle = `rgba(145,209,194,${.25 + lit * .65})`;
-    ctx.lineWidth = 1.4;
-    ctx.shadowColor = '#91d1c2'; ctx.shadowBlur = lit * 9;
-    ctx.beginPath();
-    if (kind === 0) { // association peak: a symbol, not a plotted statistic
-      ctx.moveTo(x - 11, y + 5); ctx.lineTo(x - 5, y + 3); ctx.lineTo(x, y - 6);
-      ctx.lineTo(x + 4, y + 2); ctx.lineTo(x + 11, y + 5); ctx.stroke();
-      ctx.beginPath(); ctx.arc(x, y - 6, 2, 0, Math.PI * 2); ctx.fill();
-    } else if (kind === 1) { // plausible variant set
-      [-6, 0, 6].forEach((dy, i) => { ctx.beginPath(); ctx.arc(x + (i % 2 ? 3 : -3), y + dy, 2, 0, Math.PI * 2); ctx.fill(); });
-    } else if (kind === 2) { // candidate-gene annotation
-      ctx.strokeRect(x - 9, y - 5, 18, 10);
-      ctx.beginPath(); ctx.moveTo(x - 5, y); ctx.lineTo(x + 5, y); ctx.stroke();
-    } else { // a molecular-evidence inspection endpoint
-      ctx.moveTo(x, y - 7); ctx.lineTo(x + 7, y); ctx.lineTo(x, y + 7); ctx.lineTo(x - 7, y); ctx.closePath(); ctx.stroke();
-    }
-    ctx.restore();
-  }
-
-  function draw() {
-    if (!board) return;
-    const { x, y, w, h, compact } = board;
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = 'rgba(4,18,20,.78)'; ctx.fillRect(x, y, w, h);
-    ctx.strokeStyle = 'rgba(145,209,194,.36)'; ctx.lineWidth = 1;
-    ctx.strokeRect(x + .5, y + .5, w - 1, h - 1);
-    ctx.beginPath();
-    [[x,y,1,1],[x+w,y,-1,1],[x,y+h,1,-1],[x+w,y+h,-1,-1]].forEach(([px,py,sx,sy]) => {
-      ctx.moveTo(px, py + sy * 12); ctx.lineTo(px, py); ctx.lineTo(px + sx * 12, py);
+  new IntersectionObserver(([entry]) => {
+    atlasVisible = entry.isIntersecting;
+    syncAtlasMotion();
+  }, { threshold: .02 }).observe(atlas);
+  document.addEventListener('visibilitychange', syncAtlasMotion);
+  atlas.querySelectorAll('input[name="atlas-locus"]').forEach(input => {
+    input.addEventListener('change', () => {
+      motionPaused = true;
+      syncAtlasMotion();
     });
-    ctx.strokeStyle = '#91d1c2'; ctx.stroke();
-
-    ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
-    ctx.font = `600 ${compact ? 9 : 10}px ui-monospace,Consolas,monospace`;
-    ctx.fillStyle = '#a8e4d6'; ctx.fillText('GWAS → EVIDENCE PATH', x + 14, y + 20);
-    ctx.textAlign = 'right'; ctx.fillStyle = '#8ca69f';
-    ctx.fillText(compact ? '5 REGIONS' : '5 SELECTED T2D REGIONS', x + w - 14, y + 20);
-
-    const first = x + (compact ? 94 : 124), end = x + w - (compact ? 26 : 38);
-    const xs = Array.from({ length: 4 }, (_, i) => first + (end - first) * i / 3);
-    ctx.font = `500 ${compact ? 8 : 9}px ui-monospace,Consolas,monospace`;
-    ctx.fillStyle = '#9fb7af'; ctx.textAlign = 'left'; ctx.fillText('REGION', x + 14, y + 45);
-    ctx.textAlign = 'center';
-    ['SIGNAL', 'VARIANTS', 'GENES', 'QTL CHECK'].forEach((label, i) => ctx.fillText(label, xs[i], y + 45));
-    ctx.strokeStyle = 'rgba(145,209,194,.2)';
-    ctx.beginPath(); ctx.moveTo(x + 12, y + 55); ctx.lineTo(x + w - 12, y + 55); ctx.stroke();
-
-    const gap = (h - 85) / 4;
-    regions.forEach((region, i) => {
-      const yy = y + 70 + i * gap;
-      if (i) {
-        ctx.beginPath(); ctx.moveTo(x + 12, yy - gap / 2); ctx.lineTo(x + w - 12, yy - gap / 2);
-        ctx.strokeStyle = 'rgba(145,209,194,.08)'; ctx.stroke();
-      }
-      ctx.font = `500 ${compact ? 9 : 10}px ui-monospace,Consolas,monospace`;
-      ctx.textAlign = 'left'; ctx.fillStyle = '#e3f1ec'; ctx.fillText(region, x + 14, yy);
-      ctx.beginPath(); ctx.moveTo(first, yy); ctx.lineTo(end, yy);
-      ctx.strokeStyle = 'rgba(145,209,194,.18)'; ctx.lineWidth = 1; ctx.stroke();
-
-      const progress = (clock * .12 + i * .19) % 1;
-      const head = first + progress * (end - first);
-      ctx.beginPath(); ctx.moveTo(first, yy); ctx.lineTo(head, yy);
-      ctx.strokeStyle = 'rgba(145,209,194,.5)'; ctx.lineWidth = 1.5; ctx.stroke();
-      xs.forEach((px, j) => {
-        const lit = Math.max(0, 1 - Math.abs(head - px) / ((end - first) / 3));
-        glyph(j, px, yy, lit);
-      });
-      ctx.save(); ctx.shadowColor = '#a8e4d6'; ctx.shadowBlur = 13;
-      ctx.fillStyle = '#d4fff2'; ctx.beginPath(); ctx.arc(head, yy, 2.4, 0, Math.PI * 2); ctx.fill(); ctx.restore();
-    });
-  }
-
-  function frame(now) {
-    if (!running) return;
-    clock = (clock + Math.min(.05, (now - last) / 1000 || 0)) % 8.34;
-    last = now; draw(); raf = requestAnimationFrame(frame);
-  }
-  function syncMotion() {
-    const next = !reduce && inView && !document.hidden;
-    if (next === running) return;
-    running = next;
-    if (running) { last = performance.now(); raf = requestAnimationFrame(frame); }
-    else cancelAnimationFrame(raf);
-  }
-  size();
-  addEventListener('resize', size);
-  new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; syncMotion(); }).observe(cv);
-  document.addEventListener('visibilitychange', syncMotion);
+  });
+  motionButton.addEventListener('click', () => {
+    motionPaused = !motionPaused;
+    syncAtlasMotion();
+  });
   motionQuery.addEventListener('change', event => {
     reduce = event.matches;
     if (reduce) {
       card.style.setProperty('--rx', '0deg');
       card.style.setProperty('--ry', '0deg');
     }
-    syncMotion();
-    if (reduce) { clock = 4; draw(); }
+    syncAtlasMotion();
   });
 })();
 </script>
