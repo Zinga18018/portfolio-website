@@ -195,6 +195,9 @@ button { font: inherit; }
 .project-main h3 { margin: 0; font-size: clamp(23px, 3vw, 34px); letter-spacing: -.025em; }
 .project-main p { max-width: 720px; margin: 13px 0; color: var(--muted); line-height: 1.65; }
 .project-main strong { display: block; max-width: 760px; font-size: 13px; line-height: 1.5; }
+.project-video { max-width: 720px; margin: 22px 0 0; }
+.project-video video { display: block; width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--ink); background: #08120f; object-fit: contain; }
+.project-video figcaption { margin-top: 7px; color: var(--muted); font: 11px/1.5 var(--mono); }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
 .tags span { padding: 6px 8px; border: 1px solid var(--line); background: #ece5d8; font: 700 9px var(--mono); text-transform: uppercase; }
 .project-links { display: flex; flex-direction: column; gap: 9px; align-items: stretch; }

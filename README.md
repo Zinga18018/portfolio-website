@@ -6,14 +6,15 @@ A personal data science portfolio focused on selected research and machine-learn
 
 ## What is included
 
-- Five selected projects with working demos and evidence-backed results
-- A plain-language current-project introduction
+- Six selected projects: one recorded desktop-tool demo and five data or research projects with documented results
+- A plain-language newest-project introduction
 - A searchable index of public GitHub repositories
 - Résumé-backed experience, education, and technical skills
 - Responsive desktop and mobile layouts
 
 ## Projects
 
+- [Prompt Rewriter — trailer and continuous demo](https://github.com/Zinga18018/prompt-rewriter)
 - [Cardiometabolic GWAS Evidence Explorer](https://github.com/Zinga18018/cardiometabolic-gwas-evidence-explorer)
 - [Clinical Readmission Risk Audit](https://github.com/Zinga18018/readmission-risk-audit)
 - [NewsSnap](https://github.com/Zinga18018/NewsSnap)

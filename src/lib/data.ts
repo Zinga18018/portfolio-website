@@ -8,11 +8,26 @@ export interface Project {
   github?: string
   demo: string
   demoLabel?: string
+  videoSrc?: string
+  videoPoster?: string
 }
 
 export const projects: Project[] = [
   {
     number: '01',
+    title: 'Prompt Rewriter',
+    shortTitle: 'Prompt Rewriter',
+    description: 'A Windows-first Python desktop MVP that turns rough selected text into a structured, paste-ready AI prompt using a global hotkey.',
+    outcome: 'One complete Notepad rewrite was recorded with local Ollama. The trailer is edited; cross-application reliability and inference speed are not benchmarked.',
+    stack: ['Python', 'Windows automation', 'Ollama', 'Desktop UX'],
+    github: 'https://github.com/Zinga18018/prompt-rewriter',
+    demo: '/videos/prompt-rewriter-live-demo.mp4',
+    demoLabel: 'Full-timing demo',
+    videoSrc: '/videos/prompt-rewriter-trailer.mp4',
+    videoPoster: '/videos/prompt-rewriter-trailer-poster.png',
+  },
+  {
+    number: '02',
     title: 'Cardiometabolic GWAS Evidence Explorer',
     shortTitle: 'GWAS Evidence Explorer',
     description: 'A public-data study of five FinnGen type 2 diabetes regions, following each signal from plausible DNA variants to candidate genes and molecular evidence.',
@@ -23,7 +38,7 @@ export const projects: Project[] = [
     demoLabel: 'Evidence explorer',
   },
   {
-    number: '02',
+    number: '03',
     title: 'Clinical Readmission Risk Modeling',
     shortTitle: 'Readmission Risk',
     description: 'A leakage-safe 30-day readmission pipeline with patient-disjoint cohorts, calibration, missingness analysis, and drift checks.',
@@ -33,7 +48,7 @@ export const projects: Project[] = [
     demo: 'https://yogesh-readmission-risk-audit.streamlit.app/',
   },
   {
-    number: '03',
+    number: '04',
     title: 'NewsSnap: Transformer News Classification System',
     shortTitle: 'NewsSnap',
     description: 'A four-class AG News system with a DistilBERT training pipeline, FastAPI service, React dashboard, and explicit inference modes.',
@@ -44,7 +59,7 @@ export const projects: Project[] = [
     demoLabel: 'Streamlit demo',
   },
   {
-    number: '04',
+    number: '05',
     title: 'Model Behavior Under Distribution Shift',
     shortTitle: 'DriftLab',
     description: 'A deterministic simulator for performance decay, class-prior shift, PSI, approximate KS, and configurable monitoring alerts.',
@@ -54,7 +69,7 @@ export const projects: Project[] = [
     demo: 'https://yogesh-driftlab-monitoring.streamlit.app/',
   },
   {
-    number: '05',
+    number: '06',
     title: 'Women-Safety Public Discourse Research',
     shortTitle: 'Women-Safety Research',
     description: 'An interactive research dashboard covering 351,501 Reddit and YouTube comments across 16 women-safety cases in India.',

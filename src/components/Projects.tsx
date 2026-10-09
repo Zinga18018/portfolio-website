@@ -12,7 +12,7 @@ export default function Projects() {
         <div ref={ref} className="reveal section-intro">
           <p className="eyebrow">Featured projects</p>
           <h2>Selected projects.</h2>
-          <p>Five projects I can discuss in detail, with source code, observed results, and the limits of each analysis.</p>
+          <p>Six selected projects: a recorded desktop-tool demo and five data or research projects with documented results and limits.</p>
           <a className="repo-jump" href="#github-projects">Browse the repository archive <FiArrowUpRight /></a>
         </div>
         <div className="project-ledger">
@@ -23,6 +23,15 @@ export default function Projects() {
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
                 <strong>{project.outcome}</strong>
+                {project.videoSrc && (
+                  <figure className="project-video">
+                    <video controls playsInline preload="metadata" poster={project.videoPoster} aria-label={`${project.title} edited trailer`}>
+                      <source src={project.videoSrc} type="video/mp4" />
+                      Your browser does not support embedded video.
+                    </video>
+                    <figcaption>Edited trailer from one recorded Notepad run. The continuous demo is linked alongside.</figcaption>
+                  </figure>
+                )}
                 <div className="tags">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
               </div>
               <div className="project-links">

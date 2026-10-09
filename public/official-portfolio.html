@@ -183,6 +183,9 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
 .go{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
 .go a{padding:9px 14px;border:1px solid rgba(var(--edge),.55);font:600 10px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--soft);transition:border-color .3s,color .3s}
 .go a:hover{border-color:var(--acc);color:#fff}
+.project-video{margin:0;padding:10px;border:1px solid rgba(var(--edge),.4);background:linear-gradient(145deg,#101a23,#05080c);border-radius:8px}
+.project-video video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#000;border-radius:3px}
+.project-video figcaption{margin:10px 4px 2px;color:var(--muted);font:11px/1.6 var(--mono)}
 
 /* repository archive, set like end credits */
 .credits{text-align:center}
@@ -246,6 +249,7 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
   .about-grid,.contact-grid{grid-template-columns:1fr;gap:56px}
   .card-grid{grid-template-columns:1fr;gap:28px}
   .card aside{padding-left:0;border-left:0}
+  .project-video{max-width:680px}
   .tile.s4,.tile.s5,.tile.s7,.tile.s8{grid-column:1/-1}
 }
 @media(max-width:760px),(max-height:640px){.stack-item{position:relative;top:auto}}
@@ -309,10 +313,10 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
     </div>
     <aside class="showing brackets r" style="--d:1.1s">
       <p class="label"><i class="dot live"></i>Now showing</p>
-      <p class="show-title">Type 2 diabetes genetic evidence</p>
+      <p class="show-title">Prompt Rewriter</p>
       <hr>
-      <p class="show-note">Public aggregate data · no participant records</p>
-      <a class="show-link" href="https://zinga18018.github.io/cardiometabolic-gwas-evidence-explorer/" target="_blank" rel="noopener">Open the evidence explorer&nbsp;↗</a>
+      <p class="show-note">Windows-first MVP · edited demo trailer</p>
+      <a class="show-link" href="#prompt-rewriter">Watch the project trailer&nbsp;↗</a>
     </aside>
   </div>
 
@@ -341,7 +345,7 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
           <p class="lead r" style="--d:.25s;margin-top:16px">Research changed what I look for in a project. I want to know whether the comparison is fair, where a label came from, and whether a conclusion says more than the data allows. I am bringing that habit into statistical genetics while continuing my work in machine learning and public-data research.</p>
           <div class="stats r" style="--d:.35s">
             <div class="stat"><b>351,501</b><span>Reddit and YouTube comments analyzed</span></div>
-            <div class="stat"><b>5</b><span>Projects with documented results</span></div>
+            <div class="stat"><b>6</b><span>Featured projects</span></div>
             <div class="stat"><b class="repo-count">48</b><span>Public repositories</span></div>
             <div class="stat"><b>2026</b><span>Paper accepted at ASONAM</span></div>
           </div>
@@ -375,15 +379,38 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
       <p class="eyebrow r">02 / Selected work</p>
       <div class="work-head">
         <h2 class="h2 r"><span class="g1">Selected</span><span class="g2">projects.</span></h2>
-        <p class="lead r" style="--d:.15s">Five projects I can discuss in detail, with source code, observed results, and the limits of each analysis.</p>
+        <p class="lead r" style="--d:.15s">Six projects with source code, documented results or recorded behavior, and clear limits on what each shows.</p>
       </div>
 
       <div class="stack">
-        <article class="stack-item" style="--i:0"><div class="card brackets">
+        <article class="stack-item" id="prompt-rewriter" style="--i:0"><div class="card brackets">
           <span class="num" aria-hidden="true">01</span>
           <div class="card-grid">
             <div>
-              <p class="kicker"><b>01 //</b>Statistical genetics</p>
+              <p class="kicker"><b>01 //</b>AI desktop tooling · latest project</p>
+              <h3>Prompt Rewriter</h3>
+              <p class="desc">A Windows-first Python MVP that takes selected rough text and rewrites it into a structured AI prompt. The recording shows one Notepad run using local Ollama; behavior across other apps and inference latency are not established by this demo.</p>
+              <ul class="pills"><li>Python</li><li>Ollama</li><li>Desktop automation</li><li>Prompt engineering</li></ul>
+            </div>
+            <aside>
+              <p class="label">// Recorded Notepad + Ollama run</p>
+              <figure class="project-video">
+                <video controls preload="metadata" playsinline poster="/videos/prompt-rewriter-trailer-poster.png" aria-label="Prompt Rewriter edited trailer">
+                  <source src="/videos/prompt-rewriter-trailer.mp4" type="video/mp4">
+                  Your browser does not support embedded video. <a href="/videos/prompt-rewriter-trailer.mp4">Open the trailer</a>.
+                </video>
+                <figcaption>Edited trailer: pacing is compressed. The separate continuous demo preserves the recorded wait.</figcaption>
+              </figure>
+              <div class="go"><a href="/videos/prompt-rewriter-live-demo.mp4" target="_blank" rel="noopener">Continuous demo ↗</a><a href="https://github.com/Zinga18018/prompt-rewriter" target="_blank" rel="noopener">Source ↗</a></div>
+            </aside>
+          </div>
+        </div></article>
+
+        <article class="stack-item" style="--i:1"><div class="card brackets">
+          <span class="num" aria-hidden="true">02</span>
+          <div class="card-grid">
+            <div>
+              <p class="kicker"><b>02 //</b>Statistical genetics</p>
               <h3>Cardiometabolic GWAS Evidence Explorer</h3>
               <p class="desc">A public-data study of five FinnGen type 2 diabetes regions, following each signal from plausible DNA variants to candidate genes and molecular evidence.</p>
               <ul class="pills"><li>Python</li><li>Open Targets</li><li>Statistical genetics</li><li>GitHub Pages</li></ul>
@@ -397,11 +424,11 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
           </div>
         </div></article>
 
-        <article class="stack-item" style="--i:1"><div class="card brackets">
-          <span class="num" aria-hidden="true">02</span>
+        <article class="stack-item" style="--i:2"><div class="card brackets">
+          <span class="num" aria-hidden="true">03</span>
           <div class="card-grid">
             <div>
-              <p class="kicker"><b>02 //</b>Clinical prediction</p>
+              <p class="kicker"><b>03 //</b>Clinical prediction</p>
               <h3>Clinical Readmission Risk Modeling</h3>
               <p class="desc">A leakage-safe 30-day readmission pipeline with patient-disjoint cohorts, calibration, missingness analysis, and drift checks.</p>
               <ul class="pills"><li>CatBoost</li><li>PyTorch</li><li>Calibration</li><li>Streamlit</li></ul>
@@ -414,11 +441,11 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
           </div>
         </div></article>
 
-        <article class="stack-item" style="--i:2"><div class="card brackets">
-          <span class="num" aria-hidden="true">03</span>
+        <article class="stack-item" style="--i:3"><div class="card brackets">
+          <span class="num" aria-hidden="true">04</span>
           <div class="card-grid">
             <div>
-              <p class="kicker"><b>03 //</b>NLP</p>
+              <p class="kicker"><b>04 //</b>NLP</p>
               <h3>NewsSnap: Transformer News Classification System</h3>
               <p class="desc">A four-class AG News system with a DistilBERT training pipeline, FastAPI service, React dashboard, and explicit inference modes.</p>
               <ul class="pills"><li>DistilBERT</li><li>FastAPI</li><li>React</li><li>CI/CD</li></ul>
@@ -431,11 +458,11 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
           </div>
         </div></article>
 
-        <article class="stack-item" style="--i:3"><div class="card brackets">
-          <span class="num" aria-hidden="true">04</span>
+        <article class="stack-item" style="--i:4"><div class="card brackets">
+          <span class="num" aria-hidden="true">05</span>
           <div class="card-grid">
             <div>
-              <p class="kicker"><b>04 //</b>Model evaluation</p>
+              <p class="kicker"><b>05 //</b>Model evaluation</p>
               <h3>Model Behavior Under Distribution Shift</h3>
               <p class="desc">A deterministic simulator for performance decay, class-prior shift, PSI, approximate KS, and configurable monitoring alerts.</p>
               <ul class="pills"><li>NumPy</li><li>Pandas</li><li>PSI / KS</li><li>Streamlit</li></ul>
@@ -448,11 +475,11 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
           </div>
         </div></article>
 
-        <article class="stack-item" style="--i:4"><div class="card brackets">
-          <span class="num" aria-hidden="true">05</span>
+        <article class="stack-item" style="--i:5"><div class="card brackets">
+          <span class="num" aria-hidden="true">06</span>
           <div class="card-grid">
             <div>
-              <p class="kicker"><b>05 //</b>Public-discourse research</p>
+              <p class="kicker"><b>06 //</b>Public-discourse research</p>
               <h3>Women-Safety Public Discourse Research</h3>
               <p class="desc">An interactive research dashboard covering 351,501 Reddit and YouTube comments across 16 women-safety cases in India.</p>
               <ul class="pills"><li>Python</li><li>Pandas</li><li>Qwen</li><li>Statistical testing</li></ul>
@@ -470,7 +497,7 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
       <div class="credits r">
         <p class="label">// Repository archive</p>
         <h3>More work on GitHub.</h3>
-        <p class="lead">The selected projects above are the ones with fully documented results.</p>
+        <p class="lead">Selected projects above include measured studies and a recorded desktop-tool demo; each links to its supporting work.</p>
         <dl class="roll">
           <div><dt>Bayesian benchmark</dt><dd><a href="https://github.com/Zinga18018/coregene-bayes-benchmark" target="_blank" rel="noopener">coregene-bayes-benchmark</a></dd></div>
           <div><dt>RAG evaluation API</dt><dd><a href="https://github.com/Zinga18018/rag-evaluation-deployment-api" target="_blank" rel="noopener">rag-evaluation-deployment-api</a></dd></div>

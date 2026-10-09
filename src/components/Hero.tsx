@@ -20,17 +20,17 @@ export default function Hero() {
             <a href={socialLinks.linkedin} target="_blank" rel="noreferrer" className="btn-quiet"><FiLinkedin /> LinkedIn</a>
           </div>
         </div>
-        <aside className="hero-note" aria-label="Current focus">
-          <p className="hero-note-label">Current project</p>
-          <h2>Type 2 diabetes genetic evidence</h2>
+        <aside className="hero-note" aria-label="Newest project demo">
+          <p className="hero-note-label">Newest build</p>
+          <h2>Prompt Rewriter</h2>
           <p className="hero-note-copy">
-            I organised public Open Targets records for five FinnGen regions so I
-            could learn how researchers narrow a GWAS signal to plausible variants and genes.
+            A Windows-first desktop MVP that turns rough selected text into a structured AI prompt.
+            The recorded Notepad demo uses local Ollama.
           </p>
-          <a href="https://zinga18018.github.io/cardiometabolic-gwas-evidence-explorer/" target="_blank" rel="noreferrer">
-            Open the evidence explorer <FiArrowUpRight aria-hidden="true" />
+          <a href="#project-01">
+            Watch the demo <FiArrowUpRight aria-hidden="true" />
           </a>
-          <small>Public aggregate data · no participant records</small>
+          <small>Tested MVP · cross-app reliability unverified</small>
         </aside>
       </div>
     </section>

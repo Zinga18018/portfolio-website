@@ -60,7 +60,7 @@ export default function GitHubProjects() {
         <div className="section-intro">
           <p className="eyebrow">Repository archive</p>
           <h2 id="github-heading">More work on GitHub.</h2>
-          <p>This is an automatically updated index of my public repositories. The selected projects above are the ones with fully documented results.</p>
+          <p>This is an automatically updated index of my public repositories. The selected projects above distinguish measured results from recorded demo behavior.</p>
         </div>
         <div className="repo-toolbar">
           <label>Search projects<input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="Search by name, topic, or language" /></label>
