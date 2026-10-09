@@ -7,12 +7,11 @@ export default function Hero() {
       <div className="section-container hero-grid">
         <div className="hero-copy">
           <p className="eyebrow">M.S. Data Science · Rochester, New York</p>
-          <h1>Hi, I’m Yogesh.</h1>
+          <h1>From signal to evidence.</h1>
           <p className="hero-lede">
-            I’m a graduate student at RIT working on statistical genetics,
-            clinical prediction, model evaluation, and public-discourse research.
-            I like projects where I can trace a result back to the data and explain
-            what it shows without hiding its limits.
+            A recent project compares available Open Targets variant, candidate-gene,
+            and molecular evidence for five selected FinnGen type 2 diabetes regions.
+            It is an evidence explorer, not a new GWAS or causal proof.
           </p>
           <div className="hero-actions">
             <a href="#projects" className="btn-primary">View selected work <FiArrowDownRight /></a>
@@ -20,17 +19,17 @@ export default function Hero() {
             <a href={socialLinks.linkedin} target="_blank" rel="noreferrer" className="btn-quiet"><FiLinkedin /> LinkedIn</a>
           </div>
         </div>
-        <aside className="hero-note" aria-label="Newest project demo">
-          <p className="hero-note-label">Newest build</p>
-          <h2>Prompt Rewriter</h2>
+        <aside className="hero-note" aria-label="Featured project">
+          <p className="hero-note-label">Featured project</p>
+          <h2>Cardiometabolic GWAS Evidence Explorer</h2>
           <p className="hero-note-copy">
-            A Windows-first desktop MVP that turns rough selected text into a structured AI prompt.
-            The recorded Notepad demo uses local Ollama.
+            An audit of existing FinnGen and Open Targets evidence across five selected
+            type 2 diabetes regions, from variants to candidate genes and molecular clues.
           </p>
-          <a href="#project-01">
-            Watch the demo <FiArrowUpRight aria-hidden="true" />
+          <a href="https://zinga18018.github.io/cardiometabolic-gwas-evidence-explorer/" target="_blank" rel="noreferrer">
+            Open the evidence explorer <FiArrowUpRight aria-hidden="true" />
           </a>
-          <small>Tested MVP · cross-app reliability unverified</small>
+          <small>Public aggregate data · candidate evidence, not causal proof</small>
         </aside>
       </div>
     </section>

@@ -15,6 +15,17 @@ export interface Project {
 export const projects: Project[] = [
   {
     number: '01',
+    title: 'Cardiometabolic GWAS Evidence Explorer',
+    shortTitle: 'GWAS Evidence Explorer',
+    description: 'A public-data audit of five FinnGen type 2 diabetes regions, comparing available variant, candidate-gene, and molecular evidence while retaining source QC flags.',
+    outcome: 'Open Targets 26.09 snapshot: 5 selected regions, 65 variant rows, 11 returned L2G candidates, and 44 colocalisation rows. Source QC flags remain visible.',
+    stack: ['Python', 'Open Targets', 'Statistical genetics', 'GitHub Pages'],
+    github: 'https://github.com/Zinga18018/cardiometabolic-gwas-evidence-explorer',
+    demo: 'https://zinga18018.github.io/cardiometabolic-gwas-evidence-explorer/',
+    demoLabel: 'Evidence explorer',
+  },
+  {
+    number: '02',
     title: 'Prompt Rewriter',
     shortTitle: 'Prompt Rewriter',
     description: 'A Windows-first Python desktop MVP that turns rough selected text into a structured, paste-ready AI prompt using a global hotkey.',
@@ -25,17 +36,6 @@ export const projects: Project[] = [
     demoLabel: 'Full-timing demo',
     videoSrc: '/videos/prompt-rewriter-trailer.mp4',
     videoPoster: '/videos/prompt-rewriter-trailer-poster.png',
-  },
-  {
-    number: '02',
-    title: 'Cardiometabolic GWAS Evidence Explorer',
-    shortTitle: 'GWAS Evidence Explorer',
-    description: 'A public-data study of five FinnGen type 2 diabetes regions, following each signal from plausible DNA variants to candidate genes and molecular evidence.',
-    outcome: 'Open Targets 26.09 snapshot: 5 selected regions, 65 variant rows, 11 returned L2G candidates, and 44 colocalisation rows. Source QC flags remain visible.',
-    stack: ['Python', 'Open Targets', 'Statistical genetics', 'GitHub Pages'],
-    github: 'https://github.com/Zinga18018/cardiometabolic-gwas-evidence-explorer',
-    demo: 'https://zinga18018.github.io/cardiometabolic-gwas-evidence-explorer/',
-    demoLabel: 'Evidence explorer',
   },
   {
     number: '03',
