@@ -27,7 +27,7 @@ export default function Home() {
         <Contact />
       </main>
       <footer className="site-footer">
-        <p>Yogesh Kuchimanchi · Built with care in Rochester, NY</p>
+        <p>Yogesh Kuchimanchi · Rochester, New York</p>
         <a href="#top">Back to top</a>
       </footer>
     </>

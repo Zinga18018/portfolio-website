@@ -326,11 +326,45 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
 .project-plot .mark{transition:filter .2s,opacity .2s}
 .project-plot .mark:hover{filter:brightness(1.4)}
 .project-plot .plot-foot{margin:10px 0 0;color:#8f9da8;font:12px/1.6 var(--body)}
+
+/* Restrained reading and navigation pass; the existing palette and grids remain. */
+:root{--nav-offset:92px}
+html{scroll-padding-top:var(--nav-offset)}
+:focus-visible{outline:3px solid var(--acc);outline-offset:5px}
+main>section{padding-block:clamp(88px,8vw,116px)}
+main>section+section{border-top:1px solid rgba(var(--edge),.22)}
+.lead{max-width:62ch;font-size:15.5px;line-height:1.8}
+.hero{padding-top:var(--nav-offset)}
+.nav{position:fixed;inset:0 0 auto;z-index:90;background:rgba(0,0,0,.88);border-bottom:1px solid rgba(var(--edge),.22);backdrop-filter:blur(16px)}
+.links{gap:28px;letter-spacing:.16em}
+.links a{min-height:32px;display:inline-flex;align-items:center}
+.links a[aria-current="location"]{color:var(--frost)}
+.links a[aria-current="location"]::after{width:100%;height:2px;background:var(--acc)}
+.hero-copy .lead{max-width:59ch;font-size:15px;line-height:1.8}
+.kicker{letter-spacing:.14em;line-height:1.6}
+.label{letter-spacing:.15em;line-height:1.6}
+.card h3{max-width:26ch;font-size:clamp(2rem,3.6vw,3rem);line-height:1.03;margin-bottom:18px}
+.desc{max-width:62ch;font-size:15px;line-height:1.8}
+.project-plot figcaption{line-height:1.5}
+.project-plot .plot-foot,.project-video figcaption{line-height:1.75}
+.go{gap:10px;margin-top:22px}
+.go a{display:inline-flex;align-items:center;min-height:42px;padding:11px 15px;font-size:10.5px;line-height:1.3;letter-spacing:.12em}
+@media(min-width:761px) and (min-height:641px){.stack-item{top:calc(var(--nav-offset) + 16px + var(--i)*24px)}}
+.when{font-size:10.5px;letter-spacing:.09em;line-height:1.7}
+.bul{max-width:68ch;line-height:1.8}
+.stop p:last-child{max-width:64ch;line-height:1.8}
+@media(max-width:900px){
+  :root{--nav-offset:128px}
+  .nav{flex-wrap:wrap;gap:12px;padding-block:18px}
+  .links{position:static;order:3;flex-basis:100%;transform:none;display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:flex-start;font-size:10px;letter-spacing:.1em}
+  .links a{min-height:40px;padding-block:8px}
+}
+@media(max-width:360px){.links{column-gap:11px;font-size:9px}}
 </style>
 </head>
 <body>
 <header class="hero" id="top">
-  <nav class="nav">
+  <nav class="nav" aria-label="Primary navigation">
     <a class="logo" href="#top">YOGESH.</a>
     <div class="links">
       <a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
@@ -341,9 +375,9 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
   <div class="hero-body">
     <div class="hero-copy">
       <p class="hello">Hi, I'm Yogesh.</p>
-      <h1 class="h1"><span class="g1">From signal</span><span class="g2">to evidence.</span></h1>
-      <p class="tagline"><span>M.S. Data Science</span> <i>•</i> <span>Rochester, New York</span></p>
-      <p class="lead">A recent project audits public evidence for five type 2 diabetes loci. Select one to compare returned variants, candidate-gene rows, and molecular evidence. This is not a new GWAS or a causal-gene finding.</p>
+      <h1 class="h1"><span class="g1">Data science,</span><span class="g2">in practice.</span></h1>
+      <p class="tagline"><span>M.S. Data Science student</span> <i>•</i> <span>Rochester, New York</span></p>
+      <p class="lead">I'm an M.S. Data Science student at RIT. I build Python tools for model evaluation, NLP, and public-data research. Try my recent explorer to compare the evidence returned for five type 2 diabetes regions.</p>
       <div class="ctas">
         <a class="btn" href="#gene-explorer">View gene project <span aria-hidden="true">↗</span></a>
         <a class="btn ghost" href="https://github.com/Zinga18018" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
@@ -431,7 +465,7 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
         <div>
           <h2 class="h2 r"><span class="g1">Computers</span><span class="g2">came first.</span></h2>
           <p class="lead r" style="--d:.15s">My father brought home the first computer I ever saw. That early curiosity eventually took me from computer applications to data science and, now, an M.S. at RIT.</p>
-          <p class="lead r" style="--d:.25s;margin-top:16px">Research changed what I look for in a project. I want to know whether the comparison is fair, where a label came from, and whether a conclusion says more than the data allows. I am bringing that habit into statistical genetics while continuing my work in machine learning and public-data research.</p>
+          <p class="lead r" style="--d:.25s;margin-top:16px">Research has taught me to check how labels were made, whether a comparison is fair, and where a model fails. My projects now span machine learning, public discourse, and the study of genetic evidence for type 2 diabetes.</p>
           <div class="stats r" style="--d:.35s">
             <div class="stat"><b>351,501</b><span>Reddit and YouTube comments analyzed</span></div>
             <div class="stat"><b>6</b><span>Featured projects</span></div>
@@ -468,7 +502,7 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
       <p class="eyebrow r">02 / Selected work</p>
       <div class="work-head">
         <h2 class="h2 r"><span class="g1">Selected</span><span class="g2">projects.</span></h2>
-        <p class="lead r" style="--d:.15s">Six projects with source code, documented results or recorded behavior, and clear limits on what each shows.</p>
+        <p class="lead r" style="--d:.15s">Explore the code, results, and demos behind six recent projects.</p>
       </div>
 
       <div class="stack">
@@ -496,17 +530,17 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
             <div>
               <p class="kicker"><b>02 //</b>AI desktop tooling</p>
               <h3>Prompt Rewriter</h3>
-              <p class="desc">A Windows-first Python MVP that takes selected rough text and rewrites it into a structured AI prompt. The recording shows one Notepad run using local Ollama; behavior across other apps and inference latency are not established by this demo.</p>
+              <p class="desc">A Windows Python tool that rewrites selected text into a structured AI prompt with a global hotkey. The case study edits one existing Notepad recording, documented as local Ollama. Cross-application reliability and inference speed have not been benchmarked.</p>
               <ul class="pills"><li>Python</li><li>Ollama</li><li>Desktop automation</li><li>Prompt engineering</li></ul>
             </div>
             <aside>
-              <p class="label">// Recorded Notepad + Ollama run</p>
+              <p class="label">// 68-second case study</p>
               <figure class="project-video">
-                <video controls preload="metadata" playsinline poster="/videos/prompt-rewriter-trailer-poster.png" aria-label="Prompt Rewriter edited trailer">
-                  <source src="/videos/prompt-rewriter-trailer.mp4" type="video/mp4">
-                  Your browser does not support embedded video. <a href="/videos/prompt-rewriter-trailer.mp4">Open the trailer</a>.
+                <video controls preload="metadata" playsinline poster="/videos/prompt-rewriter-case-study-poster.png" aria-label="Prompt Rewriter 68-second case study">
+                  <source src="/videos/prompt-rewriter-case-study.mp4" type="video/mp4">
+                  Your browser does not support embedded video. <a href="/videos/prompt-rewriter-case-study.mp4">Open the 68-second case study</a>.
                 </video>
-                <figcaption>Edited trailer: pacing is compressed. The separate continuous demo preserves the recorded wait.</figcaption>
+                <figcaption>A new captioned edit of the existing Notepad recording, documented as a local Ollama run. The recorded wait is preserved; editorial cards explain the workflow. This is not a latency benchmark.</figcaption>
               </figure>
               <div class="go"><a href="/videos/prompt-rewriter-live-demo.mp4" target="_blank" rel="noopener">Continuous demo ↗</a><a href="https://github.com/Zinga18018/prompt-rewriter" target="_blank" rel="noopener">Source ↗</a></div>
             </aside>
@@ -518,13 +552,13 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
           <div class="card-grid">
             <div>
               <p class="kicker"><b>03 //</b>Clinical prediction</p>
-              <h3>Clinical Readmission Risk Modeling</h3>
-              <p class="desc">A leakage-safe 30-day readmission pipeline with patient-disjoint cohorts, calibration, missingness analysis, and drift checks.</p>
+              <h3>Readmission Risk Audit</h3>
+              <p class="desc">An educational audit of 30-day readmission models, with patient-disjoint cohorts, probability calibration, missingness analysis, and drift checks.</p>
               <ul class="pills"><li>CatBoost</li><li>PyTorch</li><li>Calibration</li><li>Streamlit</li></ul>
             </div>
             <aside>
-              <p class="label">// Held-out test · 10,822 encounters</p>
-              <figure class="project-plot"><figcaption>Held-out prediction scores</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Held-out prediction scores"><title>Held-out prediction scores</title><text x="0" y="35" text-anchor="start">ROC-AUC</text><text x="335" y="35" class="value" text-anchor="end">0.661</text><path d="M8 54H332" stroke="#29404f" stroke-width="4" stroke-linecap="round"/><circle class="mark" cx="222.16400000000002" cy="54" r="7" fill="#8ec5e8"><title>ROC-AUC: 0.661</title></circle><text x="0" y="93" text-anchor="start">PR-AUC</text><text x="335" y="93" class="value" text-anchor="end">0.175</text><path d="M8 112H332" stroke="#29404f" stroke-width="4" stroke-linecap="round"/><circle class="mark" cx="64.69999999999999" cy="112" r="7" fill="#e3f1fa"><title>PR-AUC: 0.175</title></circle><text x="0" y="151" text-anchor="start">Brier score</text><text x="335" y="151" class="value" text-anchor="end">0.077</text><path d="M8 170H332" stroke="#29404f" stroke-width="4" stroke-linecap="round"/><circle class="mark" cx="32.948" cy="170" r="7" fill="#f0b46a"><title>Brier score: 0.077</title></circle><text x="8" y="217" text-anchor="start">0</text><text x="332" y="217" text-anchor="end">1</text></svg><p class="plot-foot">ROC-AUC / PR-AUC: higher is better. Brier: lower is better.</p></figure>
+              <p class="label">// Historical evaluation · 10,822 encounters</p>
+              <figure class="project-plot"><figcaption>Historical prediction scores</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Historical prediction scores"><title>Historical prediction scores</title><text x="0" y="35" text-anchor="start">ROC-AUC</text><text x="335" y="35" class="value" text-anchor="end">0.661</text><path d="M8 54H332" stroke="#29404f" stroke-width="4" stroke-linecap="round"/><circle class="mark" cx="222.16400000000002" cy="54" r="7" fill="#8ec5e8"><title>ROC-AUC: 0.661</title></circle><text x="0" y="93" text-anchor="start">PR-AUC</text><text x="335" y="93" class="value" text-anchor="end">0.175</text><path d="M8 112H332" stroke="#29404f" stroke-width="4" stroke-linecap="round"/><circle class="mark" cx="64.69999999999999" cy="112" r="7" fill="#e3f1fa"><title>PR-AUC: 0.175</title></circle><text x="0" y="151" text-anchor="start">Brier score</text><text x="335" y="151" class="value" text-anchor="end">0.077</text><path d="M8 170H332" stroke="#29404f" stroke-width="4" stroke-linecap="round"/><circle class="mark" cx="32.948" cy="170" r="7" fill="#f0b46a"><title>Brier score: 0.077</title></circle><text x="8" y="217" text-anchor="start">0</text><text x="332" y="217" text-anchor="end">1</text></svg><p class="plot-foot">This cohort was inspected across several experiments. These are retrospective results, not an untouched final benchmark or a clinical decision tool.</p></figure>
               <div class="go"><a href="https://yogesh-readmission-risk-audit.streamlit.app/" target="_blank" rel="noopener">Live demo ↗</a><a href="https://github.com/Zinga18018/readmission-risk-audit" target="_blank" rel="noopener">Source ↗</a></div>
             </aside>
           </div>
@@ -535,14 +569,14 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
           <div class="card-grid">
             <div>
               <p class="kicker"><b>04 //</b>NLP</p>
-              <h3>NewsSnap: Transformer News Classification System</h3>
-              <p class="desc">A four-class AG News system with a DistilBERT training pipeline, FastAPI service, React dashboard, and explicit inference modes.</p>
+              <h3>NewsSnap: News Classification and Serving</h3>
+              <p class="desc">A four-topic news classifier with a FastAPI service, React dashboard, and separate transformer and keyword-demo modes.</p>
               <ul class="pills"><li>DistilBERT</li><li>FastAPI</li><li>React</li><li>CI/CD</li></ul>
             </div>
             <aside>
-              <p class="label">// Held-out evaluation · 12,000 articles</p>
-              <figure class="project-plot"><figcaption>Classification performance</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Classification performance"><title>Classification performance</title><circle cx="57" cy="78" r="43" fill="none" stroke="#20323f" stroke-width="7"/><circle class="mark" cx="57" cy="78" r="43" fill="none" stroke="#8ec5e8" stroke-width="7" stroke-linecap="round" stroke-dasharray="235.05396234158832 270.1769682087222" transform="rotate(-90 57 78)"><title>Accuracy: 0.87</title></circle><text x="57" y="83" class="value" text-anchor="middle">0.870</text><text x="57" y="151" text-anchor="middle">Accuracy</text><circle cx="170" cy="78" r="43" fill="none" stroke="#20323f" stroke-width="7"/><circle class="mark" cx="170" cy="78" r="43" fill="none" stroke="#e3f1fa" stroke-width="7" stroke-linecap="round" stroke-dasharray="234.7837853733796 270.1769682087222" transform="rotate(-90 170 78)"><title>Macro-F1: 0.869</title></circle><text x="170" y="83" class="value" text-anchor="middle">0.869</text><text x="170" y="151" text-anchor="middle">Macro-F1</text><circle cx="283" cy="78" r="43" fill="none" stroke="#20323f" stroke-width="7"/><circle class="mark" cx="283" cy="78" r="43" fill="none" stroke="#f0b46a" stroke-width="7" stroke-linecap="round" stroke-dasharray="223.43635270861324 270.1769682087222" transform="rotate(-90 283 78)"><title>MCC: 0.827</title></circle><text x="283" y="83" class="value" text-anchor="middle">0.827</text><text x="283" y="151" text-anchor="middle">MCC</text><text x="170" y="198" text-anchor="middle">Held-out AG News evaluation</text></svg><p class="plot-foot">Accuracy and F1: 0–1. MCC: −1–1; arc shows its positive score.</p></figure>
-              <div class="go"><a href="https://yogesh-newssnap-classifier.streamlit.app/" target="_blank" rel="noopener">Streamlit demo ↗</a><a href="https://github.com/Zinga18018/NewsSnap" target="_blank" rel="noopener">Source ↗</a></div>
+              <p class="label">// Historical evaluation · 12,000 articles</p>
+              <figure class="project-plot"><figcaption>Classification performance</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Classification performance"><title>Classification performance</title><circle cx="57" cy="78" r="43" fill="none" stroke="#20323f" stroke-width="7"/><circle class="mark" cx="57" cy="78" r="43" fill="none" stroke="#8ec5e8" stroke-width="7" stroke-linecap="round" stroke-dasharray="235.05396234158832 270.1769682087222" transform="rotate(-90 57 78)"><title>Accuracy: 0.87</title></circle><text x="57" y="83" class="value" text-anchor="middle">0.870</text><text x="57" y="151" text-anchor="middle">Accuracy</text><circle cx="170" cy="78" r="43" fill="none" stroke="#20323f" stroke-width="7"/><circle class="mark" cx="170" cy="78" r="43" fill="none" stroke="#e3f1fa" stroke-width="7" stroke-linecap="round" stroke-dasharray="234.7837853733796 270.1769682087222" transform="rotate(-90 170 78)"><title>Macro-F1: 0.869</title></circle><text x="170" y="83" class="value" text-anchor="middle">0.869</text><text x="170" y="151" text-anchor="middle">Macro-F1</text><circle cx="283" cy="78" r="43" fill="none" stroke="#20323f" stroke-width="7"/><circle class="mark" cx="283" cy="78" r="43" fill="none" stroke="#f0b46a" stroke-width="7" stroke-linecap="round" stroke-dasharray="223.43635270861324 270.1769682087222" transform="rotate(-90 283 78)"><title>MCC: 0.827</title></circle><text x="283" y="83" class="value" text-anchor="middle">0.827</text><text x="283" y="151" text-anchor="middle">MCC</text><text x="170" y="198" text-anchor="middle">Historical project-created test split</text></svg><p class="plot-foot">Recovered training used 512 examples. Prepared train/test pools share 27 normalized texts; fitted-sample overlap is unknown. The hosted demo uses keyword fallback when weights are unavailable.</p></figure>
+              <div class="go"><a href="https://yogesh-newssnap-classifier.streamlit.app/" target="_blank" rel="noopener">Demo: check inference mode ↗</a><a href="https://github.com/Zinga18018/NewsSnap" target="_blank" rel="noopener">Source ↗</a></div>
             </aside>
           </div>
         </div></article>
@@ -552,13 +586,13 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
           <div class="card-grid">
             <div>
               <p class="kicker"><b>05 //</b>Model evaluation</p>
-              <h3>Model Behavior Under Distribution Shift</h3>
-              <p class="desc">A deterministic simulator for performance decay, class-prior shift, PSI, approximate KS, and configurable monitoring alerts.</p>
+              <h3>DriftLab: Model Monitoring Simulator</h3>
+              <p class="desc">A seeded synthetic simulator that compares an independent reference window with a current window to show when data drift does, and does not, mean model degradation.</p>
               <ul class="pills"><li>NumPy</li><li>Pandas</li><li>PSI / KS</li><li>Streamlit</li></ul>
             </div>
             <aside>
-              <p class="label">// Verified mixed-shift run</p>
-              <figure class="project-plot"><figcaption>Performance under distribution shift</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Performance under distribution shift"><title>Performance under distribution shift</title><path class="grid" d="M20 44V150"/><text x="20" y="177" text-anchor="middle">0</text><path class="grid" d="M95.0 44V150"/><text x="95.0" y="177" text-anchor="middle">0.25</text><path class="grid" d="M170.0 44V150"/><text x="170.0" y="177" text-anchor="middle">0.5</text><path class="grid" d="M245.0 44V150"/><text x="245.0" y="177" text-anchor="middle">0.75</text><path class="grid" d="M320 44V150"/><text x="320" y="177" text-anchor="middle">1</text><path d="M131.6 99H247.4" stroke="#7193aa" stroke-width="4"/><circle class="mark" cx="247.4" cy="99" r="8" fill="#8ec5e8"><title>Before: 0.758</title></circle><text x="247.4" y="66" class="value" text-anchor="middle">Before · 0.758</text><circle class="mark" cx="131.6" cy="99" r="8" fill="#f0b46a"><title>After: 0.372</title></circle><text x="131.6" y="137" class="value" text-anchor="middle">After · 0.372</text><text x="170" y="210" text-anchor="middle">ROC-AUC</text></svg><p class="plot-foot">Two measured endpoints · max PSI 0.608 · 3 alerts.</p></figure>
+              <p class="label">// Default synthetic mixed-shift run</p>
+              <figure class="project-plot"><figcaption>Reference and current ROC-AUC</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Reference and current ROC-AUC"><title>Reference and current ROC-AUC</title><path class="grid" d="M20 44V150"/><text x="20" y="177" text-anchor="middle">0</text><path class="grid" d="M95.0 44V150"/><text x="95.0" y="177" text-anchor="middle">0.25</text><path class="grid" d="M170.0 44V150"/><text x="170.0" y="177" text-anchor="middle">0.5</text><path class="grid" d="M245.0 44V150"/><text x="245.0" y="177" text-anchor="middle">0.75</text><path class="grid" d="M320 44V150"/><text x="320" y="177" text-anchor="middle">1</text><path d="M114.664 99H251.42" stroke="#7193aa" stroke-width="4"/><circle class="mark" cx="251.42" cy="99" r="8" fill="#8ec5e8"><title>Reference: 0.771</title></circle><text x="251.42" y="66" class="value" text-anchor="middle">Reference · 0.771</text><circle class="mark" cx="114.664" cy="99" r="8" fill="#f0b46a"><title>Current: 0.316</title></circle><text x="114.664" y="137" class="value" text-anchor="middle">Current · 0.316</text><text x="170" y="210" text-anchor="middle">ROC-AUC</text></svg><p class="plot-foot">Independent training, reference, and current windows. Max PSI 0.482; 2 alerts. Synthetic data, not production traffic.</p></figure>
               <div class="go"><a href="https://yogesh-driftlab-monitoring.streamlit.app/" target="_blank" rel="noopener">Live demo ↗</a><a href="https://github.com/Zinga18018/driftlab-model-monitoring-simulator" target="_blank" rel="noopener">Source ↗</a></div>
             </aside>
           </div>
@@ -586,9 +620,9 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
       <div class="credits r">
         <p class="label">// Repository archive</p>
         <h3>More work on GitHub.</h3>
-        <p class="lead">Selected projects above include measured studies and a recorded desktop-tool demo; each links to its supporting work.</p>
+        <p class="lead">Find the source, setup instructions, and evaluation notes for more of my projects.</p>
         <dl class="roll">
-          <div><dt>Bayesian benchmark</dt><dd><a href="https://github.com/Zinga18018/coregene-bayes-benchmark" target="_blank" rel="noopener">coregene-bayes-benchmark</a></dd></div>
+          <div><dt>Synthetic Bayesian benchmark</dt><dd><a href="https://github.com/Zinga18018/coregene-bayes-benchmark" target="_blank" rel="noopener">coregene-bayes-benchmark</a></dd></div>
           <div><dt>RAG evaluation API</dt><dd><a href="https://github.com/Zinga18018/rag-evaluation-deployment-api" target="_blank" rel="noopener">rag-evaluation-deployment-api</a></dd></div>
           <div><dt>AI engineering lab</dt><dd><a href="https://github.com/Zinga18018/ai-engineering-lab" target="_blank" rel="noopener">ai-engineering-lab</a></dd></div>
           <div><dt>Product analytics and A/B testing</dt><dd><a href="https://github.com/Zinga18018/product-analytics-experimentation-lab" target="_blank" rel="noopener">product-analytics-experimentation-lab</a></dd></div>
@@ -603,17 +637,17 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
     <div class="glow" style="top:40%;left:45%" aria-hidden="true"></div>
     <div class="wrap">
       <p class="eyebrow r">03 / Experience</p>
-      <h2 class="h2 r"><span class="g1">Where</span><span class="g2">I've worked.</span></h2>
+      <h2 class="h2 r"><span class="g1">Research</span><span class="g2">and work.</span></h2>
 
       <div class="timeline" id="timeline">
         <div class="tl-line" aria-hidden="true"></div>
         <div class="stop r">
           <p class="when">Aug 2025 - Present</p><i class="node" aria-hidden="true"></i>
-          <div><h3>Graduate Researcher, Data Science</h3><p class="org">Rochester Institute of Technology</p>
+          <div><h3>Graduate Research Project, Data Science</h3><p class="org">Rochester Institute of Technology</p>
           <ul class="bul">
             <li>Built Python and Pandas pipelines to analyze 351,501 Reddit and YouTube comments across 16 women-safety cases in India.</li>
-            <li>Applied Mann-Whitney U, chi-square, and G-tests; fine-tuned Qwen3.5-9B with LoRA and evaluated 3,000 held-out examples.</li>
-            <li>Authored a paper accepted at ASONAM 2026 and documented model limitations through high-confidence error review.</li>
+            <li>Applied Mann-Whitney U, chi-square, and G-tests; fine-tuned Qwen3.5-9B with LoRA and reviewed a fixed 3,000-row validation sample.</li>
+            <li>Co-authored a paper accepted at ASONAM 2026 and documented model limitations through high-confidence error review.</li>
           </ul></div>
         </div>
         <div class="stop r">
@@ -701,7 +735,7 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
       </div>
       <footer class="foot">
         <span>© <span id="year">2026</span> Yogesh Kuchimanchi</span>
-        <span>Built with care in Rochester, NY</span>
+        <span>Rochester, New York</span>
       </footer>
     </div>
   </section>
@@ -732,10 +766,23 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
   const items = [...document.querySelectorAll('.stack-item')];
   const sticky = matchMedia('(min-width: 761px) and (min-height: 641px)');
   const tl = document.getElementById('timeline');
+  const navigation = document.querySelector('.nav');
+  const sectionLinks = [...document.querySelectorAll('.links a[href^="#"]')];
+  const sectionTargets = sectionLinks.map(link => document.querySelector(link.getAttribute('href')));
   const GAP = 36, STEP = 24;
   let queued = false;
   function onScroll() {
     queued = false;
+    // Keep the same section links available on every screen, with a current marker.
+    const marker = navigation.getBoundingClientRect().height + 64;
+    let currentSection = -1;
+    sectionTargets.forEach((target, index) => {
+      if (target && target.getBoundingClientRect().top <= marker) currentSection = index;
+    });
+    sectionLinks.forEach((link, index) => {
+      if (index === currentSection) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
     items.forEach((it, i) => {
       const card = it.firstElementChild, next = items[i + 1];
       let p = 0;

@@ -9,7 +9,7 @@ export default function About() {
           <div><p className="eyebrow">About me</p><h2 id="about-heading">Computers came first.</h2></div>
           <div className="about-copy">
             <p>My father brought home the first computer I ever saw. That early curiosity eventually took me from computer applications to data science and, now, an M.S. at RIT.</p>
-            <p>Research changed what I look for in a project. I want to know whether the comparison is fair, where a label came from, and whether a conclusion says more than the data allows. I am bringing that habit into statistical genetics while continuing my work in machine learning and public-data research.</p>
+            <p>Research has taught me to check how labels were made, whether a comparison is fair, and where a model fails. My projects now span machine learning, public discourse, and the study of genetic evidence for type 2 diabetes.</p>
           </div>
         </div>
         <div className={styles.facts}>

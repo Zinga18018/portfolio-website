@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { FiArrowUpRight, FiGithub, FiStar } from 'react-icons/fi'
 import initialRepos from '@/lib/github-repos.json'
+import { projectDescriptions } from '@/lib/project-descriptions'
 
 type Repository = (typeof initialRepos)[number]
 const profile = 'https://github.com/Zinga18018'
@@ -49,7 +50,7 @@ export default function GitHubProjects() {
   const search = query.trim().toLowerCase()
   const filtered = repos.filter(repo =>
     (language === 'All' || repo.language === language) &&
-    `${repo.name} ${repo.description ?? ''} ${repo.language ?? ''}`.toLowerCase().includes(search)
+    `${repo.name} ${projectDescriptions[repo.name] ?? repo.description ?? ''} ${repo.language ?? ''}`.toLowerCase().includes(search)
   ).sort((a, b) => (b.pushed_at ?? '').localeCompare(a.pushed_at ?? '') || a.name.localeCompare(b.name))
   const hasActiveFilter = search.length > 0 || language !== 'All'
   const visible = showAll || hasActiveFilter ? filtered : filtered.slice(0, 9)
@@ -60,7 +61,7 @@ export default function GitHubProjects() {
         <div className="section-intro">
           <p className="eyebrow">Repository archive</p>
           <h2 id="github-heading">More work on GitHub.</h2>
-          <p>This is an automatically updated index of my public repositories. The selected projects above distinguish measured results from recorded demo behavior.</p>
+          <p>Browse my public repositories, or use the selected projects above as a starting point. Each project links to its source and supporting notes.</p>
         </div>
         <div className="repo-toolbar">
           <label>Search projects<input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="Search by name, topic, or language" /></label>
@@ -78,7 +79,7 @@ export default function GitHubProjects() {
             <article key={repo.id} className="repo-card">
               <div className="repo-meta"><span>{repo.language || 'Repository'}</span>{repo.fork && <span>Fork</span>}{repo.archived && <span>Archived</span>}</div>
               <h3><a href={`${profile}/${encodeURIComponent(repo.name)}`} target="_blank" rel="noreferrer">{repo.name.replace(/[-_]/g, ' ')} <FiArrowUpRight aria-hidden="true" /></a></h3>
-              <p>{repo.description || 'Explore the source code and project files on GitHub.'}</p>
+              <p>{projectDescriptions[repo.name] ?? repo.description ?? 'Explore the source code and project files on GitHub.'}</p>
               <a className="repo-jump" href={`${profile}/${encodeURIComponent(repo.name)}`} target="_blank" rel="noreferrer">Open repository <FiArrowUpRight /></a>
               <div className="repo-footer"><span>{repo.pushed_at ? `Updated ${repo.pushed_at.slice(0, 10)}` : 'Public repository'}</span>{repo.stargazers_count > 0 && <span><FiStar aria-hidden="true" /> {repo.stargazers_count} stars</span>}</div>
             </article>

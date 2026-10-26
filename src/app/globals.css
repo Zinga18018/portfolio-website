@@ -450,3 +450,19 @@ button { font: inherit; }
   .evidence-grid article, .evidence-grid article:nth-child(odd), .evidence-grid article:nth-child(even) { padding: 22px 0; border-right: 0; }
   .paper-footer { align-items: flex-start; flex-direction: column; }
 }
+
+/* Reading hierarchy and navigation refinements; retain the existing palette/grids. */
+:focus-visible { outline: 3px solid var(--teal); outline-offset: 5px; }
+.section { padding-block: clamp(80px, 7.5vw, 104px); }
+.hero-lede { max-width: 58ch; line-height: 1.75; }
+.about-copy { max-width: 64ch; font-size: 17px; line-height: 1.8; }
+.section-intro > p:last-child { max-width: 62ch; line-height: 1.8; }
+.project-main h3 { max-width: 32ch; line-height: 1.18; }
+.project-main p { max-width: 64ch; font-size: 15px; line-height: 1.8; }
+.project-main strong { max-width: 72ch; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13px; font-weight: 500; line-height: 1.75; }
+.project-video figcaption { line-height: 1.75; }
+.project-links a { min-height: 44px; font-size: 11px; line-height: 1.4; }
+.repo-meta, .repo-footer, .timeline-body time { letter-spacing: .02em; }
+.timeline-body li { max-width: 68ch; line-height: 1.75; }
+.experience-section :focus-visible { outline-color: #91d1c2; }
+.nav-link[aria-current="location"] { color: var(--teal-dark); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 7px; }

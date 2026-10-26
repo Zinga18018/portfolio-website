@@ -2,7 +2,7 @@
   {
     "id": 1388308533,
     "name": "cardiometabolic-gwas-evidence-explorer",
-    "description": "Auditable Python explorer for Open Targets type 2 diabetes credible sets, L2G predictions, molecular-QTL colocalisation, and provenance.",
+    "description": "Deterministic public-data evidence explorer for five type 2 diabetes regions, retaining source quality-control flags and provenance.",
     "html_url": "https://github.com/Zinga18018/cardiometabolic-gwas-evidence-explorer",
     "language": "HTML",
     "stargazers_count": 0,
@@ -13,7 +13,7 @@
   {
     "id": 1388306512,
     "name": "coregene-bayes-benchmark",
-    "description": "Synthetic Bayesian benchmark for propagating mapping and network uncertainty through a four-gene core-membership model, with calibration and misspecification checks.",
+    "description": "Synthetic four-gene Bayesian benchmark for mapping and network uncertainty, calibration, and model misspecification.",
     "html_url": "https://github.com/Zinga18018/coregene-bayes-benchmark",
     "language": "Python",
     "stargazers_count": 0,
@@ -35,7 +35,7 @@
   {
     "id": 1270712063,
     "name": "rag-evaluation-deployment-api",
-    "description": "Deployable FastAPI RAG evaluation API with source citations, vector retrieval, Docker, and reproducible metrics.",
+    "description": "Pure-Python TF-IDF retrieval API with extractive answers, explicit abstention, and separate retrieval, citation, and answerability checks.",
     "html_url": "https://github.com/Zinga18018/rag-evaluation-deployment-api",
     "language": "Python",
     "stargazers_count": 0,
@@ -57,7 +57,7 @@
   {
     "id": 1163089689,
     "name": "NewsSnap",
-    "description": "Full-stack news aggregator with DistilBERT summarization, React dashboard, CI/CD pipeline, and Docker deployment",
+    "description": "Four-topic news classification and serving with FastAPI and React. Responses identify transformer inference or an explicit keyword-demo fallback.",
     "html_url": "https://github.com/Zinga18018/NewsSnap",
     "language": "Python",
     "stargazers_count": 0,
@@ -68,7 +68,7 @@
   {
     "id": 1289572865,
     "name": "readmission-risk-audit",
-    "description": null,
+    "description": "Educational, retrospective audit of 30-day readmission models, with patient-disjoint cohorts, calibration, and disclosed historical test reuse.",
     "html_url": "https://github.com/Zinga18018/readmission-risk-audit",
     "language": "Python",
     "stargazers_count": 0,
@@ -101,7 +101,7 @@
   {
     "id": 1276397897,
     "name": "driftlab-model-monitoring-simulator",
-    "description": null,
+    "description": "Synthetic model-monitoring simulator with independent training, reference, and current windows, drift diagnostics, and configurable alerts.",
     "html_url": "https://github.com/Zinga18018/driftlab-model-monitoring-simulator",
     "language": "Python",
     "stargazers_count": 0,

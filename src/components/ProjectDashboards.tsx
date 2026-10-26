@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { FiArrowUpRight } from 'react-icons/fi'
 import repositories from '@/lib/github-repos.json'
+import { projectDescriptions } from '@/lib/project-descriptions'
 import styles from './ProjectDashboards.module.css'
 
 const cases = [
@@ -61,21 +62,21 @@ export default function ProjectDashboards() {
         <div className={styles.panelHeading}><h4>{title[project] || project.replace(/[-_]/g, ' ')}</h4><span>{featured.includes(project) ? 'Existing portfolio results' : 'Repository overview'}</span></div>
         {project === 'readmission-risk-audit' && <>
           <p>30-day readmission modeling with patient-disjoint splits and probability calibration.</p>
-          <Metrics items={[["Held-out encounters", "10,822"], ["ROC-AUC", "0.661"], ["PR-AUC", "0.175"], ["Brier score ↓", "0.077"]]} />
-          <h5>Held-out evaluation</h5><Bars items={[["ROC-AUC", .661], ["PR-AUC", .175], ["Brier score", .077]]} />
-          <p className={styles.note}>Scale: 0–1. Higher AUC is better; lower Brier is better. These measure different properties and should not be ranked against each other. Prediction-level data is needed for ROC and calibration curves.</p>
+          <Metrics items={[["Historical test encounters", "10,822"], ["ROC-AUC", "0.661"], ["PR-AUC", "0.175"], ["Brier score ↓", "0.077"]]} />
+          <h5>Historical evaluation</h5><Bars items={[["ROC-AUC", .661], ["PR-AUC", .175], ["Brier score", .077]]} />
+          <p className={styles.note}>This patient-disjoint cohort was inspected across several experiments. These are retrospective results, not an untouched final benchmark or a clinical decision tool. Higher AUC is better; lower Brier is better.</p>
         </>}
         {project === 'NewsSnap' && <>
-          <p>A DistilBERT classifier for four AG News categories, with a FastAPI service and React interface.</p>
-          <Metrics items={[["Held-out articles", "12,000"], ["Accuracy", "0.870"], ["Macro-F1", "0.869"], ["MCC", "0.827"]]} />
-          <h5>Held-out evaluation</h5><Bars items={[["Accuracy", .870], ["Macro-F1", .869], ["MCC", .827]]} />
-          <p className={styles.note}>Accuracy and F1 range from 0 to 1; MCC ranges from −1 to 1. Positive values are shown here on a 0–1 axis. A confusion matrix requires the evaluation predictions and is not reconstructed from these scores.</p>
+          <p>A four-topic news classifier with a FastAPI service and React interface. Check the response mode: missing weights trigger a keyword demo.</p>
+          <Metrics items={[["Historical test articles", "12,000"], ["Accuracy", "0.870"], ["Macro-F1", "0.869"], ["MCC", "0.827"]]} />
+          <h5>Historical evaluation</h5><Bars items={[["Accuracy", .870], ["Macro-F1", .869], ["MCC", .827]]} />
+          <p className={styles.note}>Recovered training used 512 examples. The project-created test split overlaps the prepared training pool; overlap in the fitted subset is unknown. Accuracy and F1 range from 0 to 1; MCC ranges from -1 to 1.</p>
         </>}
         {project === 'driftlab-model-monitoring-simulator' && <>
-          <p>One recorded mixed-shift simulation. These are scenario results, not a production incident.</p>
-          <Metrics items={[["Baseline ROC-AUC", "0.758"], ["Shifted ROC-AUC", "0.372"], ["Maximum PSI", "0.608"], ["Alerts fired", "3"]]} />
-          <h5>Before and after the simulated shift</h5><Bars items={[["Baseline ROC-AUC", .758], ["Shifted ROC-AUC", .372]]} />
-          <p className={styles.note}>Absolute ROC-AUC change: −0.386. Only the reported endpoints are shown. Open the simulator to change the shift settings.</p>
+          <p>The default mixed-shift simulation uses independent training, reference, and current windows. These are synthetic scenario results.</p>
+          <Metrics items={[["Reference ROC-AUC", "0.771"], ["Current ROC-AUC", "0.316"], ["Maximum PSI", "0.482"], ["Alerts fired", "2"]]} />
+          <h5>Reference and current performance</h5><Bars items={[["Reference ROC-AUC", .771], ["Current ROC-AUC", .316]]} />
+          <p className={styles.note}>ROC-AUC fell by 0.456 in this synthetic run. The model is fitted on the training window only. Open the simulator to change the shift settings; this is not production monitoring.</p>
         </>}
         {project === 'womens-safety-discourse-dashboard' && <>
           <p>Stance patterns across 16 cases in India. Select a case and compare the study’s incident-relative time windows.</p>
@@ -88,7 +89,7 @@ export default function ProjectDashboards() {
           <p className={styles.note}>Values are percentages across the eligible corpus. Selecting a case does not change this aggregate panel. Incident-relative windows are not verdict-relative dates; per-case sentiment and emotion exports have not been supplied.</p>
         </>}
         {!featured.includes(project) && <>
-          <p>{repo?.description || 'Open the source for the project files and documentation.'}</p>
+          <p>{projectDescriptions[project] ?? repo?.description ?? 'Open the source for the project files and documentation.'}</p>
           <Metrics items={[["Main language",repo?.language || 'Not specified'],["Stars",String(repo?.stargazers_count ?? 0)],["Last push",repo?.pushed_at?.slice(0,10) || 'Not available'],["Status",repo?.archived ? 'Archived' : repo?.fork ? 'Fork' : 'Public']]} />
           <div className={styles.empty}><h5>Evaluation results not published here yet</h5><p>This view shows repository metadata. There is no verified result export to chart for this project.</p></div>
         </>}

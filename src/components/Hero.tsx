@@ -6,12 +6,12 @@ export default function Hero() {
     <section className="hero" id="top">
       <div className="section-container hero-grid">
         <div className="hero-copy">
-          <p className="eyebrow">M.S. Data Science · Rochester, New York</p>
-          <h1>From signal to evidence.</h1>
+          <p className="eyebrow">M.S. Data Science student · Rochester, New York</p>
+          <h1>Data science, in practice.</h1>
           <p className="hero-lede">
-            A recent project compares available Open Targets variant, candidate-gene,
-            and molecular evidence for five selected FinnGen type 2 diabetes regions.
-            It is an evidence explorer, not a new GWAS or causal proof.
+            I&apos;m Yogesh, an M.S. Data Science student at RIT. I build Python tools
+            for model evaluation, NLP, and public-data research. Here you can explore
+            the code, results, and decisions behind my work.
           </p>
           <div className="hero-actions">
             <a href="#projects" className="btn-primary">View selected work <FiArrowDownRight /></a>
