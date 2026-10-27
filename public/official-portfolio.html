@@ -58,7 +58,7 @@ body::after{content:'';position:fixed;inset:-50%;z-index:100;pointer-events:none
 @keyframes blink{50%{opacity:.35}}
 .glow{position:absolute;width:34rem;height:34rem;border-radius:50%;background:var(--acc);opacity:.05;filter:blur(150px);pointer-events:none}
 
-/* corner brackets */
+/* corner */
 .brackets::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:2;--c:var(--acc);--l:22px;--w:2px;background:
   linear-gradient(var(--c),var(--c)) top left/var(--l) var(--w),linear-gradient(var(--c),var(--c)) top left/var(--w) var(--l),
   linear-gradient(var(--c),var(--c)) top right/var(--l) var(--w),linear-gradient(var(--c),var(--c)) top right/var(--w) var(--l),
@@ -374,7 +374,7 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
 .arrow-icon{display:inline-block;width:12px;height:12px;flex:none;vertical-align:-1px;margin-left:3px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .hero-scroll{color:#9ebfb3;font:11px/1.6 var(--body)}
 .hero-foot{gap:18px;align-items:center}
-.project-explorer{min-width:0;padding:clamp(18px,2.2vw,30px);border:1px solid rgba(145,209,194,.38);background:linear-gradient(145deg,rgba(9,30,31,.96),rgba(2,12,15,.97));box-shadow:0 26px 90px rgba(0,0,0,.65)}
+.project-explorer{position:relative;min-width:0;padding:clamp(18px,2.2vw,30px);border:1px solid rgba(145,209,194,.38);background:linear-gradient(145deg,rgba(9,30,31,.96),rgba(2,12,15,.97));box-shadow:0 26px 90px rgba(0,0,0,.65)}
 .project-explorer>h2{margin:0 0 22px;color:#f1faf7;font:800 clamp(2rem,3vw,3rem)/1 var(--display);text-transform:uppercase;letter-spacing:.01em}
 .project-picker{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;border:0;padding:0;margin:0;min-width:0}
 .project-picker legend{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -445,6 +445,75 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
  .research-copy .h2{font-size:clamp(3rem,12vw,4.8rem)}
 }
 
+
+/* Plain personal portfolio: no decorative motion, mockups, gradients or card stack. */
+:root{--ink:#dce3e3;--muted:#a8b4b5;--soft:#b9c6c5;--frost:#edf2f1;--acc:#91d1c2;--display:var(--body)}
+html{scroll-behavior:auto;background:#090d0e}
+body{background:#090d0e;font-size:15px}
+body::after,.brackets::before,.tilt-wrap::after,.card::after,.console::after,.atlas::after,.atlas-track::after,.eyebrow::after,.tl-line{display:none}
+.js .r,.r{opacity:1;transform:none;filter:none;transition:none}
+.g1,.g2,.g3{display:inline;color:var(--frost);background:none;filter:none}
+.hero{min-height:0;background:none;overflow:visible}
+.nav{background:#090d0e;backdrop-filter:none}
+.links{letter-spacing:0;text-transform:none;font-size:12px}
+.logo{letter-spacing:.12em}
+.hero-body{max-width:1200px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;gap:clamp(32px,6vw,80px);padding-top:64px;padding-bottom:64px}
+.hero .h1{font:600 clamp(2.1rem,4.2vw,3.4rem)/1.15 var(--body);text-transform:none;letter-spacing:-.035em;margin-bottom:20px}
+.tagline{font:500 16px/1.6 var(--body);letter-spacing:0;text-transform:none;color:#c7d4d0;margin-bottom:15px}
+.hero-copy .lead{font-size:15px;line-height:1.85;margin-bottom:24px}
+.btn,.btn.small,.btn.ghost,.go a{font:500 13px/1.5 var(--body);letter-spacing:0;text-transform:none;min-height:40px;padding:8px 12px;border:1px solid #435754;background:none;color:#c7e6dd;border-radius:3px;box-shadow:none;backdrop-filter:none}
+.btn:hover,.go a:hover{background:#14201e;box-shadow:none}
+.project-explorer{padding:0;border:0;background:none;box-shadow:none}
+.project-explorer>h2{font:600 19px/1.5 var(--body);text-transform:none;letter-spacing:0;margin:0 0 10px}
+.recent-project{padding:16px 0;border-bottom:1px solid #263432}
+.recent-project:last-child{border:0;padding-bottom:0}
+.recent-project h3{margin:0 0 6px;font:600 15px/1.5 var(--body)}
+.recent-project h3 a,.text-link{color:#a5d7c8;text-decoration:underline;text-underline-offset:4px}
+.recent-project h3 span{margin-left:8px;color:#a1afad;font:400 11px/1.5 var(--body)}
+.recent-project p{font:400 13px/1.7 var(--body);color:#b6c1bf;margin:0}
+.recent-project .project-caveat{font-size:12px;margin-top:6px;color:#99aaa6}
+.text-link{display:inline-block;margin-top:8px;font-size:12px}
+.github-strip{background:none;padding:18px 0;border-color:#273431}
+.activity-wrap{max-width:1200px;gap:20px}
+.activity-heading{flex-basis:150px}.activity-heading p,.activity-list span{font:400 10px/1.5 var(--body)}
+.activity-list{gap:18px}.activity-list li{border:0;padding-left:0}.activity-list strong{font-size:12px}.activity-all{font-size:11px}
+main>section{padding-block:64px}
+.h2,.research-copy .h2,#projects .work-head .h2{font:600 clamp(1.55rem,3vw,2rem)/1.3 var(--body);text-transform:none;letter-spacing:-.02em;margin-bottom:20px}
+.work-head{display:block;margin-bottom:28px}.work-head .lead{max-width:64ch}
+.research-focus{background:none}.research-grid{max-width:1200px;grid-template-columns:1fr 1fr;align-items:start;gap:48px}
+.research-copy>.lead{font-size:14px}.research-highlight{border:0;padding:0;margin:24px 0;gap:7px;font-size:13px}
+.research-highlight strong{font:600 16px/1.5 var(--body)}.research-label{display:none}
+.research-context{padding-top:20px}.research-context .label{font:600 14px/1.5 var(--body);text-transform:none;letter-spacing:0}.research-context p:not(.label){font-size:13px}
+.atlas{border:0;padding:0;background:none;box-shadow:none}
+.atlas h2{font:600 18px/1.4 var(--body);text-transform:none;letter-spacing:0}
+.atlas-kicker{display:none}.atlas-subtitle{font:12px/1.6 var(--body)}
+.atlas-picker label{background:none}.atlas-picker label span{display:none}
+.atlas-signal{padding:14px 0;background:none;border:0}.atlas-signal h3{font:600 19px/1.4 var(--body);letter-spacing:0}
+.atlas-signal::after,.atlas-branches::before,.atlas-track::before{display:none}
+.atlas-branches{margin-top:0;gap:16px}.atlas-track{border:0;border-top:1px solid #30423c;padding:14px 0;background:none;min-height:0}
+.atlas-track h4{letter-spacing:0;text-transform:none;font:600 12px/1.5 var(--body)}.atlas-track dd{font:600 16px/1.4 var(--body)}
+.atlas-tag{font:400 11px/1.5 var(--body);text-transform:none;letter-spacing:0}.atlas-source span{font:11px/1.6 var(--body)}.atlas-source a{letter-spacing:0;text-transform:none}
+.stack{gap:0;padding:0}.stack-item{position:static;top:auto}
+.card,.featured-project .card{padding:32px 0;border:0;border-top:1px solid #30403d;border-radius:0;background:none;box-shadow:none;transform:none;filter:none}
+.card-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px}.card aside{padding:0;border:0}
+.card h3{font:600 21px/1.4 var(--body);text-transform:none;letter-spacing:-.015em;max-width:none;margin-bottom:12px}
+.desc{font-size:14px;line-height:1.8;margin-bottom:14px}
+.pills{padding:0;border:0;gap:4px 12px}.pills li{border:0;padding:0;background:none;color:#9eafab;font:400 12px/1.8 var(--body);text-transform:none;letter-spacing:0}
+.label{font:500 12px/1.5 var(--body);letter-spacing:0;text-transform:none;color:#a8bbb4}
+.project-plot,.project-video{background:none;border:0;padding:0;border-radius:0;max-width:440px}
+.project-plot .plot-foot,.project-video figcaption{font:12px/1.7 var(--body);color:#a0b1ab}
+.result-values{margin:12px 0;max-width:300px}.result-values div{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #293b34}.result-values dt{color:#b5c4be}.result-values dd{margin:0;font-variant-numeric:tabular-nums}
+.credits{text-align:left;padding-top:40px}.credits h3{font:600 20px/1.5 var(--body);text-transform:none}.credits .lead{margin:0 0 24px}.credits>.label{display:none}
+.roll{margin:0 0 24px;max-width:none}.roll div{grid-template-columns:1fr 1fr;gap:20px}.roll dt,.roll dd{text-align:left;font:12px/1.6 var(--body);letter-spacing:0;text-transform:none}
+.about-grid{align-items:start;gap:48px}.tilt-wrap{display:block;perspective:none}.now-card{padding:0;max-width:none;background:none;border:0;box-shadow:none;backdrop-filter:none;transform:none}.now-card::after{display:none}.now-card h3{margin:0;font:600 18px/1.5 var(--body)}
+.hc-label{font:12px/1.5 var(--body);text-transform:none;letter-spacing:0;margin:5px 0 20px}.rows div{font:12px/1.6 var(--body)}.rows dt{text-transform:none;letter-spacing:0;font-size:12px;flex-shrink:1}
+.timeline{margin-top:32px}.stop h3{font:600 18px/1.5 var(--body);text-transform:none;letter-spacing:0}.org,.when{letter-spacing:0;text-transform:none;font:12px/1.6 var(--body)}.node{box-shadow:none}.stop:hover .node{box-shadow:none}
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:28px 48px}.tile,.tile.s4,.tile.s5,.tile.s7,.tile.s8,.tile.s12{grid-column:auto;padding:0;border:0;background:none}.tile:hover{translate:none;box-shadow:none}.tile h3{font:600 16px/1.5 var(--body);text-transform:none;letter-spacing:0;margin-bottom:8px}
+.contact-grid{gap:48px}.console{background:none;padding:0;border:0;box-shadow:none}.row{font:13px/1.5 var(--body)}.row .k{letter-spacing:0;font:12px/1.5 var(--body)}.copy{letter-spacing:0;font:12px/1.5 var(--body)}.foot{margin-top:48px;letter-spacing:0;font:11px/1.6 var(--body);text-transform:none}
+@media(max-width:900px){.hero-body{grid-template-columns:1fr;gap:36px;padding-top:36px;padding-bottom:40px}.hero-copy{max-width:38rem}.project-explorer{max-width:38rem}.research-grid,.card-grid{grid-template-columns:1fr;gap:28px}.research-copy{max-width:38rem}.atlas{max-width:38rem}.links{font-size:12px;gap:4px 20px}}
+@media(max-width:600px){.hero .h1{font-size:clamp(2.1rem,8.5vw,3rem)}.nav>.btn{font-size:11px;padding:8px}.links{font-size:11px;gap:4px 10px}.activity-list a{display:block}.activity-list span{text-align:left;margin-top:2px}.activity-list{gap:6px}.activity-wrap{gap:10px}.github-strip{padding-block:16px}.activity-list a{min-height:38px}.bento{grid-template-columns:1fr}.roll div{grid-template-columns:1fr;gap:2px}.about-grid,.contact-grid{gap:28px}.card{padding-block:26px}main>section{padding-block:44px}}
+
+@media(max-width:420px){:root{--nav-offset:174px}.links{display:grid;grid-template-columns:repeat(3,1fr);column-gap:12px;row-gap:0}.links a{min-height:36px}.nav{gap:6px;padding-block:12px}}
 </style>
 </head>
 <body>
@@ -460,57 +529,34 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
 
   <div class="hero-body">
     <div class="hero-copy">
-      <p class="hello">Hi, I'm Yogesh.</p>
-      <h1 class="h1"><span class="g1">Data science,</span><span class="g2">in practice.</span></h1>
-      <p class="tagline"><span>M.S. Data Science student</span> <i>•</i> <span>Rochester, New York</span></p>
-      <p class="lead">I'm an M.S. Data Science student at RIT. I build Python tools for model evaluation, NLP, and public-data research. Here are a few things I’ve been working on lately.</p>
+      
+      <h1 class="h1">Yogesh<br>Kuchimanchi</h1>
+      <p class="tagline">M.S. Data Science student at RIT</p>
+      <p class="lead">I’m based in Rochester, New York, and expect to graduate in December 2026. My work includes Python tools, model evaluation and research on women’s safety discussions online.</p>
       <div class="ctas">
         <a class="btn" href="#projects">See my projects <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></span></a>
         <a class="btn ghost" href="https://github.com/Zinga18018" target="_blank" rel="noopener">GitHub <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></span></a>
       </div>
     </div>
-    <aside class="project-explorer brackets" aria-labelledby="explore-title">
-      <p class="atlas-kicker">What I’ve been building</p>
+    <aside class="project-explorer" aria-labelledby="explore-title">
       <h2 id="explore-title">Explore my projects</h2>
-      <fieldset class="project-picker">
-        <legend>Choose a project</legend>
-        <input class="project-radio" id="project-backstory" name="recent-project" type="radio" checked><label for="project-backstory">Backstory</label>
-        <input class="project-radio" id="project-search" name="recent-project" type="radio"><label for="project-search">Catalog search</label>
-        <input class="project-radio" id="project-driftlab" name="recent-project" type="radio"><label for="project-driftlab">DriftLab</label>
-        <div class="project-scenes">
-          <article class="project-scene scene-backstory" aria-labelledby="backstory-title">
-            <p class="project-meta">Newest project · Chrome extension · MVP</p>
-            <h3 id="backstory-title">Backstory</h3>
-            <p>Keep notes on the decisions behind your code, then use them to practise explaining your work.</p>
-            <figure class="explorer-image"><img src="/backstory-preview.svg" width="980" height="760" alt="Illustration of Backstory’s local workspace for project notes and interview practice"><figcaption>UI illustration, not a browser screenshot.</figcaption></figure>
-            <p class="project-caveat">Notes stay in your Chrome profile. Practice questions use fixed templates—not an AI service. Desktop Chrome only.</p>
-            <a class="btn small" href="https://github.com/Zinga18018/backstory" target="_blank" rel="noopener">See Backstory on GitHub <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a>
-          </article>
-          <article class="project-scene scene-search" aria-labelledby="search-title">
-            <p class="project-meta">Recent project · Python · Local demo</p>
-            <h3 id="search-title">Product catalog search</h3>
-            <p>Compare two ways to search a small product catalog, filter by category and price, and see why each result matched.</p>
-            <dl class="explorer-facts"><div><dt>Catalog</dt><dd>54 synthetic products</dd></div><div><dt>Methods</dt><dd>TF-IDF and BM25</dd></div><div><dt>Try locally</dt><dd>Python standard library</dd></div></dl>
-            <p class="project-caveat">A small, author-labelled synthetic demo—not customer data or a production benchmark. Semantic search is not implemented.</p>
-            <a class="btn small" href="https://github.com/Zinga18018/product-catalog-search" target="_blank" rel="noopener">See the search project <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a>
-          </article>
-          <article class="project-scene scene-driftlab" aria-labelledby="drift-preview-title">
-            <p class="project-meta">Recent work · Model monitoring</p>
-            <h3 id="drift-preview-title">DriftLab</h3>
-            <p>Change the data and see when a model’s performance changes with it—and when it doesn’t.</p>
-<figure class="project-plot"><figcaption>Reference and current ROC-AUC</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Reference and current ROC-AUC"><title>Reference and current ROC-AUC</title><path class="grid" d="M20 44V150"/><text x="20" y="177" text-anchor="middle">0</text><path class="grid" d="M95.0 44V150"/><text x="95.0" y="177" text-anchor="middle">0.25</text><path class="grid" d="M170.0 44V150"/><text x="170.0" y="177" text-anchor="middle">0.5</text><path class="grid" d="M245.0 44V150"/><text x="245.0" y="177" text-anchor="middle">0.75</text><path class="grid" d="M320 44V150"/><text x="320" y="177" text-anchor="middle">1</text><path d="M114.664 99H251.42" stroke="#7193aa" stroke-width="4"/><circle class="mark" cx="251.42" cy="99" r="8" fill="#8ec5e8"><title>Reference: 0.771</title></circle><text x="251.42" y="66" class="value" text-anchor="middle">Reference · 0.771</text><circle class="mark" cx="114.664" cy="99" r="8" fill="#f0b46a"><title>Current: 0.316</title></circle><text x="114.664" y="137" class="value" text-anchor="middle">Current · 0.316</text><text x="170" y="210" text-anchor="middle">ROC-AUC</text></svg><p class="plot-foot">Independent training, reference, and current windows. Max PSI 0.482; 2 alerts. Synthetic data, not production traffic.</p></figure>
-            <p class="project-caveat">This plot is a synthetic run, not production traffic. The full project keeps its assumptions and evaluation notes visible.</p>
-            <a class="btn small" href="#driftlab">More about DriftLab <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a>
-          </article>
-        </div>
-      </fieldset>
+      <article class="recent-project">
+        <h3><a href="https://github.com/Zinga18018/backstory" target="_blank" rel="noopener">Backstory</a> <span>Newest project</span></h3>
+        <p>A Chrome extension for keeping project notes and practising interview answers. Notes stay in your browser; the questions use fixed templates, not an AI service.</p>
+        <p class="project-caveat">Early version. Desktop Chrome only.</p>
+      </article>
+      <article class="recent-project">
+        <h3><a href="https://github.com/Zinga18018/product-catalog-search" target="_blank" rel="noopener">Product catalog search</a></h3>
+        <p>A local Python demo comparing TF-IDF and BM25 on 54 synthetic products, with category and price filters. No semantic search or customer data.</p>
+      </article>
+      <article class="recent-project">
+        <h3><a href="https://github.com/Zinga18018/driftlab-model-monitoring-simulator" target="_blank" rel="noopener">DriftLab</a></h3>
+        <p>A simulator for testing when changes in data do—and don’t—affect a model’s performance. Uses synthetic data, not production traffic.</p>
+        <a class="text-link" href="#driftlab">See the results and demo</a>
+      </article>
     </aside>
   </div>
 
-  <div class="hero-foot">
-    <span class="status"><i class="dot"></i>Graduating December 2026</span>
-    <a class="hero-scroll" href="#projects">See what I’ve been working on <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 2v12m-5-5 5 5 5-5"/></svg></a>
-  </div>
 </header>
 
 <section class="github-strip" aria-labelledby="github-updates-title">
@@ -530,29 +576,29 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
   <section id="research" class="research-focus" aria-labelledby="research-title">
     <div class="wrap research-grid">
       <div class="research-copy">
-        <p class="eyebrow r">01 / Research</p>
-        <h2 id="research-title" class="h2 r"><span class="g1">Research I’m</span><span class="g2">working on.</span></h2>
+        
+        <h2 id="research-title" class="h2 r">Research</h2>
         <p class="lead r">My research looks at women’s safety discussions online and public genetic data for type 2 diabetes.</p>
         <a class="research-highlight r" href="#research-project">
           <span class="research-label">Public-discourse research</span>
-          <strong>351,501 comments.<br>16 women-safety cases.</strong>
+          <strong>Women’s safety discussions online</strong><span>Analysis of 351,501 Reddit and YouTube comments across 16 cases in India.</span>
           <span>Paper accepted at ASONAM 2026</span>
           <span class="research-cta">View the research <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></span></span>
         </a>
         <div class="research-context r">
           <p class="label">Type 2 diabetes project</p>
-          <p>The atlas compares returned public-source records for five type 2 diabetes regions. Select a region to inspect the evidence—and the missingness.</p>
+          <p>This project compares the records returned by public genetic data sources for five type 2 diabetes regions. Select a region to see the counts and missing records.</p>
           <a href="#gene-explorer">See the diabetes project <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></span></a>
         </div>
       </div>
-    <aside class="atlas brackets" aria-labelledby="atlas-title">
+    <aside class="atlas" aria-labelledby="atlas-title">
       <div class="atlas-top">
         <div>
           <p class="atlas-kicker">Public genetic data / Five regions</p>
           <h2 id="atlas-title">Five diabetes regions</h2>
           <p class="atlas-subtitle">FinnGen R12 T2D · Open Targets 26.09</p>
         </div>
-        <button class="atlas-motion" id="atlas-motion" type="button" hidden>Pause motion</button>
+        
       </div>
       <fieldset class="atlas-picker">
         <legend>Select a type 2 diabetes region</legend>
@@ -607,26 +653,26 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
   </section>
 
   <section id="projects">
-    <div class="glow" style="top:20%;left:30%" aria-hidden="true"></div>
+    
     <div class="wrap">
-      <p class="eyebrow r">02 / Projects</p>
+      
       <div class="work-head">
-        <h2 class="h2 r"><span class="g1">Projects I’ve</span><span class="g2">recently worked on.</span></h2>
-        <p class="lead r" style="--d:.15s">A few projects, with the code, demos, and what I learned along the way. The newest ones are in the explorer above.</p>
+        <h2 class="h2 r">Projects I’ve recently worked on</h2>
+        <p class="lead r" style="--d:.15s">Code, demos and results, including what each evaluation does not establish.</p>
       </div>
 
       <div class="stack">
-        <article class="stack-item featured-project" id="research-project" style="--i:0"><div class="card brackets">
-          <span class="num" aria-hidden="true">01</span>
+        <article class="stack-item featured-project" id="research-project" style="--i:0"><div class="card">
+          
           <div class="card-grid">
             <div>
-              <p class="kicker"><b>01 //</b>Public-discourse research</p>
+              
               <h3>Research on women’s safety discussions</h3>
               <p class="desc">An interactive research dashboard covering 351,501 Reddit and YouTube comments across 16 women-safety cases in India.</p>
               <ul class="pills"><li>Python</li><li>Pandas</li><li>Qwen</li><li>Statistical testing</li></ul>
             </div>
             <aside>
-              <p class="label">// Paper accepted at ASONAM 2026</p>
+              <p class="label">Paper accepted at ASONAM 2026</p>
               <figure class="project-plot"><figcaption>Stance across time windows</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Stance across time windows"><title>Stance across time windows</title><path class="grid" d="M38 165H326"/><text x="29" y="169" text-anchor="end">0%</text><path class="grid" d="M38 125H326"/><text x="29" y="129" text-anchor="end">20%</text><path class="grid" d="M38 85H326"/><text x="29" y="89" text-anchor="end">40%</text><path class="grid" d="M38 45H326"/><text x="29" y="49" text-anchor="end">60%</text><polyline points="52,97.276 179,106.414 306,117.124" fill="none" stroke="#8ec5e8" stroke-width="3"/><circle class="mark" cx="52" cy="97.276" r="5" fill="#8ec5e8"><title>Government criticism: 33.9%</title></circle><circle class="mark" cx="179" cy="106.414" r="5" fill="#8ec5e8"><title>Government criticism: 29.3%</title></circle><circle class="mark" cx="306" cy="117.124" r="5" fill="#8ec5e8"><title>Government criticism: 23.9%</title></circle><polyline points="52,112.814 179,105.806 306,104.67" fill="none" stroke="#f0b46a" stroke-width="3"/><circle class="mark" cx="52" cy="112.814" r="5" fill="#f0b46a"><title>Safety discussion: 26.1%</title></circle><circle class="mark" cx="179" cy="105.806" r="5" fill="#f0b46a"><title>Safety discussion: 29.6%</title></circle><circle class="mark" cx="306" cy="104.67" r="5" fill="#f0b46a"><title>Safety discussion: 30.2%</title></circle><text x="52" y="190" text-anchor="middle">Acute</text><text x="179" y="190" text-anchor="middle">Sustained</text><text x="306" y="190" text-anchor="middle">Retrospective</text><circle cx="8" cy="210" r="4" fill="#8ec5e8"/><text x="18" y="214" text-anchor="start">Govt criticism</text><circle cx="177" cy="210" r="4" fill="#f0b46a"/><text x="187" y="214" text-anchor="start">Safety discussion</text></svg><p class="plot-foot">Phase summaries from the research dashboard · hover for exact values.</p></figure>
               <p class="note">The dashboard separates submitted-paper findings from later model audits.</p>
               <div class="go"><a href="https://yogeshkuchimanchi.com/research/women-safety/" target="_blank" rel="noopener">Research dashboard <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></div>
@@ -634,34 +680,34 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
           </div>
         </div></article>
 
-        <article class="stack-item featured-project" id="driftlab" style="--i:1"><div class="card brackets">
-          <span class="num" aria-hidden="true">02</span>
+        <article class="stack-item featured-project" id="driftlab" style="--i:1"><div class="card">
+          
           <div class="card-grid">
             <div>
-              <p class="kicker"><b>02 //</b>Model evaluation</p>
+              
               <h3>DriftLab: testing model drift</h3>
               <p class="desc">A seeded synthetic simulator that compares an independent reference window with a current window to show when data drift does, and does not, mean model degradation.</p>
               <ul class="pills"><li>NumPy</li><li>Pandas</li><li>PSI / KS</li><li>Streamlit</li></ul>
             </div>
             <aside>
-              <p class="label">// Default synthetic mixed-shift run</p>
+              <p class="label">Default synthetic mixed-shift run</p>
               <figure class="project-plot"><figcaption>Reference and current ROC-AUC</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Reference and current ROC-AUC"><title>Reference and current ROC-AUC</title><path class="grid" d="M20 44V150"/><text x="20" y="177" text-anchor="middle">0</text><path class="grid" d="M95.0 44V150"/><text x="95.0" y="177" text-anchor="middle">0.25</text><path class="grid" d="M170.0 44V150"/><text x="170.0" y="177" text-anchor="middle">0.5</text><path class="grid" d="M245.0 44V150"/><text x="245.0" y="177" text-anchor="middle">0.75</text><path class="grid" d="M320 44V150"/><text x="320" y="177" text-anchor="middle">1</text><path d="M114.664 99H251.42" stroke="#7193aa" stroke-width="4"/><circle class="mark" cx="251.42" cy="99" r="8" fill="#8ec5e8"><title>Reference: 0.771</title></circle><text x="251.42" y="66" class="value" text-anchor="middle">Reference · 0.771</text><circle class="mark" cx="114.664" cy="99" r="8" fill="#f0b46a"><title>Current: 0.316</title></circle><text x="114.664" y="137" class="value" text-anchor="middle">Current · 0.316</text><text x="170" y="210" text-anchor="middle">ROC-AUC</text></svg><p class="plot-foot">Independent training, reference, and current windows. Max PSI 0.482; 2 alerts. Synthetic data, not production traffic.</p></figure>
               <div class="go"><a href="https://yogesh-driftlab-monitoring.streamlit.app/" target="_blank" rel="noopener">Live demo <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a><a href="https://github.com/Zinga18018/driftlab-model-monitoring-simulator" target="_blank" rel="noopener">Source <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></div>
             </aside>
           </div>
         </div></article>
 
-        <article class="stack-item featured-project" id="prompt-rewriter" style="--i:2"><div class="card brackets">
-          <span class="num" aria-hidden="true">03</span>
+        <article class="stack-item featured-project" id="prompt-rewriter" style="--i:2"><div class="card">
+          
           <div class="card-grid">
             <div>
-              <p class="kicker"><b>03 //</b>AI desktop tooling</p>
+              
               <h3>Prompt Rewriter</h3>
               <p class="desc">A Windows Python tool that rewrites selected text into a structured AI prompt with a global hotkey. The case study edits one existing Notepad recording, documented as local Ollama. Cross-application reliability and inference speed have not been benchmarked.</p>
               <ul class="pills"><li>Python</li><li>Ollama</li><li>Desktop automation</li><li>Prompt engineering</li></ul>
             </div>
             <aside>
-              <p class="label">// 68-second case study</p>
+              <p class="label">68-second case study</p>
               <figure class="project-video">
                 <video controls preload="metadata" playsinline poster="/videos/prompt-rewriter-case-study-poster.png" aria-label="Prompt Rewriter 68-second case study">
                   <source src="/videos/prompt-rewriter-case-study.mp4" type="video/mp4">
@@ -674,17 +720,17 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
           </div>
         </div></article>
 
-        <article class="stack-item" id="gene-explorer" style="--i:3"><div class="card brackets">
-          <span class="num" aria-hidden="true">04</span>
+        <article class="stack-item" id="gene-explorer" style="--i:3"><div class="card">
+          
           <div class="card-grid">
             <div>
-              <p class="kicker"><b>04 //</b>Statistical genetics · recent project</p>
+              
               <h3>Exploring genetic evidence for type 2 diabetes</h3>
               <p class="desc">A public-data audit of five FinnGen type 2 diabetes regions, comparing available variant, candidate-gene, and molecular evidence while retaining source QC flags.</p>
               <ul class="pills"><li>Python</li><li>Open Targets</li><li>Statistical genetics</li><li>GitHub Pages</li></ul>
             </div>
             <aside>
-              <p class="label">// Open Targets 26.09 snapshot</p>
+              <p class="label">Open Targets 26.09 snapshot</p>
               <figure class="project-plot"><figcaption>Evidence in the selected regions</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Evidence in the selected regions"><title>Evidence in the selected regions</title><path class="grid" d="M130.0 15V185"/><text x="130.0" y="211" text-anchor="middle">0</text><path class="grid" d="M172.5 15V185"/><text x="172.5" y="211" text-anchor="middle">20</text><path class="grid" d="M215.0 15V185"/><text x="215.0" y="211" text-anchor="middle">40</text><path class="grid" d="M257.5 15V185"/><text x="257.5" y="211" text-anchor="middle">60</text><path class="grid" d="M300.0 15V185"/><text x="300.0" y="211" text-anchor="middle">80</text><text x="0" y="39" text-anchor="start">Regions</text><rect class="mark" x="130" y="23" width="10.625" height="18" rx="4" fill="#8ec5e8"><title>Regions: 5</title></rect><text x="147.625" y="38" class="value" text-anchor="start">5</text><text x="0" y="82" text-anchor="start">Variant rows</text><rect class="mark" x="130" y="66" width="138.125" height="18" rx="4" fill="#e3f1fa"><title>Variant rows: 65</title></rect><text x="275.125" y="81" class="value" text-anchor="start">65</text><text x="0" y="125" text-anchor="start">L2G candidates</text><rect class="mark" x="130" y="109" width="23.375000000000004" height="18" rx="4" fill="#f0b46a"><title>L2G candidates: 11</title></rect><text x="160.375" y="124" class="value" text-anchor="start">11</text><text x="0" y="168" text-anchor="start">Colocalisation</text><rect class="mark" x="130" y="152" width="93.50000000000001" height="18" rx="4" fill="#7193aa"><title>Colocalisation: 44</title></rect><text x="230.5" y="167" class="value" text-anchor="start">44</text></svg><p class="plot-foot">Counts by evidence type · not mutually exclusive.</p></figure>
               <p class="note">Source QC flags remain visible.</p>
               <div class="go"><a href="https://zinga18018.github.io/cardiometabolic-gwas-evidence-explorer/" target="_blank" rel="noopener">Evidence explorer <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a><a href="https://github.com/Zinga18018/cardiometabolic-gwas-evidence-explorer" target="_blank" rel="noopener">Source <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></div>
@@ -692,35 +738,35 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
           </div>
         </div></article>
 
-        <article class="stack-item" id="readmission-audit" style="--i:4"><div class="card brackets">
-          <span class="num" aria-hidden="true">05</span>
+        <article class="stack-item" id="readmission-audit" style="--i:4"><div class="card">
+          
           <div class="card-grid">
             <div>
-              <p class="kicker"><b>05 //</b>Clinical prediction</p>
+              
               <h3>Checking hospital readmission models</h3>
               <p class="desc">An educational audit of 30-day readmission models, with patient-disjoint cohorts, probability calibration, missingness analysis, and drift checks.</p>
               <ul class="pills"><li>CatBoost</li><li>PyTorch</li><li>Calibration</li><li>Streamlit</li></ul>
             </div>
             <aside>
-              <p class="label">// Historical evaluation · 10,822 encounters</p>
-              <figure class="project-plot"><figcaption>Historical prediction scores</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Historical prediction scores"><title>Historical prediction scores</title><text x="0" y="35" text-anchor="start">ROC-AUC</text><text x="335" y="35" class="value" text-anchor="end">0.661</text><path d="M8 54H332" stroke="#29404f" stroke-width="4" stroke-linecap="round"/><circle class="mark" cx="222.16400000000002" cy="54" r="7" fill="#8ec5e8"><title>ROC-AUC: 0.661</title></circle><text x="0" y="93" text-anchor="start">PR-AUC</text><text x="335" y="93" class="value" text-anchor="end">0.175</text><path d="M8 112H332" stroke="#29404f" stroke-width="4" stroke-linecap="round"/><circle class="mark" cx="64.69999999999999" cy="112" r="7" fill="#e3f1fa"><title>PR-AUC: 0.175</title></circle><text x="0" y="151" text-anchor="start">Brier score</text><text x="335" y="151" class="value" text-anchor="end">0.077</text><path d="M8 170H332" stroke="#29404f" stroke-width="4" stroke-linecap="round"/><circle class="mark" cx="32.948" cy="170" r="7" fill="#f0b46a"><title>Brier score: 0.077</title></circle><text x="8" y="217" text-anchor="start">0</text><text x="332" y="217" text-anchor="end">1</text></svg><p class="plot-foot">This cohort was inspected across several experiments. These are retrospective results, not an untouched final benchmark or a clinical decision tool.</p></figure>
+              <p class="label">Historical evaluation · 10,822 encounters</p>
+              <figure class="project-plot"><figcaption>Historical prediction scores</figcaption><dl class="result-values"><div><dt>ROC-AUC</dt><dd>0.661</dd></div><div><dt>PR-AUC</dt><dd>0.175</dd></div><div><dt>Brier score</dt><dd>0.077</dd></div></dl><p class="plot-foot">This cohort was inspected across several experiments. These are retrospective results, not an untouched final benchmark or a clinical decision tool.</p></figure>
               <div class="go"><a href="https://yogesh-readmission-risk-audit.streamlit.app/" target="_blank" rel="noopener">Live demo <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a><a href="https://github.com/Zinga18018/readmission-risk-audit" target="_blank" rel="noopener">Source <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></div>
             </aside>
           </div>
         </div></article>
 
-        <article class="stack-item" id="newssnap" style="--i:5"><div class="card brackets">
-          <span class="num" aria-hidden="true">06</span>
+        <article class="stack-item" id="newssnap" style="--i:5"><div class="card">
+          
           <div class="card-grid">
             <div>
-              <p class="kicker"><b>06 //</b>NLP</p>
+              
               <h3>NewsSnap: sorting news by topic</h3>
               <p class="desc">A four-topic news classifier with a FastAPI service, React dashboard, and separate transformer and keyword-demo modes.</p>
               <ul class="pills"><li>DistilBERT</li><li>FastAPI</li><li>React</li><li>CI/CD</li></ul>
             </div>
             <aside>
-              <p class="label">// Historical evaluation · 12,000 articles</p>
-              <figure class="project-plot"><figcaption>Classification performance</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Classification performance"><title>Classification performance</title><circle cx="57" cy="78" r="43" fill="none" stroke="#20323f" stroke-width="7"/><circle class="mark" cx="57" cy="78" r="43" fill="none" stroke="#8ec5e8" stroke-width="7" stroke-linecap="round" stroke-dasharray="235.05396234158832 270.1769682087222" transform="rotate(-90 57 78)"><title>Accuracy: 0.87</title></circle><text x="57" y="83" class="value" text-anchor="middle">0.870</text><text x="57" y="151" text-anchor="middle">Accuracy</text><circle cx="170" cy="78" r="43" fill="none" stroke="#20323f" stroke-width="7"/><circle class="mark" cx="170" cy="78" r="43" fill="none" stroke="#e3f1fa" stroke-width="7" stroke-linecap="round" stroke-dasharray="234.7837853733796 270.1769682087222" transform="rotate(-90 170 78)"><title>Macro-F1: 0.869</title></circle><text x="170" y="83" class="value" text-anchor="middle">0.869</text><text x="170" y="151" text-anchor="middle">Macro-F1</text><circle cx="283" cy="78" r="43" fill="none" stroke="#20323f" stroke-width="7"/><circle class="mark" cx="283" cy="78" r="43" fill="none" stroke="#f0b46a" stroke-width="7" stroke-linecap="round" stroke-dasharray="223.43635270861324 270.1769682087222" transform="rotate(-90 283 78)"><title>MCC: 0.827</title></circle><text x="283" y="83" class="value" text-anchor="middle">0.827</text><text x="283" y="151" text-anchor="middle">MCC</text><text x="170" y="198" text-anchor="middle">Historical project-created test split</text></svg><p class="plot-foot">Recovered training used 512 examples. Prepared train/test pools share 27 normalized texts; fitted-sample overlap is unknown. The hosted demo uses keyword fallback when weights are unavailable.</p></figure>
+              <p class="label">Historical evaluation · 12,000 articles</p>
+              <figure class="project-plot"><figcaption>Classification performance</figcaption><dl class="result-values"><div><dt>Accuracy</dt><dd>0.870</dd></div><div><dt>Macro-F1</dt><dd>0.869</dd></div><div><dt>MCC</dt><dd>0.827</dd></div></dl><p class="plot-foot">Recovered training used 512 examples. Prepared train/test pools share 27 normalized texts; fitted-sample overlap is unknown. The hosted demo uses keyword fallback when weights are unavailable.</p></figure>
               <div class="go"><a href="https://yogesh-newssnap-classifier.streamlit.app/" target="_blank" rel="noopener">Demo: check inference mode <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a><a href="https://github.com/Zinga18018/NewsSnap" target="_blank" rel="noopener">Source <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></div>
             </aside>
           </div>
@@ -728,8 +774,8 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
       </div>
 
       <div class="credits r">
-        <p class="label">// More projects</p>
-        <h3>More work on GitHub.</h3>
+        <p class="label">More projects</p>
+        <h3>Other projects</h3>
         <p class="lead">Find the source, setup instructions, and evaluation notes for more of my projects.</p>
         <dl class="roll">
           <div><dt>Synthetic Bayesian benchmark</dt><dd><a href="https://github.com/Zinga18018/coregene-bayes-benchmark" target="_blank" rel="noopener">coregene-bayes-benchmark</a></dd></div>
@@ -738,44 +784,36 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
           <div><dt>Product analytics and A/B testing</dt><dd><a href="https://github.com/Zinga18018/product-analytics-experimentation-lab" target="_blank" rel="noopener">product-analytics-experimentation-lab</a></dd></div>
           <div><dt>Service monitoring</dt><dd><a href="https://github.com/Zinga18018/nyc-311-service-monitor" target="_blank" rel="noopener">nyc-311-service-monitor</a></dd></div>
         </dl>
-        <a class="btn ghost" href="https://github.com/Zinga18018?tab=repositories" target="_blank" rel="noopener">See all <span class="repo-count">48</span> repositories <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></span></a>
+        <a class="btn ghost" href="https://github.com/Zinga18018?tab=repositories" target="_blank" rel="noopener">All repositories <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></span></a>
       </div>
     </div>
   </section>
 
   <section id="about">
-    <div class="glow" style="top:15%;left:5%" aria-hidden="true"></div>
+    
     <div class="wrap">
-      <p class="eyebrow r">03 / About</p>
+      
       <div class="about-grid">
         <div>
-          <h2 class="h2 r"><span class="g1">Computers</span><span class="g2">came first.</span></h2>
+          <h2 class="h2 r">About me</h2>
           <p class="lead r" style="--d:.15s">My father brought home the first computer I ever saw. That early curiosity eventually took me from computer applications to data science and, now, an M.S. at RIT.</p>
           <p class="lead r" style="--d:.25s;margin-top:16px">Research has taught me to check how labels were made, whether a comparison is fair, and where a model fails. My projects now span machine learning, public discourse, and the study of genetic evidence for type 2 diabetes.</p>
-          <div class="stats r" style="--d:.35s">
-            <div class="stat"><b>351,501</b><span>Reddit and YouTube comments analyzed</span></div>
-            <div class="stat"><b>6</b><span>Featured projects</span></div>
-            <div class="stat"><b class="repo-count">48</b><span>Public repositories</span></div>
-            <div class="stat"><b>2026</b><span>Paper accepted at ASONAM</span></div>
-          </div>
+
         </div>
 
         <div class="tilt-wrap r" style="--d:.2s">
-          <div class="now-card brackets" id="now">
-            <div class="hc-top"><span>NOW</span><i class="dot"></i></div>
-            <div class="hc-big">Dec<small>2026</small></div>
+          <div class="now-card" id="now">
+            
+            <h3>December 2026</h3>
             <p class="hc-label">Expected graduation, M.S. Data Science at RIT</p>
-            <svg class="curve" viewBox="0 0 320 60" preserveAspectRatio="none" aria-hidden="true">
-              <path class="base" d="M0 6C34 32 62 42 112 47S228 54 320 55"/>
-              <path class="trace" pathLength="100" d="M0 6C34 32 62 42 112 47S228 54 320 55"/>
-            </svg>
+            
             <dl class="rows">
               <div><dt>Current study</dt><dd>Genetic evidence for type 2 diabetes</dd></div>
               <div><dt>Recent research</dt><dd>Public discourse and women's safety</dd></div>
               <div><dt>Paper</dt><dd>Accepted at ASONAM 2026</dd></div>
               <div><dt>Dashboard</dt><dd><a href="https://yogeshkuchimanchi.com/research/women-safety/" target="_blank" rel="noopener">Open the research dashboard <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></dd></div>
             </dl>
-            <span class="sig">Yogesh</span>
+            
           </div>
         </div>
       </div>
@@ -783,10 +821,10 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
   </section>
 
   <section id="experience">
-    <div class="glow" style="top:40%;left:45%" aria-hidden="true"></div>
+    
     <div class="wrap">
-      <p class="eyebrow r">04 / Experience</p>
-      <h2 class="h2 r"><span class="g1">Research</span><span class="g2">and work.</span></h2>
+      
+      <h2 class="h2 r">Experience and education</h2>
 
       <div class="timeline" id="timeline">
         <div class="tl-line" aria-hidden="true"></div>
@@ -828,37 +866,37 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
   </section>
 
   <section id="skills">
-    <div class="glow" style="top:30%;left:20%" aria-hidden="true"></div>
+    
     <div class="wrap">
-      <p class="eyebrow r">05 / Skills</p>
+      
       <div class="work-head">
-        <h2 class="h2 r"><span class="g1">Tools</span><span class="g2">I use.</span></h2>
+        <h2 class="h2 r">Tools I use</h2>
         <p class="lead r" style="--d:.15s">Languages, modeling libraries, databases, and tools used in my projects.</p>
       </div>
 
       <div class="bento">
         <div class="tile s4 r">
-          <p class="tile-top">01</p>
+          
           <h3>Languages</h3>
           <ul class="pills"><li>Python</li><li>SQL</li><li>R</li><li>Java</li></ul>
         </div>
         <div class="tile s8 r" style="--d:.1s">
-          <p class="tile-top">02</p>
+          
           <h3>Machine Learning &amp; NLP</h3>
           <ul class="pills"><li>PyTorch</li><li>scikit-learn</li><li>CatBoost</li><li>XGBoost</li><li>Transformers</li><li>LoRA</li><li>DistilBERT</li><li>FT-Transformer</li></ul>
         </div>
         <div class="tile s7 r">
-          <p class="tile-top">03</p>
+          
           <h3>Statistics &amp; Evaluation</h3>
           <ul class="pills"><li>A/B testing</li><li>Mann-Whitney U</li><li>Chi-square</li><li>G-test</li><li>ROC-AUC</li><li>PR-AUC</li><li>Calibration</li><li>PSI / KS / JS</li></ul>
         </div>
         <div class="tile s5 r" style="--d:.1s">
-          <p class="tile-top">04</p>
+          
           <h3>Data &amp; Databases</h3>
           <ul class="pills"><li>Pandas</li><li>NumPy</li><li>SciPy</li><li>Spark</li><li>PostgreSQL</li><li>SQLite</li><li>Window functions</li></ul>
         </div>
         <div class="tile s12 r">
-          <p class="tile-top">05</p>
+          
           <h3>ML Engineering</h3>
           <ul class="pills"><li>FastAPI</li><li>Streamlit</li><li>React</li><li>Docker</li><li>GitHub Actions</li><li>Automated testing</li><li>Git</li><li>Excel / VBA</li></ul>
         </div>
@@ -870,15 +908,15 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
     <div class="wrap">
       <div class="contact-grid">
         <div>
-          <p class="eyebrow r">06 / Contact</p>
-          <h2 class="h2 r"><span class="g1">Get in</span><span class="g2">touch.</span></h2>
+          
+          <h2 class="h2 r">Contact</h2>
           <p class="lead r" style="--d:.15s">I'm looking for data science and ML engineering roles. Email me about a role, a project, or a research collaboration.</p>
         </div>
-        <div class="console brackets r" style="--d:.1s">
-          <div class="row"><span class="k">// EMAIL</span><a href="mailto:kuchimanchiyogesh@gmail.com">kuchimanchiyogesh@gmail.com</a><button class="copy" type="button" data-copy="kuchimanchiyogesh@gmail.com">COPY</button></div>
-          <div class="row"><span class="k">// GITHUB</span><a href="https://github.com/Zinga18018" target="_blank" rel="noopener">github.com/Zinga18018 <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></div>
-          <div class="row"><span class="k">// LINKEDIN</span><a href="https://www.linkedin.com/in/yogesh-kuchimanchi" target="_blank" rel="noopener">linkedin.com/in/yogesh-kuchimanchi <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></div>
-          <div class="row"><span class="k">// BASED IN</span><span class="v">Rochester, New York</span></div>
+        <div class="console r" style="--d:.1s">
+          <div class="row"><span class="k">Email</span><a href="mailto:kuchimanchiyogesh@gmail.com">kuchimanchiyogesh@gmail.com</a><button class="copy" type="button" data-copy="kuchimanchiyogesh@gmail.com">Copy</button></div>
+          <div class="row"><span class="k">GitHub</span><a href="https://github.com/Zinga18018" target="_blank" rel="noopener">github.com/Zinga18018 <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></div>
+          <div class="row"><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/yogesh-kuchimanchi" target="_blank" rel="noopener">linkedin.com/in/yogesh-kuchimanchi <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></div>
+          <div class="row"><span class="k">Based in</span><span class="v">Rochester, New York</span></div>
           <a class="btn" href="mailto:kuchimanchiyogesh@gmail.com?subject=Hello%20Yogesh">Email me <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></span></a>
         </div>
       </div>
@@ -892,125 +930,36 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
 
 <script>
 (() => {
-  const motionQuery = matchMedia('(prefers-reduced-motion: reduce)');
-  let reduce = motionQuery.matches;
-  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  // reveal on scroll
-  const io = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-  }), { rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.r').forEach(el => io.observe(el));
-  // Enable decorative reveals only after the observer is ready. Content stays
-  // visible if this script fails or JavaScript is disabled.
-  document.documentElement.classList.add('js');
-
-  // live repository count, same source as the GitHub profile
-  fetch('https://api.github.com/users/Zinga18018').then(r => (r.ok ? r.json() : null)).then(u => {
-    if (u && u.public_repos) document.querySelectorAll('.repo-count').forEach(el => (el.textContent = u.public_repos));
-  }).catch(() => {});
-
-  // stacked cards shrink and dim as the next one lands; timeline line draws with scroll
-  const items = [...document.querySelectorAll('.stack-item')];
-  const sticky = matchMedia('(min-width: 761px) and (min-height: 641px)');
-  const tl = document.getElementById('timeline');
   const navigation = document.querySelector('.nav');
-  const sectionLinks = [...document.querySelectorAll('.links a[href^="#"]')];
-  const sectionTargets = sectionLinks.map(link => document.querySelector(link.getAttribute('href')));
-  const GAP = 36, STEP = 24;
+  const links = [...document.querySelectorAll('.links a[href^="#"]')];
+  const targets = links.map(link => document.querySelector(link.getAttribute('href')));
   let queued = false;
-  function onScroll() {
+  function updateNavigation() {
     queued = false;
-    // Keep the same section links available on every screen, with a current marker.
     const marker = navigation.getBoundingClientRect().height + 64;
-    let currentSection = -1;
-    let nearestTop = -Infinity;
-    sectionTargets.forEach((target, index) => {
+    let current = -1, nearest = -Infinity;
+    targets.forEach((target, index) => {
       const top = target?.getBoundingClientRect().top;
-      if (top <= marker && top > nearestTop) { currentSection = index; nearestTop = top; }
+      if (top <= marker && top > nearest) { current = index; nearest = top; }
     });
-    sectionLinks.forEach((link, index) => {
-      if (index === currentSection) link.setAttribute('aria-current', 'location');
+    links.forEach((link, index) => {
+      if (index === current) link.setAttribute('aria-current', 'location');
       else link.removeAttribute('aria-current');
     });
-    items.forEach((it, i) => {
-      const card = it.firstElementChild, next = items[i + 1];
-      let p = 0;
-      if (next && sticky.matches) {
-        const dist = next.getBoundingClientRect().top - it.getBoundingClientRect().top;
-        p = clamp(1 - (dist - STEP) / (it.offsetHeight + GAP - STEP), 0, 1);
-      }
-      card.style.setProperty('--s', 1 - p * 0.06);
-      card.style.setProperty('--b', 1 - p * 0.45);
-    });
-    const r = tl.getBoundingClientRect();
-    tl.style.setProperty('--p', clamp((innerHeight * 0.7 - r.top) / r.height, 0, 1));
   }
-  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(onScroll); } };
-  addEventListener('scroll', queue, { passive: true });
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(updateNavigation); } };
+  addEventListener('scroll', queue, {passive:true});
   addEventListener('resize', queue);
-  onScroll();
-
-  // tilt card with a light that follows the pointer
-  const card = document.getElementById('now');
-  if (matchMedia('(hover: hover)').matches) {
-    card.addEventListener('pointermove', e => {
-      if (reduce) return;
-      const b = card.getBoundingClientRect(), x = (e.clientX - b.left) / b.width, y = (e.clientY - b.top) / b.height;
-      card.style.setProperty('--rx', (0.5 - y) * 14 + 'deg');
-      card.style.setProperty('--ry', (x - 0.5) * 14 + 'deg');
-      card.style.setProperty('--mx', x * 100 + '%');
-      card.style.setProperty('--my', y * 100 + '%');
-    });
-    card.addEventListener('pointerleave', () => { card.style.setProperty('--rx', '0deg'); card.style.setProperty('--ry', '0deg'); });
-  }
-
-  // copy email
-  document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', () => {
-    navigator.clipboard?.writeText(b.dataset.copy).then(() => {
-      b.textContent = 'COPIED';
-      setTimeout(() => (b.textContent = 'COPY'), 1600);
-    });
+  updateNavigation();
+  document.querySelectorAll('[data-copy]').forEach(button => button.addEventListener('click', async () => {
+    try {
+      if (!navigator.clipboard) throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(button.dataset.copy);
+      button.textContent = 'Copied';
+    } catch { button.textContent = 'Select email to copy'; }
+    setTimeout(() => { button.textContent = 'Copy'; }, 2400);
   }));
-
-  // The atlas is readable and selectable without JavaScript. Its only scripted
-  // behavior is decorative motion, paused when hidden, off-screen, or touched.
-  const atlas = document.querySelector('.atlas');
-  const motionButton = document.getElementById('atlas-motion');
-  let atlasVisible = false;
-  let motionPaused = false;
-
-  function syncAtlasMotion() {
-    const playing = !reduce && atlasVisible && !document.hidden && !motionPaused;
-    atlas.classList.toggle('is-playing', playing);
-    motionButton.hidden = reduce;
-    motionButton.textContent = motionPaused ? 'Play motion' : 'Pause motion';
-  }
-
-  new IntersectionObserver(([entry]) => {
-    atlasVisible = entry.isIntersecting;
-    syncAtlasMotion();
-  }, { threshold: .02 }).observe(atlas);
-  document.addEventListener('visibilitychange', syncAtlasMotion);
-  atlas.querySelectorAll('input[name="atlas-locus"]').forEach(input => {
-    input.addEventListener('change', () => {
-      motionPaused = true;
-      syncAtlasMotion();
-    });
-  });
-  motionButton.addEventListener('click', () => {
-    motionPaused = !motionPaused;
-    syncAtlasMotion();
-  });
-  motionQuery.addEventListener('change', event => {
-    reduce = event.matches;
-    if (reduce) {
-      card.style.setProperty('--rx', '0deg');
-      card.style.setProperty('--ry', '0deg');
-    }
-    syncAtlasMotion();
-  });
 })();
 </script>
 <script>
