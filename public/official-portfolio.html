@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Yogesh Kuchimanchi | Data Scientist</title>
-<meta name="description" content="Explore Yogesh Kuchimanchi's data science projects, led by a public-data cardiometabolic GWAS evidence explorer for five selected type 2 diabetes regions.">
+<meta name="description" content="Data science projects and research by Yogesh Kuchimanchi, an M.S. Data Science student at RIT. Explore recent tools, demos, results, and code.">
 <link rel="canonical" href="https://yogeshkuchimanchi.com/">
 <meta property="og:url" content="https://yogeshkuchimanchi.com/">
 <meta name="theme-color" content="#000000">
@@ -361,7 +361,8 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
 }
 @media(max-width:360px){.links{column-gap:11px;font-size:9px}}
 
-/* YK identity and editorial project hierarchy. Existing project evidence stays intact. */
+
+/* Keep the original split hero, with the approved YK mark and recent projects. */
 :root{--brand:#51b6a6}
 .skip-link{position:fixed;z-index:110;top:12px;left:16px;transform:translateY(-150%);padding:12px 20px;background:var(--frost);color:#07100e;font-weight:600}
 .skip-link:focus{transform:none}
@@ -370,109 +371,78 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
 .logo-dot{color:var(--brand)}
 .nav{padding-block:18px}
 .links{gap:22px;font-size:10px;letter-spacing:.12em}
-.hero{min-height:720px;min-height:min(850px,100svh);background:radial-gradient(ellipse 65% 70% at 78% 36%,rgba(25,75,70,.22),transparent 78%),#000}
-.hero-body{grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);gap:clamp(48px,7vw,112px);max-width:1440px;padding-top:70px;padding-bottom:76px}
-.hero-copy{max-width:48rem}
-.hero-name{margin:0 0 36px;color:#d1e2dd;font:600 11px/1.6 var(--body);letter-spacing:.16em;text-transform:uppercase}
-.hero-name span{color:#8fa39d;font-weight:400;white-space:nowrap}
-.hero .h1{margin-bottom:28px;font-size:clamp(4.7rem,8.7vw,8.8rem);line-height:.91;letter-spacing:-.015em}
-.hero .h1 .g1{background-image:linear-gradient(180deg,#fff,#dfe8e4);filter:none}
-.hero .h1 .g2{background-image:linear-gradient(150deg,#a4e1d2,#51b6a6);filter:none}
-.hero .tagline{margin-bottom:20px;letter-spacing:.14em;font-size:10px}
-.hero-copy .lead{max-width:48ch;margin-bottom:30px;color:#aebdb8;line-height:1.85}
-.ctas{gap:12px}
-.ctas .btn{letter-spacing:.13em;padding:16px 20px;min-height:48px}
-.btn-primary{background:#a4e1d2;color:#07110f;border-color:#a4e1d2}
-.btn-primary:hover{background:#c8eee4;color:#07110f;border-color:#c8eee4;box-shadow:none}
-.hero-index{min-width:0;border-top:1px solid rgba(145,209,194,.45)}
-.index-heading{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:17px 0 10px;font:10px/1.5 var(--mono);text-transform:uppercase;letter-spacing:.08em}
-.index-heading p{margin:0;color:#c3ded5}
-.index-heading>span{color:#90a8a0;text-align:right}
-.index-link{display:grid;grid-template-columns:22px 1fr 18px;gap:12px;align-items:start;padding:24px 0;border-bottom:1px solid rgba(145,209,194,.18);transition:background .25s}
-.index-link:hover{background:linear-gradient(90deg,transparent,rgba(145,209,194,.06))}
-.index-number{padding-top:3px;color:#7eaaa0;font:10px/1.5 var(--mono)}
-.index-copy{display:grid;gap:7px}
-.index-category{color:#93afa6;font:10px/1.5 var(--mono);letter-spacing:.06em;text-transform:uppercase}
-.index-copy strong{color:#e7f1ed;font:700 clamp(1.7rem,2.4vw,2.2rem)/1.04 var(--display)}
-.index-detail{color:#a5b7b0;font-size:11px;line-height:1.6}
-.index-arrow{color:#9ed8c8;font-size:18px;transition:transform .25s}
-.index-link:hover .index-arrow{transform:translate(2px,-2px)}
-.index-note{max-width:30ch;margin:18px 0 0;color:#91a49d;font:11px/1.7 var(--body)}
-.hero-foot{max-width:1440px;width:100%;margin:auto auto 0;align-items:center;padding-bottom:24px;gap:20px}
-.hero-foot .status{color:#9eb9ae;line-height:1.6;letter-spacing:.12em}
-.hero-scroll{color:#a3bdb3;font:11px/1.6 var(--body)}
-.hero-scroll span{margin-left:18px;color:#c5e8dc}
-.research-focus{--acc:#91d1c2;--glow:145,209,194;--edge:77,123,116;border-top:1px solid rgba(145,209,194,.2);background:linear-gradient(180deg,#040b0b,transparent)}
+.arrow-icon{display:inline-block;width:12px;height:12px;flex:none;vertical-align:-1px;margin-left:3px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.hero-scroll{color:#9ebfb3;font:11px/1.6 var(--body)}
+.hero-foot{gap:18px;align-items:center}
+.project-explorer{min-width:0;padding:clamp(18px,2.2vw,30px);border:1px solid rgba(145,209,194,.38);background:linear-gradient(145deg,rgba(9,30,31,.96),rgba(2,12,15,.97));box-shadow:0 26px 90px rgba(0,0,0,.65)}
+.project-explorer>h2{margin:0 0 22px;color:#f1faf7;font:800 clamp(2rem,3vw,3rem)/1 var(--display);text-transform:uppercase;letter-spacing:.01em}
+.project-picker{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;border:0;padding:0;margin:0;min-width:0}
+.project-picker legend{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.project-radio{position:absolute;width:1px;height:1px;opacity:0}
+.project-picker>label{display:flex;align-items:center;justify-content:center;min-height:44px;padding:9px 6px;border:1px solid rgba(145,209,194,.25);font:600 11px/1.4 var(--body);color:#b2c9c0;cursor:pointer;text-align:center}
+.project-radio:checked+label{border-color:#91d1c2;background:rgba(145,209,194,.12);color:#edfff9;box-shadow:inset 0 -2px #91d1c2}
+.project-radio:focus-visible+label{outline:2px solid #e2fff5;outline-offset:2px}
+.project-scenes{grid-column:1/-1;min-width:0;margin-top:14px;min-height:440px}
+.project-scene{display:none}
+#project-backstory:checked~.project-scenes .scene-backstory,#project-search:checked~.project-scenes .scene-search,#project-driftlab:checked~.project-scenes .scene-driftlab{display:block}
+.project-meta{color:#9ac2b4;font:10px/1.5 var(--mono);margin:0 0 10px}
+.project-scene h3{color:#e7f7ef;font:700 2rem/1.05 var(--display);margin:0 0 11px}
+.project-scene>p:not(.project-meta):not(.project-caveat){color:#c2d2cb;font-size:13px;line-height:1.75;margin:0 0 16px}
+.explorer-image{margin:0 0 14px}
+.explorer-image img{display:block;width:100%;height:205px;object-fit:contain;background:#f8f7f2;border:1px solid rgba(145,209,194,.25)}
+.explorer-image figcaption{margin-top:5px;color:#92aaa1;font:10px/1.5 var(--mono)}
+.project-caveat{color:#a8c2b7;font:11px/1.7 var(--body);margin:14px 0 16px}
+.project-scene .btn{letter-spacing:.08em;min-height:42px;white-space:normal;line-height:1.4}
+.explorer-facts{margin:22px 0;padding:0}
+.explorer-facts div{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding:18px 0;border-block-start:1px solid rgba(145,209,194,.2)}
+.explorer-facts dt{font:11px/1.5 var(--mono);color:#95b4a7}
+.explorer-facts dd{margin:0;color:#e1f0e8;font:600 13px/1.5 var(--body)}
+.project-scene .project-plot{max-width:360px;margin:0 auto}
+.project-scene .project-plot svg{max-height:180px}
+.project-scene .project-plot .plot-foot{font-size:10px}
+.github-strip{padding:25px 0;border-block:1px solid rgba(145,209,194,.2);background:#050c0c}
+.activity-wrap{max-width:1440px;display:flex;align-items:center;gap:24px}
+.activity-heading{flex:0 0 165px}
+.activity-heading h2{margin:0 0 5px;color:#d2e4db;font:600 12px/1.4 var(--body)}
+.activity-heading p{margin:0;color:#94aea2;font:9px/1.7 var(--mono)}
+.activity-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));flex:1;gap:24px;margin:0;padding:0;list-style:none;min-width:0}
+.activity-list li{min-width:0;border-left:1px solid rgba(145,209,194,.2);padding-left:20px}
+.activity-list a{display:block;padding-block:6px}
+.activity-list strong{display:block;color:#bdd6ca;font:600 11px/1.5 var(--body);overflow-wrap:anywhere}
+.activity-list span{display:block;margin-top:4px;color:#95aa9f;font:9px/1.5 var(--mono)}
+.activity-list a:hover strong{text-decoration:underline;text-underline-offset:3px}
+.activity-all{color:#b7d6c7;font:10px/1.5 var(--body);white-space:nowrap}
+.research-focus{--acc:#91d1c2;--glow:145,209,194;--edge:77,123,116;background:linear-gradient(180deg,#040b0b,transparent)}
 .research-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,5vw,72px);align-items:center;max-width:1360px}
 .research-copy .eyebrow{font-size:10px;letter-spacing:.19em}
 .research-copy .h2{font-size:clamp(3.2rem,5.6vw,5.5rem);line-height:.96;margin-bottom:24px}
-.research-copy .g2{background-image:linear-gradient(180deg,#d3f2e8,#91d1c2);filter:none}
 .research-copy>.lead{font-size:14px;max-width:40ch}
 .research-highlight{display:grid;gap:9px;border-left:2px solid #51b6a6;padding:4px 0 4px 20px;margin:30px 0;color:#b7cbc2;font-size:11px;line-height:1.6}
 .research-label{color:#92c9b8;font:10px/1.6 var(--mono);letter-spacing:.08em;text-transform:uppercase}
 .research-highlight strong{color:#e1eee7;font:700 1.8rem/1.1 var(--display)}
 .research-cta{color:#c1ebda;font-weight:600}
-.research-highlight:hover .research-cta{text-decoration:underline;text-underline-offset:4px}
 .research-context{padding-top:22px;border-top:1px solid rgba(145,209,194,.2)}
 .research-context .label{color:#94b9ab;font-size:9px;letter-spacing:.1em}
 .research-context p:not(.label){margin:0 0 12px;color:#a1b9af;font-size:12px;line-height:1.8;max-width:43ch}
 .research-context>a{color:#c1ebda;font-size:11px;line-height:1.6}
-.research-context>a:hover{text-decoration:underline;text-underline-offset:4px}
-.research-focus .atlas{max-width:none}
+#projects .work-head .h2{font-size:clamp(2.4rem,5vw,4.6rem);line-height:1.02}
+#projects .work-head{align-items:center}
 .featured-project .card{border-color:rgba(var(--glow),.5);background:linear-gradient(135deg,#0f191c,#080d11 65%)}
-.featured-project .kicker{color:#bacbd4}
-.featured-project .kicker b{color:#a2ddcb}
-.featured-project:first-child .card{border-top:2px solid #70bca9}
-@media(max-width:1100px){
-  .hero-body{gap:40px;padding-top:56px;padding-bottom:60px;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr)}
-  .hero .h1{font-size:clamp(4.3rem,8.7vw,6.6rem)}
-  .research-grid{grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:28px}
-  .links{gap:16px}
-}
+@media(max-width:1100px){.links{gap:16px}.research-grid{gap:28px}.activity-wrap{flex-wrap:wrap}.activity-heading{flex-basis:100%}.activity-list{flex-basis:75%}}
 @media(max-width:900px){
-  .nav{padding-block:14px}
-  .links{gap:4px 20px}
-  .hero{min-height:0}
-  .hero-body{grid-template-columns:1fr;gap:44px;padding-top:48px;padding-bottom:40px}
-  .hero-copy{max-width:44rem}
-  .hero .h1{font-size:clamp(4.5rem,12vw,7.5rem)}
-  .hero-index{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 24px}
-  .index-heading{grid-column:1/-1}
-  .index-link{grid-template-columns:1fr;gap:8px;position:relative;padding:18px 0}
-  .index-arrow{position:absolute;right:0;top:16px}
-  .index-copy strong{font-size:1.8rem}
-  .index-category{font-size:9px;min-height:27px}
-  .index-note{grid-column:1/-1;max-width:none;margin-top:14px}
-  .research-grid{grid-template-columns:1fr;gap:36px}
-  .research-copy{max-width:44rem}
-  .research-copy>.lead,.research-context p:not(.label){max-width:56ch}
-  .research-highlight strong{font-size:2rem}
+ .nav{padding-block:14px}.links{gap:4px 20px}
+ .research-grid{grid-template-columns:1fr;gap:36px}.research-copy{max-width:44rem}
+ .research-copy>.lead,.research-context p:not(.label){max-width:56ch}
+ .project-explorer{max-width:760px}.project-scenes{min-height:0}.explorer-image img{height:250px}
 }
 @media(max-width:600px){
-  :root{--nav-offset:130px}
-  .logo{font-size:11px;gap:10px;letter-spacing:.18em}
-  .logo img{width:35px;height:31px}
-  .links{justify-content:space-between;gap:4px 8px;font-size:9px;letter-spacing:.03em}
-  .hero-body{padding-top:36px;gap:34px}
-  .hero-name{font-size:9px;letter-spacing:.1em;margin-bottom:26px}
-  .hero .h1{font-size:clamp(3.2rem,14vw,5.3rem);margin-bottom:24px}
-  .hero .tagline{font-size:9px;letter-spacing:.08em;line-height:1.9}
-  .hero-copy .lead{font-size:14px}
-  .ctas .btn{font-size:10px;padding:14px 16px;letter-spacing:.08em}
-  .hero-index{display:block}
-  .index-link{grid-template-columns:22px 1fr 18px;gap:12px;padding:18px 0}
-  .index-copy strong{font-size:1.85rem}
-  .index-category{min-height:0}
-  .index-arrow{position:static}
-  .index-note{max-width:none}
-  .hero-foot{align-items:flex-start;flex-direction:column;gap:12px}
-  .hero-foot .status{font-size:9px}
-  .research-copy .h2{font-size:clamp(3.5rem,13vw,4.8rem)}
-  .research-highlight{margin-block:26px}
-}
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .index-arrow,.index-link{transition:none}
+ :root{--nav-offset:130px}.logo{font-size:11px;gap:10px;letter-spacing:.18em}.logo img{width:35px;height:31px}
+ .links{justify-content:space-between;gap:4px 8px;font-size:9px;letter-spacing:.03em}
+ .hero .h1{font-size:clamp(3.2rem,14vw,5.8rem)}.hero-foot{flex-wrap:wrap}.hero-foot .status{line-height:1.6;font-size:9px;letter-spacing:.1em}
+ .project-picker>label{font-size:10px}.project-explorer>h2{font-size:2.2rem}.explorer-image img{height:auto}
+ .activity-wrap{gap:18px}.activity-list{grid-template-columns:1fr;flex-basis:100%;gap:8px}.activity-list li{padding-left:12px}
+ .activity-list a{display:flex;justify-content:space-between;gap:16px;align-items:center;min-height:38px}.activity-list span{margin:0;text-align:right;flex:none}
+ .research-copy .h2{font-size:clamp(3rem,12vw,4.8rem)}
 }
 
 </style>
@@ -485,65 +455,101 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
     <div class="links">
       <a href="#research">Research</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
     </div>
-    <a class="btn small" href="#contact">Email me <span aria-hidden="true">↗</span></a>
+    <a class="btn small" href="#contact">Email me <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></span></a>
   </nav>
 
   <div class="hero-body">
     <div class="hero-copy">
-      <p class="hero-name">Yogesh Kuchimanchi <span>/ Portfolio</span></p>
+      <p class="hello">Hi, I'm Yogesh.</p>
       <h1 class="h1"><span class="g1">Data science,</span><span class="g2">in practice.</span></h1>
       <p class="tagline"><span>M.S. Data Science student</span> <i>•</i> <span>Rochester, New York</span></p>
-      <p class="lead">I'm an M.S. Data Science student at RIT. I build Python tools for model evaluation, NLP, and public-data research. Explore my research, model-monitoring experiments, and desktop AI tools.</p>
+      <p class="lead">I'm an M.S. Data Science student at RIT. I build Python tools for model evaluation, NLP, and public-data research. Here are a few things I’ve been working on lately.</p>
       <div class="ctas">
-        <a class="btn btn-primary" href="#projects">Explore selected work <span aria-hidden="true">↗</span></a>
-        <a class="btn ghost" href="https://github.com/Zinga18018" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+        <a class="btn" href="#projects">See my projects <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></span></a>
+        <a class="btn ghost" href="https://github.com/Zinga18018" target="_blank" rel="noopener">GitHub <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></span></a>
       </div>
     </div>
-    <aside class="hero-index" aria-labelledby="work-index-title">
-      <div class="index-heading"><p id="work-index-title">Start here</p><span>Selected work / 01—03</span></div>
-      <a class="index-link" href="#research-project">
-        <span class="index-number">01</span><span class="index-copy"><span class="index-category">Public-discourse research</span><strong>Understanding<br>women’s safety discourse.</strong><span class="index-detail">Paper accepted at ASONAM 2026</span></span><span class="index-arrow" aria-hidden="true">↗</span>
-      </a>
-      <a class="index-link" href="#driftlab">
-        <span class="index-number">02</span><span class="index-copy"><span class="index-category">Model evaluation</span><strong>DriftLab</strong><span class="index-detail">Data drift ≠ model degradation</span></span><span class="index-arrow" aria-hidden="true">↗</span>
-      </a>
-      <a class="index-link" href="#prompt-rewriter">
-        <span class="index-number">03</span><span class="index-copy"><span class="index-category">AI desktop tooling</span><strong>Prompt Rewriter</strong><span class="index-detail">A local workflow, on film</span></span><span class="index-arrow" aria-hidden="true">↗</span>
-      </a>
-      <p class="index-note">Code, results, and limitations. Not just a project title.</p>
+    <aside class="project-explorer brackets" aria-labelledby="explore-title">
+      <p class="atlas-kicker">What I’ve been building</p>
+      <h2 id="explore-title">Explore my projects</h2>
+      <fieldset class="project-picker">
+        <legend>Choose a project</legend>
+        <input class="project-radio" id="project-backstory" name="recent-project" type="radio" checked><label for="project-backstory">Backstory</label>
+        <input class="project-radio" id="project-search" name="recent-project" type="radio"><label for="project-search">Catalog search</label>
+        <input class="project-radio" id="project-driftlab" name="recent-project" type="radio"><label for="project-driftlab">DriftLab</label>
+        <div class="project-scenes">
+          <article class="project-scene scene-backstory" aria-labelledby="backstory-title">
+            <p class="project-meta">Newest project · Chrome extension · MVP</p>
+            <h3 id="backstory-title">Backstory</h3>
+            <p>Keep notes on the decisions behind your code, then use them to practise explaining your work.</p>
+            <figure class="explorer-image"><img src="/backstory-preview.svg" width="980" height="760" alt="Illustration of Backstory’s local workspace for project notes and interview practice"><figcaption>UI illustration, not a browser screenshot.</figcaption></figure>
+            <p class="project-caveat">Notes stay in your Chrome profile. Practice questions use fixed templates—not an AI service. Desktop Chrome only.</p>
+            <a class="btn small" href="https://github.com/Zinga18018/backstory" target="_blank" rel="noopener">See Backstory on GitHub <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a>
+          </article>
+          <article class="project-scene scene-search" aria-labelledby="search-title">
+            <p class="project-meta">Recent project · Python · Local demo</p>
+            <h3 id="search-title">Product catalog search</h3>
+            <p>Compare two ways to search a small product catalog, filter by category and price, and see why each result matched.</p>
+            <dl class="explorer-facts"><div><dt>Catalog</dt><dd>54 synthetic products</dd></div><div><dt>Methods</dt><dd>TF-IDF and BM25</dd></div><div><dt>Try locally</dt><dd>Python standard library</dd></div></dl>
+            <p class="project-caveat">A small, author-labelled synthetic demo—not customer data or a production benchmark. Semantic search is not implemented.</p>
+            <a class="btn small" href="https://github.com/Zinga18018/product-catalog-search" target="_blank" rel="noopener">See the search project <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a>
+          </article>
+          <article class="project-scene scene-driftlab" aria-labelledby="drift-preview-title">
+            <p class="project-meta">Recent work · Model monitoring</p>
+            <h3 id="drift-preview-title">DriftLab</h3>
+            <p>Change the data and see when a model’s performance changes with it—and when it doesn’t.</p>
+<figure class="project-plot"><figcaption>Reference and current ROC-AUC</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Reference and current ROC-AUC"><title>Reference and current ROC-AUC</title><path class="grid" d="M20 44V150"/><text x="20" y="177" text-anchor="middle">0</text><path class="grid" d="M95.0 44V150"/><text x="95.0" y="177" text-anchor="middle">0.25</text><path class="grid" d="M170.0 44V150"/><text x="170.0" y="177" text-anchor="middle">0.5</text><path class="grid" d="M245.0 44V150"/><text x="245.0" y="177" text-anchor="middle">0.75</text><path class="grid" d="M320 44V150"/><text x="320" y="177" text-anchor="middle">1</text><path d="M114.664 99H251.42" stroke="#7193aa" stroke-width="4"/><circle class="mark" cx="251.42" cy="99" r="8" fill="#8ec5e8"><title>Reference: 0.771</title></circle><text x="251.42" y="66" class="value" text-anchor="middle">Reference · 0.771</text><circle class="mark" cx="114.664" cy="99" r="8" fill="#f0b46a"><title>Current: 0.316</title></circle><text x="114.664" y="137" class="value" text-anchor="middle">Current · 0.316</text><text x="170" y="210" text-anchor="middle">ROC-AUC</text></svg><p class="plot-foot">Independent training, reference, and current windows. Max PSI 0.482; 2 alerts. Synthetic data, not production traffic.</p></figure>
+            <p class="project-caveat">This plot is a synthetic run, not production traffic. The full project keeps its assumptions and evaluation notes visible.</p>
+            <a class="btn small" href="#driftlab">More about DriftLab <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a>
+          </article>
+        </div>
+      </fieldset>
     </aside>
   </div>
 
   <div class="hero-foot">
     <span class="status"><i class="dot"></i>Graduating December 2026</span>
-    <a class="hero-scroll" href="#research">Explore the evidence <span aria-hidden="true">↓</span></a>
+    <a class="hero-scroll" href="#projects">See what I’ve been working on <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 2v12m-5-5 5 5 5-5"/></svg></a>
   </div>
 </header>
+
+<section class="github-strip" aria-labelledby="github-updates-title">
+  <div class="wrap activity-wrap">
+    <div class="activity-heading"><h2 id="github-updates-title">Recently on GitHub</h2><p id="activity-status">Verified snapshot · 27 Oct 2026, UTC</p></div>
+    <ul class="activity-list" id="github-activity">
+      <li><a href="https://github.com/Zinga18018/driftlab-model-monitoring-simulator/commit/6fd75f3a19d85ecebed93a1c4a48eab6852ed48a" target="_blank" rel="noopener"><strong>DriftLab</strong><span>27 Oct 2026 · verified update</span></a></li>
+      <li><a href="https://github.com/Zinga18018/product-catalog-search/commit/f4f90d5ec3269e775d5d9d3141f48ff9632ad777" target="_blank" rel="noopener"><strong>Product catalog search</strong><span>27 Oct 2026 · verified update</span></a></li>
+      <li><a href="https://github.com/Zinga18018/backstory/commit/8f6ac29824156b155b88ec8613dad84ab22131ed" target="_blank" rel="noopener"><strong>Backstory</strong><span>27 Oct 2026 · verified update</span></a></li>
+    </ul>
+    <a class="activity-all" href="https://github.com/Zinga18018?tab=repositories" target="_blank" rel="noopener">More on GitHub <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a>
+  </div>
+</section>
+
 
 <main id="main" tabindex="-1">
   <section id="research" class="research-focus" aria-labelledby="research-title">
     <div class="wrap research-grid">
       <div class="research-copy">
-        <p class="eyebrow r">01 / Research in focus</p>
-        <h2 id="research-title" class="h2 r"><span class="g1">Follow the</span><span class="g2">evidence.</span></h2>
-        <p class="lead r">From public discourse to genetic evidence, I look at what the data supports—and where it falls short.</p>
+        <p class="eyebrow r">01 / Research</p>
+        <h2 id="research-title" class="h2 r"><span class="g1">Research I’m</span><span class="g2">working on.</span></h2>
+        <p class="lead r">My research looks at women’s safety discussions online and public genetic data for type 2 diabetes.</p>
         <a class="research-highlight r" href="#research-project">
           <span class="research-label">Public-discourse research</span>
           <strong>351,501 comments.<br>16 women-safety cases.</strong>
           <span>Paper accepted at ASONAM 2026</span>
-          <span class="research-cta">View the research <span aria-hidden="true">↗</span></span>
+          <span class="research-cta">View the research <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></span></span>
         </a>
         <div class="research-context r">
-          <p class="label">Also exploring / Statistical genetics</p>
+          <p class="label">Type 2 diabetes project</p>
           <p>The atlas compares returned public-source records for five type 2 diabetes regions. Select a region to inspect the evidence—and the missingness.</p>
-          <a href="#gene-explorer">Read the Gene Explorer project <span aria-hidden="true">↗</span></a>
+          <a href="#gene-explorer">See the diabetes project <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></span></a>
         </div>
       </div>
     <aside class="atlas brackets" aria-labelledby="atlas-title">
       <div class="atlas-top">
         <div>
-          <p class="atlas-kicker">Recent project 01 / Five selected regions</p>
-          <h2 id="atlas-title">Evidence atlas</h2>
+          <p class="atlas-kicker">Public genetic data / Five regions</p>
+          <h2 id="atlas-title">Five diabetes regions</h2>
           <p class="atlas-subtitle">FinnGen R12 T2D · Open Targets 26.09</p>
         </div>
         <button class="atlas-motion" id="atlas-motion" type="button" hidden>Pause motion</button>
@@ -595,7 +601,7 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
         </div>
       </fieldset>
       <p class="atlas-interpretation">Counts show returned-record availability, not evidence strength. “Not returned” is missingness, not a negative biological finding. L2G means locus-to-gene; its score may already include colocalisation, so the molecular track is not independent validation.</p>
-      <div class="atlas-source"><span>All five source regions carry an unspecified quality-control flag.</span><a href="https://zinga18018.github.io/cardiometabolic-gwas-evidence-explorer/" target="_blank" rel="noopener">Open full explorer ↗</a></div>
+      <div class="atlas-source"><span>All five source regions carry an unspecified quality-control flag.</span><a href="https://zinga18018.github.io/cardiometabolic-gwas-evidence-explorer/" target="_blank" rel="noopener">Open full explorer <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></div>
     </aside>
     </div>
   </section>
@@ -603,10 +609,10 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
   <section id="projects">
     <div class="glow" style="top:20%;left:30%" aria-hidden="true"></div>
     <div class="wrap">
-      <p class="eyebrow r">02 / Selected work</p>
+      <p class="eyebrow r">02 / Projects</p>
       <div class="work-head">
-        <h2 class="h2 r"><span class="g1">Selected</span><span class="g2">projects.</span></h2>
-        <p class="lead r" style="--d:.15s">Start with research, model monitoring, and AI tooling. Explore the code, results, and demos behind all six projects.</p>
+        <h2 class="h2 r"><span class="g1">Projects I’ve</span><span class="g2">recently worked on.</span></h2>
+        <p class="lead r" style="--d:.15s">A few projects, with the code, demos, and what I learned along the way. The newest ones are in the explorer above.</p>
       </div>
 
       <div class="stack">
@@ -615,7 +621,7 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
           <div class="card-grid">
             <div>
               <p class="kicker"><b>01 //</b>Public-discourse research</p>
-              <h3>Women-Safety Public Discourse Research</h3>
+              <h3>Research on women’s safety discussions</h3>
               <p class="desc">An interactive research dashboard covering 351,501 Reddit and YouTube comments across 16 women-safety cases in India.</p>
               <ul class="pills"><li>Python</li><li>Pandas</li><li>Qwen</li><li>Statistical testing</li></ul>
             </div>
@@ -623,7 +629,7 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
               <p class="label">// Paper accepted at ASONAM 2026</p>
               <figure class="project-plot"><figcaption>Stance across time windows</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Stance across time windows"><title>Stance across time windows</title><path class="grid" d="M38 165H326"/><text x="29" y="169" text-anchor="end">0%</text><path class="grid" d="M38 125H326"/><text x="29" y="129" text-anchor="end">20%</text><path class="grid" d="M38 85H326"/><text x="29" y="89" text-anchor="end">40%</text><path class="grid" d="M38 45H326"/><text x="29" y="49" text-anchor="end">60%</text><polyline points="52,97.276 179,106.414 306,117.124" fill="none" stroke="#8ec5e8" stroke-width="3"/><circle class="mark" cx="52" cy="97.276" r="5" fill="#8ec5e8"><title>Government criticism: 33.9%</title></circle><circle class="mark" cx="179" cy="106.414" r="5" fill="#8ec5e8"><title>Government criticism: 29.3%</title></circle><circle class="mark" cx="306" cy="117.124" r="5" fill="#8ec5e8"><title>Government criticism: 23.9%</title></circle><polyline points="52,112.814 179,105.806 306,104.67" fill="none" stroke="#f0b46a" stroke-width="3"/><circle class="mark" cx="52" cy="112.814" r="5" fill="#f0b46a"><title>Safety discussion: 26.1%</title></circle><circle class="mark" cx="179" cy="105.806" r="5" fill="#f0b46a"><title>Safety discussion: 29.6%</title></circle><circle class="mark" cx="306" cy="104.67" r="5" fill="#f0b46a"><title>Safety discussion: 30.2%</title></circle><text x="52" y="190" text-anchor="middle">Acute</text><text x="179" y="190" text-anchor="middle">Sustained</text><text x="306" y="190" text-anchor="middle">Retrospective</text><circle cx="8" cy="210" r="4" fill="#8ec5e8"/><text x="18" y="214" text-anchor="start">Govt criticism</text><circle cx="177" cy="210" r="4" fill="#f0b46a"/><text x="187" y="214" text-anchor="start">Safety discussion</text></svg><p class="plot-foot">Phase summaries from the research dashboard · hover for exact values.</p></figure>
               <p class="note">The dashboard separates submitted-paper findings from later model audits.</p>
-              <div class="go"><a href="https://yogeshkuchimanchi.com/research/women-safety/" target="_blank" rel="noopener">Research dashboard ↗</a></div>
+              <div class="go"><a href="https://yogeshkuchimanchi.com/research/women-safety/" target="_blank" rel="noopener">Research dashboard <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></div>
             </aside>
           </div>
         </div></article>
@@ -633,14 +639,14 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
           <div class="card-grid">
             <div>
               <p class="kicker"><b>02 //</b>Model evaluation</p>
-              <h3>DriftLab: Model Monitoring Simulator</h3>
+              <h3>DriftLab: testing model drift</h3>
               <p class="desc">A seeded synthetic simulator that compares an independent reference window with a current window to show when data drift does, and does not, mean model degradation.</p>
               <ul class="pills"><li>NumPy</li><li>Pandas</li><li>PSI / KS</li><li>Streamlit</li></ul>
             </div>
             <aside>
               <p class="label">// Default synthetic mixed-shift run</p>
               <figure class="project-plot"><figcaption>Reference and current ROC-AUC</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Reference and current ROC-AUC"><title>Reference and current ROC-AUC</title><path class="grid" d="M20 44V150"/><text x="20" y="177" text-anchor="middle">0</text><path class="grid" d="M95.0 44V150"/><text x="95.0" y="177" text-anchor="middle">0.25</text><path class="grid" d="M170.0 44V150"/><text x="170.0" y="177" text-anchor="middle">0.5</text><path class="grid" d="M245.0 44V150"/><text x="245.0" y="177" text-anchor="middle">0.75</text><path class="grid" d="M320 44V150"/><text x="320" y="177" text-anchor="middle">1</text><path d="M114.664 99H251.42" stroke="#7193aa" stroke-width="4"/><circle class="mark" cx="251.42" cy="99" r="8" fill="#8ec5e8"><title>Reference: 0.771</title></circle><text x="251.42" y="66" class="value" text-anchor="middle">Reference · 0.771</text><circle class="mark" cx="114.664" cy="99" r="8" fill="#f0b46a"><title>Current: 0.316</title></circle><text x="114.664" y="137" class="value" text-anchor="middle">Current · 0.316</text><text x="170" y="210" text-anchor="middle">ROC-AUC</text></svg><p class="plot-foot">Independent training, reference, and current windows. Max PSI 0.482; 2 alerts. Synthetic data, not production traffic.</p></figure>
-              <div class="go"><a href="https://yogesh-driftlab-monitoring.streamlit.app/" target="_blank" rel="noopener">Live demo ↗</a><a href="https://github.com/Zinga18018/driftlab-model-monitoring-simulator" target="_blank" rel="noopener">Source ↗</a></div>
+              <div class="go"><a href="https://yogesh-driftlab-monitoring.streamlit.app/" target="_blank" rel="noopener">Live demo <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a><a href="https://github.com/Zinga18018/driftlab-model-monitoring-simulator" target="_blank" rel="noopener">Source <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></div>
             </aside>
           </div>
         </div></article>
@@ -663,7 +669,7 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
                 </video>
                 <figcaption>A new captioned edit of the existing Notepad recording, documented as a local Ollama run. The recorded wait is preserved; editorial cards explain the workflow. This is not a latency benchmark.</figcaption>
               </figure>
-              <div class="go"><a href="/videos/prompt-rewriter-live-demo.mp4" target="_blank" rel="noopener">Continuous demo ↗</a><a href="https://github.com/Zinga18018/prompt-rewriter" target="_blank" rel="noopener">Source ↗</a></div>
+              <div class="go"><a href="/videos/prompt-rewriter-live-demo.mp4" target="_blank" rel="noopener">Continuous demo <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a><a href="https://github.com/Zinga18018/prompt-rewriter" target="_blank" rel="noopener">Source <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></div>
             </aside>
           </div>
         </div></article>
@@ -673,7 +679,7 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
           <div class="card-grid">
             <div>
               <p class="kicker"><b>04 //</b>Statistical genetics · recent project</p>
-              <h3>Cardiometabolic GWAS Evidence Explorer</h3>
+              <h3>Exploring genetic evidence for type 2 diabetes</h3>
               <p class="desc">A public-data audit of five FinnGen type 2 diabetes regions, comparing available variant, candidate-gene, and molecular evidence while retaining source QC flags.</p>
               <ul class="pills"><li>Python</li><li>Open Targets</li><li>Statistical genetics</li><li>GitHub Pages</li></ul>
             </div>
@@ -681,7 +687,7 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
               <p class="label">// Open Targets 26.09 snapshot</p>
               <figure class="project-plot"><figcaption>Evidence in the selected regions</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Evidence in the selected regions"><title>Evidence in the selected regions</title><path class="grid" d="M130.0 15V185"/><text x="130.0" y="211" text-anchor="middle">0</text><path class="grid" d="M172.5 15V185"/><text x="172.5" y="211" text-anchor="middle">20</text><path class="grid" d="M215.0 15V185"/><text x="215.0" y="211" text-anchor="middle">40</text><path class="grid" d="M257.5 15V185"/><text x="257.5" y="211" text-anchor="middle">60</text><path class="grid" d="M300.0 15V185"/><text x="300.0" y="211" text-anchor="middle">80</text><text x="0" y="39" text-anchor="start">Regions</text><rect class="mark" x="130" y="23" width="10.625" height="18" rx="4" fill="#8ec5e8"><title>Regions: 5</title></rect><text x="147.625" y="38" class="value" text-anchor="start">5</text><text x="0" y="82" text-anchor="start">Variant rows</text><rect class="mark" x="130" y="66" width="138.125" height="18" rx="4" fill="#e3f1fa"><title>Variant rows: 65</title></rect><text x="275.125" y="81" class="value" text-anchor="start">65</text><text x="0" y="125" text-anchor="start">L2G candidates</text><rect class="mark" x="130" y="109" width="23.375000000000004" height="18" rx="4" fill="#f0b46a"><title>L2G candidates: 11</title></rect><text x="160.375" y="124" class="value" text-anchor="start">11</text><text x="0" y="168" text-anchor="start">Colocalisation</text><rect class="mark" x="130" y="152" width="93.50000000000001" height="18" rx="4" fill="#7193aa"><title>Colocalisation: 44</title></rect><text x="230.5" y="167" class="value" text-anchor="start">44</text></svg><p class="plot-foot">Counts by evidence type · not mutually exclusive.</p></figure>
               <p class="note">Source QC flags remain visible.</p>
-              <div class="go"><a href="https://zinga18018.github.io/cardiometabolic-gwas-evidence-explorer/" target="_blank" rel="noopener">Evidence explorer ↗</a><a href="https://github.com/Zinga18018/cardiometabolic-gwas-evidence-explorer" target="_blank" rel="noopener">Source ↗</a></div>
+              <div class="go"><a href="https://zinga18018.github.io/cardiometabolic-gwas-evidence-explorer/" target="_blank" rel="noopener">Evidence explorer <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a><a href="https://github.com/Zinga18018/cardiometabolic-gwas-evidence-explorer" target="_blank" rel="noopener">Source <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></div>
             </aside>
           </div>
         </div></article>
@@ -691,14 +697,14 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
           <div class="card-grid">
             <div>
               <p class="kicker"><b>05 //</b>Clinical prediction</p>
-              <h3>Readmission Risk Audit</h3>
+              <h3>Checking hospital readmission models</h3>
               <p class="desc">An educational audit of 30-day readmission models, with patient-disjoint cohorts, probability calibration, missingness analysis, and drift checks.</p>
               <ul class="pills"><li>CatBoost</li><li>PyTorch</li><li>Calibration</li><li>Streamlit</li></ul>
             </div>
             <aside>
               <p class="label">// Historical evaluation · 10,822 encounters</p>
               <figure class="project-plot"><figcaption>Historical prediction scores</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Historical prediction scores"><title>Historical prediction scores</title><text x="0" y="35" text-anchor="start">ROC-AUC</text><text x="335" y="35" class="value" text-anchor="end">0.661</text><path d="M8 54H332" stroke="#29404f" stroke-width="4" stroke-linecap="round"/><circle class="mark" cx="222.16400000000002" cy="54" r="7" fill="#8ec5e8"><title>ROC-AUC: 0.661</title></circle><text x="0" y="93" text-anchor="start">PR-AUC</text><text x="335" y="93" class="value" text-anchor="end">0.175</text><path d="M8 112H332" stroke="#29404f" stroke-width="4" stroke-linecap="round"/><circle class="mark" cx="64.69999999999999" cy="112" r="7" fill="#e3f1fa"><title>PR-AUC: 0.175</title></circle><text x="0" y="151" text-anchor="start">Brier score</text><text x="335" y="151" class="value" text-anchor="end">0.077</text><path d="M8 170H332" stroke="#29404f" stroke-width="4" stroke-linecap="round"/><circle class="mark" cx="32.948" cy="170" r="7" fill="#f0b46a"><title>Brier score: 0.077</title></circle><text x="8" y="217" text-anchor="start">0</text><text x="332" y="217" text-anchor="end">1</text></svg><p class="plot-foot">This cohort was inspected across several experiments. These are retrospective results, not an untouched final benchmark or a clinical decision tool.</p></figure>
-              <div class="go"><a href="https://yogesh-readmission-risk-audit.streamlit.app/" target="_blank" rel="noopener">Live demo ↗</a><a href="https://github.com/Zinga18018/readmission-risk-audit" target="_blank" rel="noopener">Source ↗</a></div>
+              <div class="go"><a href="https://yogesh-readmission-risk-audit.streamlit.app/" target="_blank" rel="noopener">Live demo <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a><a href="https://github.com/Zinga18018/readmission-risk-audit" target="_blank" rel="noopener">Source <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></div>
             </aside>
           </div>
         </div></article>
@@ -708,21 +714,21 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
           <div class="card-grid">
             <div>
               <p class="kicker"><b>06 //</b>NLP</p>
-              <h3>NewsSnap: News Classification and Serving</h3>
+              <h3>NewsSnap: sorting news by topic</h3>
               <p class="desc">A four-topic news classifier with a FastAPI service, React dashboard, and separate transformer and keyword-demo modes.</p>
               <ul class="pills"><li>DistilBERT</li><li>FastAPI</li><li>React</li><li>CI/CD</li></ul>
             </div>
             <aside>
               <p class="label">// Historical evaluation · 12,000 articles</p>
               <figure class="project-plot"><figcaption>Classification performance</figcaption><svg viewBox="0 0 340 220" role="img" aria-label="Classification performance"><title>Classification performance</title><circle cx="57" cy="78" r="43" fill="none" stroke="#20323f" stroke-width="7"/><circle class="mark" cx="57" cy="78" r="43" fill="none" stroke="#8ec5e8" stroke-width="7" stroke-linecap="round" stroke-dasharray="235.05396234158832 270.1769682087222" transform="rotate(-90 57 78)"><title>Accuracy: 0.87</title></circle><text x="57" y="83" class="value" text-anchor="middle">0.870</text><text x="57" y="151" text-anchor="middle">Accuracy</text><circle cx="170" cy="78" r="43" fill="none" stroke="#20323f" stroke-width="7"/><circle class="mark" cx="170" cy="78" r="43" fill="none" stroke="#e3f1fa" stroke-width="7" stroke-linecap="round" stroke-dasharray="234.7837853733796 270.1769682087222" transform="rotate(-90 170 78)"><title>Macro-F1: 0.869</title></circle><text x="170" y="83" class="value" text-anchor="middle">0.869</text><text x="170" y="151" text-anchor="middle">Macro-F1</text><circle cx="283" cy="78" r="43" fill="none" stroke="#20323f" stroke-width="7"/><circle class="mark" cx="283" cy="78" r="43" fill="none" stroke="#f0b46a" stroke-width="7" stroke-linecap="round" stroke-dasharray="223.43635270861324 270.1769682087222" transform="rotate(-90 283 78)"><title>MCC: 0.827</title></circle><text x="283" y="83" class="value" text-anchor="middle">0.827</text><text x="283" y="151" text-anchor="middle">MCC</text><text x="170" y="198" text-anchor="middle">Historical project-created test split</text></svg><p class="plot-foot">Recovered training used 512 examples. Prepared train/test pools share 27 normalized texts; fitted-sample overlap is unknown. The hosted demo uses keyword fallback when weights are unavailable.</p></figure>
-              <div class="go"><a href="https://yogesh-newssnap-classifier.streamlit.app/" target="_blank" rel="noopener">Demo: check inference mode ↗</a><a href="https://github.com/Zinga18018/NewsSnap" target="_blank" rel="noopener">Source ↗</a></div>
+              <div class="go"><a href="https://yogesh-newssnap-classifier.streamlit.app/" target="_blank" rel="noopener">Demo: check inference mode <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a><a href="https://github.com/Zinga18018/NewsSnap" target="_blank" rel="noopener">Source <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></div>
             </aside>
           </div>
         </div></article>
       </div>
 
       <div class="credits r">
-        <p class="label">// Repository archive</p>
+        <p class="label">// More projects</p>
         <h3>More work on GitHub.</h3>
         <p class="lead">Find the source, setup instructions, and evaluation notes for more of my projects.</p>
         <dl class="roll">
@@ -732,7 +738,7 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
           <div><dt>Product analytics and A/B testing</dt><dd><a href="https://github.com/Zinga18018/product-analytics-experimentation-lab" target="_blank" rel="noopener">product-analytics-experimentation-lab</a></dd></div>
           <div><dt>Service monitoring</dt><dd><a href="https://github.com/Zinga18018/nyc-311-service-monitor" target="_blank" rel="noopener">nyc-311-service-monitor</a></dd></div>
         </dl>
-        <a class="btn ghost" href="https://github.com/Zinga18018?tab=repositories" target="_blank" rel="noopener">Browse all <span class="repo-count">48</span> repositories <span aria-hidden="true">↗</span></a>
+        <a class="btn ghost" href="https://github.com/Zinga18018?tab=repositories" target="_blank" rel="noopener">See all <span class="repo-count">48</span> repositories <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></span></a>
       </div>
     </div>
   </section>
@@ -767,7 +773,7 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
               <div><dt>Current study</dt><dd>Genetic evidence for type 2 diabetes</dd></div>
               <div><dt>Recent research</dt><dd>Public discourse and women's safety</dd></div>
               <div><dt>Paper</dt><dd>Accepted at ASONAM 2026</dd></div>
-              <div><dt>Dashboard</dt><dd><a href="https://yogeshkuchimanchi.com/research/women-safety/" target="_blank" rel="noopener">Open the research dashboard ↗</a></dd></div>
+              <div><dt>Dashboard</dt><dd><a href="https://yogeshkuchimanchi.com/research/women-safety/" target="_blank" rel="noopener">Open the research dashboard <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></dd></div>
             </dl>
             <span class="sig">Yogesh</span>
           </div>
@@ -870,10 +876,10 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
         </div>
         <div class="console brackets r" style="--d:.1s">
           <div class="row"><span class="k">// EMAIL</span><a href="mailto:kuchimanchiyogesh@gmail.com">kuchimanchiyogesh@gmail.com</a><button class="copy" type="button" data-copy="kuchimanchiyogesh@gmail.com">COPY</button></div>
-          <div class="row"><span class="k">// GITHUB</span><a href="https://github.com/Zinga18018" target="_blank" rel="noopener">github.com/Zinga18018 ↗</a></div>
-          <div class="row"><span class="k">// LINKEDIN</span><a href="https://www.linkedin.com/in/yogesh-kuchimanchi" target="_blank" rel="noopener">linkedin.com/in/yogesh-kuchimanchi ↗</a></div>
+          <div class="row"><span class="k">// GITHUB</span><a href="https://github.com/Zinga18018" target="_blank" rel="noopener">github.com/Zinga18018 <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></div>
+          <div class="row"><span class="k">// LINKEDIN</span><a href="https://www.linkedin.com/in/yogesh-kuchimanchi" target="_blank" rel="noopener">linkedin.com/in/yogesh-kuchimanchi <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></a></div>
           <div class="row"><span class="k">// BASED IN</span><span class="v">Rochester, New York</span></div>
-          <a class="btn" href="mailto:kuchimanchiyogesh@gmail.com?subject=Hello%20Yogesh">Email me <span aria-hidden="true">↗</span></a>
+          <a class="btn" href="mailto:kuchimanchiyogesh@gmail.com?subject=Hello%20Yogesh">Email me <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 13 13 3M3 3h10v10"/></svg></span></a>
         </div>
       </div>
       <footer class="foot">
@@ -1005,6 +1011,71 @@ main>section+section{border-top:1px solid rgba(var(--edge),.22)}
     }
     syncAtlasMotion();
   });
+})();
+</script>
+<script>
+// Public activity is delayed by GitHub. Keep dated, verified updates as a fallback.
+(() => {
+  const list = document.getElementById('github-activity');
+  const status = document.getElementById('activity-status');
+  if (!list || !status) return;
+  const snapshot = [
+    {repo:'Zinga18018/backstory',head:'8f6ac29824156b155b88ec8613dad84ab22131ed',date:'2026-10-27T11:23:45Z',kind:'verified update'},
+    {repo:'Zinga18018/product-catalog-search',head:'f4f90d5ec3269e775d5d9d3141f48ff9632ad777',date:'2026-10-27T11:27:13Z',kind:'verified update'},
+    {repo:'Zinga18018/driftlab-model-monitoring-simulator',head:'6fd75f3a19d85ecebed93a1c4a48eab6852ed48a',date:'2026-10-27T11:29:50Z',kind:'verified update'}
+  ];
+  const names = {'backstory':'Backstory','product-catalog-search':'Product catalog search','driftlab-model-monitoring-simulator':'DriftLab','prompt-rewriter':'Prompt Rewriter','cardiometabolic-gwas-evidence-explorer':'Type 2 diabetes project','readmission-risk-audit':'Readmission models','NewsSnap':'NewsSnap'};
+  const valid = row => row && /^Zinga18018\/[A-Za-z0-9_.-]+$/.test(row.repo) && /^[a-f0-9]{40}$/i.test(row.head) && Number.isFinite(Date.parse(row.date)) && Date.parse(row.date) <= Date.now() + 300000 && ['verified update','public push'].includes(row.kind);
+  function merged(rows) {
+    const sorted = [...snapshot, ...(Array.isArray(rows) ? rows : [])].filter(valid).filter(row => row.repo !== 'Zinga18018/portfolio-website').sort((a,b) => Date.parse(b.date) - Date.parse(a.date));
+    const seen = new Set();
+    return sorted.filter(row => { if (seen.has(row.repo)) return false; seen.add(row.repo); return true; }).slice(0,3);
+  }
+  function render(rows, label) {
+    const entries = merged(rows);
+    if (!entries.length) return;
+    const fragment = document.createDocumentFragment();
+    for (const row of entries) {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = 'https://github.com/' + row.repo + '/commit/' + row.head;
+      a.target = '_blank'; a.rel = 'noopener';
+      const name = document.createElement('strong');
+      const slug = row.repo.split('/')[1];
+      name.textContent = names[slug] || slug.replace(/[-_]+/g,' ');
+      const detail = document.createElement('span');
+      const date = new Date(row.date).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'});
+      detail.textContent = date + ' · ' + row.kind;
+      a.append(name,detail);li.append(a);fragment.append(li);
+    }
+    list.replaceChildren(fragment);
+    status.textContent = label;
+  }
+  const key = 'yk-public-activity-v1';
+  const ttl = 15 * 60 * 1000;
+  let cached;
+  try { cached = JSON.parse(localStorage.getItem(key) || 'null'); } catch (_) {}
+  if (cached && Number.isFinite(cached.checked) && cached.checked <= Date.now() && Date.now()-cached.checked < ttl) {
+    render(cached.rows, cached.ok ? 'Cached public activity · GitHub may delay updates' : 'Verified snapshot · 27 Oct 2026, UTC');
+    return;
+  }
+  render([], 'Verified snapshot · 27 Oct 2026, UTC');
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 6000);
+  fetch('https://api.github.com/users/Zinga18018/events/public?per_page=30', {signal:controller.signal,credentials:'omit',headers:{Accept:'application/vnd.github+json'}})
+    .then(response => {if (!response.ok) throw new Error('Public activity unavailable'); return response.json();})
+    .then(events => {
+      if (!Array.isArray(events)) throw new Error('Unexpected activity response');
+      const rows = events.filter(event => event?.type === 'PushEvent' && event.public === true).map(event => ({repo:event.repo?.name,head:event.payload?.head,date:event.created_at,kind:'public push'})).filter(valid);
+      if (!rows.length) throw new Error('No public pushes returned');
+      render(rows,'Public activity checked · GitHub may delay updates');
+      try { localStorage.setItem(key, JSON.stringify({checked:Date.now(),ok:true,rows})); } catch (_) {}
+    })
+    .catch(() => {
+      render([], 'Verified snapshot · 27 Oct 2026, UTC');
+      try { localStorage.setItem(key,JSON.stringify({checked:Date.now(),ok:false,rows:[]})); } catch (_) {}
+    })
+    .finally(() => clearTimeout(timeout));
 })();
 </script>
 </body>
