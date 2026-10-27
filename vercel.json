@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/demos/backstory/app.html",
+      "destination": "/demos/backstory/",
+      "permanent": false
+    },
+    {
+      "source": "/demos/backstory/popup.html",
+      "destination": "/demos/backstory/popup/",
+      "permanent": false
+    }
+  ]
+}
