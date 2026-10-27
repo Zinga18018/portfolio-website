@@ -1,0 +1,6 @@
+
+.preview-notice { grid-column: 1 / -1; padding: 7px 16px; border-bottom: 1px solid #dadce0; background: #fff8e1; color: #5d4700; font: 11px/1.4 system-ui, sans-serif; }
+.workspace-body { grid-template-rows: auto 1fr; }
+.sidebar { height: calc(100vh - 30px); top: 30px; }
+.popup-body .preview-notice { margin: -16px -16px 14px; }
+@media (max-width: 720px) { .sidebar { height: auto; top: 0; } }
