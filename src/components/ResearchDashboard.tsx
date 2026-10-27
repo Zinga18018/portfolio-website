@@ -1,6 +1,7 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
+import styles from '@/app/research/women-safety/research.module.css'
 
 type CaseFilter = 'all' | 'political' | 'nonpolitical'
 
@@ -36,97 +37,144 @@ const modelMetrics = [
   { name: 'MCC', base: 59.81, adapted: 66.34 },
 ]
 
+const stanceLabels = [
+  { key: 'cg', label: 'Critical of government' },
+  { key: 'cs', label: 'Critical of society' },
+  { key: 'nr', label: 'Neutral reporting' },
+  { key: 'sv', label: 'Supportive of victim' },
+] as const
+
+function Axis({ maximum, label }: { maximum: number; label: string }) {
+  return (
+    <div className={styles.axis} aria-hidden="true">
+      <div className={styles.ticks}>{[0, 1, 2, 3, 4, 5].map((tick) => <span key={tick}>{tick * maximum / 5}</span>)}</div>
+      <div className={styles.axisLabel}>{label}</div>
+    </div>
+  )
+}
+
 export default function ResearchDashboard() {
   const [filter, setFilter] = useState<CaseFilter>('all')
-  const filteredCases = useMemo(() => cases.filter((item) => filter === 'all' || (filter === 'political' ? item.political : !item.political)), [filter])
+  const filteredCases = cases.filter((item) => filter === 'all' || (filter === 'political' ? item.political : !item.political))
 
   return (
     <>
-      <section className="paper-method-strip" id="methods">
-        {[
-          ['01', 'Collect', 'Reddit + YouTube'],
-          ['02', 'Clean', '351,501 retained'],
-          ['03', 'Classify', 'Four stance labels'],
-          ['04', 'Compare', 'Cases + time windows'],
-          ['05', 'Audit', 'Tests + limitations'],
-        ].map(([number, title, detail]) => <article key={number}><span>{number}</span><b>{title}</b><small>{detail}</small></article>)}
-      </section>
-
-      <section className="paper-section" id="findings">
-        <div className="paper-section-head">
-          <div><p className="paper-kicker">RQ1 · Triggering incidents</p><h2>Government criticism by case.</h2></div>
-          <aside><strong>36.67%</strong><span>median government criticism in political cases</span><small>vs 16.65% in the submitted-paper non-political comparison</small></aside>
+      <section className={styles.section} id="findings" aria-labelledby="case-heading">
+        <h2 id="case-heading">Government criticism by case</h2>
+        <p>Share of retained case comments classified as critical of government, sorted from highest to lowest.</p>
+        <div className={styles.filters} role="group" aria-label="Filter cases">
+          {(['all', 'political', 'nonpolitical'] as CaseFilter[]).map((key) => (
+            <button key={key} type="button" aria-pressed={filter === key} aria-controls="case-chart case-data" onClick={() => setFilter(key)}>
+              {key === 'all' ? 'All cases' : key === 'political' ? 'Political' : 'Non-political'}
+            </button>
+          ))}
+          <span role="status">Showing {filteredCases.length} of 16 cases</span>
         </div>
-        <div className="result-ribbon"><b>Mann–Whitney U = 59</b><span>p = 0.0005</span><span>r = 0.786</span><em>Large case-level effect</em></div>
-        <div className="case-explorer">
-          <div className="case-toolbar">
-            <div><h3>Critical-of-government share by case</h3><p>Sorted by share of retained case comments.</p></div>
-            <div className="filter-group" aria-label="Filter cases">
-              {(['all', 'political', 'nonpolitical'] as CaseFilter[]).map((key) => <button key={key} type="button" className={filter === key ? 'active' : ''} onClick={() => setFilter(key)}>{key === 'all' ? 'All cases' : key === 'political' ? 'Political' : 'Non-political'}</button>)}
-            </div>
+        <figure className={styles.figure} aria-labelledby="case-heading" aria-describedby="case-caption">
+          <div className={styles.legend} aria-label="Case groups">
+            <span><i className={styles.political} />Political implication</span>
+            <span><i className={styles.nonpolitical} />Non-political</span>
           </div>
-          <div className="case-chart">
+          <div id="case-chart" className={styles.caseChart}>
             {filteredCases.map((item) => (
-              <div className="case-bar" key={item.name}>
-                <div className="case-label"><b>{item.name}</b><small>{item.n.toLocaleString()} comments</small></div>
-                <div className="case-track"><i className={item.political ? 'political' : ''} style={{ width: `${item.cg * 2}%` }} /></div>
-                <strong>{item.cg.toFixed(2)}%</strong>
+              <div className={styles.barRow} key={item.name}>
+                <div className={styles.rowLabel}>{item.name}<small>{item.n.toLocaleString('en-US')} comments · {item.political ? 'Political' : 'Non-political'}</small></div>
+                <div className={styles.track} aria-hidden="true"><i className={item.political ? styles.political : styles.nonpolitical} style={{ width: `${item.cg * 2}%` }} /></div>
+                <span className={styles.value}>{item.cg.toFixed(2)}%</span>
               </div>
             ))}
           </div>
-          <div className="case-legend"><span><i className="political" /> Political implication</span><span><i /> Non-political</span></div>
-        </div>
-      </section>
-
-      <section className="paper-section temporal-section">
-        <div className="paper-section-head simple">
-          <div><p className="paper-kicker">RQ2 · Evolving narratives</p><h2>Stance across time windows.</h2><p>Among 15 eligible cases with at least 20 rows in both windows, the acute-to-retrospective change was not statistically uniform.</p></div>
-          <aside><strong>W = 43</strong><span>Wilcoxon signed-rank</span><small>p = 0.359 · n = 15</small></aside>
-        </div>
-        <div className="stance-legend"><span><i className="cg" /> Critical of government</span><span><i className="cs" /> Critical of society</span><span><i className="nr" /> Neutral reporting</span><span><i className="sv" /> Supportive of victim</span></div>
-        <div className="phase-chart">
-          {phases.map((phase) => (
-            <article key={phase.name}>
-              <div><h3>{phase.name}</h3><small>{phase.window}</small></div>
-              <div className="stacked-bar" aria-label={`${phase.name} stance distribution`}>
-                <i className="cg" style={{ width: `${phase.cg}%` }} title={`Critical of government ${phase.cg.toFixed(1)}%`} />
-                <i className="cs" style={{ width: `${phase.cs}%` }} title={`Critical of society ${phase.cs.toFixed(1)}%`} />
-                <i className="nr" style={{ width: `${phase.nr}%` }} title={`Neutral reporting ${phase.nr.toFixed(1)}%`} />
-                <i className="sv" style={{ width: `${phase.sv}%` }} title={`Supportive of victim ${phase.sv.toFixed(1)}%`} />
-              </div>
-              <strong>{phase.cg.toFixed(1)}% government criticism</strong>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="paper-section outcomes-section">
-        <div className="paper-section-head simple"><div><p className="paper-kicker">RQ3 · Institutional response</p><h2>Recorded institutional responses.</h2><p>The response taxonomy is descriptive. It does not establish that online discourse caused policy or legal action.</p></div></div>
-        <div className="outcome-grid">
-          <article><span>02</span><h3>Legislative</h3><p>Nirbhaya 2012 · Kathua 2018</p></article>
-          <article><span>03</span><h3>Regulatory / state action</h3><p>Uber Delhi 2014 · Hyderabad Vet 2019 · RG Kar 2024</p></article>
-          <article><span>11</span><h3>Executive / judicial only</h3><p>Remaining cases in the paper taxonomy</p></article>
-        </div>
-      </section>
-
-      <section className="paper-section model-section">
-        <div className="paper-section-head simple"><div><p className="paper-kicker">Post-submission local audit</p><h2>Classification and confidence audit.</h2><p>This panel reports the later fixed 3,000-row validation matrix. It is deliberately separated from the submitted paper&apos;s pilot results.</p></div><aside className="evidence-tag">Later model audit</aside></div>
-        <div className="model-grid">
-          <div className="model-bars">
-            {modelMetrics.map((metric) => <article key={metric.name}><h3>{metric.name}</h3><div><span>Base</span><i><b style={{ width: `${metric.base}%` }} /></i><strong>{metric.base.toFixed(2)}</strong></div><div><span>Adapted</span><i><b className="adapted" style={{ width: `${metric.adapted}%` }} /></i><strong>{metric.adapted.toFixed(2)}</strong></div></article>)}
+          <Axis maximum={50} label="Comments critical of government (%)" />
+          <figcaption id="case-caption">The submitted paper reports a median of 36.67% for political cases and 16.65% for the non-political comparison (Mann–Whitney U = 59, p = 0.0005, r = 0.786; a large case-level effect). Filtering changes the displayed cases, not this reported comparison.</figcaption>
+        </figure>
+        <details className={styles.details} id="case-data">
+          <summary>View case data</summary>
+          <div className={styles.tableScroll} role="region" aria-label="Case data" tabIndex={0}>
+            <table><caption>Values shown in the filtered chart</caption><thead><tr><th scope="col">Case</th><th scope="col">Group</th><th scope="col">Comments</th><th scope="col">Government criticism (%)</th></tr></thead><tbody>
+              {filteredCases.map((item) => <tr key={item.name}><th scope="row">{item.name}</th><td>{item.political ? 'Political' : 'Non-political'}</td><td>{item.n.toLocaleString('en-US')}</td><td>{item.cg.toFixed(2)}</td></tr>)}
+            </tbody></table>
           </div>
-          <aside className="hcer-card"><p>High-confidence error rate</p><strong>10.51% → 11.74%</strong><span>Macro-F1 improved, but the adapted Qwen model became slightly more confidently wrong in this audit matrix. Better classification is not automatically better calibration.</span></aside>
+        </details>
+      </section>
+
+      <section className={styles.section} aria-labelledby="phase-heading">
+        <h2 id="phase-heading">Stance across time windows</h2>
+        <p>The baseline is a separate comparison corpus. The other rows group comments by time since the case.</p>
+        <figure className={styles.figure} aria-labelledby="phase-heading" aria-describedby="phase-caption">
+          <div className={styles.legend}>{stanceLabels.map((stance) => <span key={stance.key}><i className={styles[stance.key]} />{stance.label}</span>)}</div>
+          <div className={styles.phaseChart}>
+            {phases.map((phase) => (
+              <div className={styles.barRow} key={phase.name}>
+                <div className={styles.rowLabel}>{phase.name}<small>{phase.window}</small></div>
+                <div className={styles.stacked} role="img" aria-label={`${phase.name}: ${stanceLabels.map((stance) => `${stance.label} ${phase[stance.key].toFixed(3)}%`).join(', ')}`}>
+                  {stanceLabels.map((stance) => <i key={stance.key} className={styles[stance.key]} style={{ width: `${phase[stance.key]}%` }} title={`${stance.label}: ${phase[stance.key].toFixed(3)}%`} />)}
+                </div>
+              </div>
+            ))}
+          </div>
+          <Axis maximum={100} label="Share of comments (%)" />
+          <figcaption id="phase-caption">The retrospective row shows a lower government-criticism share than the acute row. The paired acute-to-retrospective test across 15 eligible cases did not find a statistically significant change (Wilcoxon W = 43, p = 0.359). Each eligible case had at least 20 rows in both windows.</figcaption>
+        </figure>
+        <details className={styles.details}>
+          <summary>View time-window data</summary>
+          <div className={styles.tableScroll} role="region" aria-label="Time-window data" tabIndex={0}>
+            <table><caption>Stance shares (%); rounding may affect row totals</caption><thead><tr><th scope="col">Window</th>{stanceLabels.map((stance) => <th scope="col" key={stance.key}>{stance.label}</th>)}</tr></thead><tbody>
+              {phases.map((phase) => <tr key={phase.name}><th scope="row">{phase.name}<small>{phase.window}</small></th>{stanceLabels.map((stance) => <td key={stance.key}>{phase[stance.key].toFixed(3)}</td>)}</tr>)}
+            </tbody></table>
+          </div>
+        </details>
+      </section>
+
+      <section className={styles.section} aria-labelledby="response-heading">
+        <h2 id="response-heading">Recorded institutional responses</h2>
+        <p>This taxonomy describes the responses recorded in the paper. It does not show that online discussion caused legal or policy action.</p>
+        <div className={styles.tableScroll} role="region" aria-label="Institutional responses" tabIndex={0}>
+          <table><caption>Response categories across the 16 cases</caption><thead><tr><th scope="col">Response</th><th scope="col">Cases</th><th scope="col">Examples / coverage</th></tr></thead><tbody>
+            <tr><th scope="row">Legislative</th><td>2</td><td>Nirbhaya 2012 · Kathua 2018</td></tr>
+            <tr><th scope="row">Regulatory / state action</th><td>3</td><td>Uber Delhi 2014 · Hyderabad Vet 2019 · RG Kar 2024</td></tr>
+            <tr><th scope="row">Executive / judicial only</th><td>11</td><td>Remaining cases in the paper taxonomy</td></tr>
+          </tbody></table>
         </div>
       </section>
 
-      <section className="paper-section evidence-section">
-        <div><p className="paper-kicker">Notes</p><h2>Evidence and limitations</h2></div>
-        <div className="evidence-grid">
-          <article><span>Submitted-paper</span><p>Corpus scale, 16-case framing, 2012–2024 span, paper-facing tests, and annotator agreement mirror the accepted manuscript.</p></article>
-          <article><span>Local-verified</span><p>The model audit uses later reproducibility artifacts and is labeled separately so it does not rewrite the submitted pilot.</p></article>
-          <article><span>Privacy</span><p>Only aggregate statistics appear here. Raw usernames, comment text, and individual-level records are not published in this dashboard.</p></article>
-          <article><span>Limitations</span><p>Platform participation is not representative of India as a whole. Observed discourse–response patterns are associations, not causal estimates.</p></article>
-        </div>
+      <section className={styles.section} aria-labelledby="model-heading">
+        <h2 id="model-heading">Later model audit</h2>
+        <p>These results use a fixed 3,000-row validation matrix from a post-submission local audit. They are separate from the submitted paper’s pilot results.</p>
+        <figure className={styles.figure} aria-labelledby="model-heading" aria-describedby="model-caption">
+          <div className={styles.legend}><span><i className={styles.base} />Base</span><span><i className={styles.adapted} />Adapted</span></div>
+          <div className={styles.modelChart}>
+            {modelMetrics.map((metric) => <div className={styles.modelGroup} key={metric.name}>
+              <h3>{metric.name}</h3>
+              {(['base', 'adapted'] as const).map((model) => <div className={styles.barRow} key={model}>
+                <span className={styles.rowLabel}>{model === 'base' ? 'Base' : 'Adapted'}</span>
+                <div className={styles.track} aria-hidden="true"><i className={styles[model]} style={{ width: `${metric[model]}%` }} /></div>
+                <span className={styles.value}>{metric[model].toFixed(2)}</span>
+              </div>)}
+            </div>)}
+          </div>
+          <Axis maximum={100} label="Reported score (0–100 scale)" />
+          <figcaption id="model-caption">The adapted Qwen model scored higher on all three measures. Its high-confidence error rate also rose, from 10.51% to 11.74%. Better classification did not mean better calibration in this audit.</figcaption>
+        </figure>
+        <details className={styles.details}>
+          <summary>View model-audit data</summary>
+          <div className={styles.tableScroll} role="region" aria-label="Model-audit data" tabIndex={0}>
+            <table><caption>Reported scores from the later validation matrix</caption><thead><tr><th scope="col">Measure</th><th scope="col">Base</th><th scope="col">Adapted</th></tr></thead><tbody>
+              {modelMetrics.map((metric) => <tr key={metric.name}><th scope="row">{metric.name}</th><td>{metric.base.toFixed(2)}</td><td>{metric.adapted.toFixed(2)}</td></tr>)}
+              <tr><th scope="row">High-confidence error rate (%)</th><td>10.51</td><td>11.74</td></tr>
+            </tbody></table>
+          </div>
+        </details>
+      </section>
+
+      <section className={`${styles.section} ${styles.notes}`} id="methods" aria-labelledby="methods-heading">
+        <h2 id="methods-heading">Methods and limitations</h2>
+        <p>Public Reddit and YouTube comments were collected, cleaned and classified into four stance labels, then compared by case and time window. The accepted manuscript reports 351,501 retained comments, 16 cases with event years from 2012–2024, and 92.8% annotator agreement.</p>
+        <p>The corpus summary and case/time comparisons above retain the submitted-paper figures. The later model audit uses local reproducibility artifacts; it does not replace the submitted pilot.</p>
+        <ul>
+          <li>Platform participation is not representative of India as a whole.</li>
+          <li>Observed discourse–response patterns are associations, not causal estimates.</li>
+          <li>Only aggregate statistics are shown. Raw usernames, comment text and individual-level records are not published here.</li>
+        </ul>
       </section>
     </>
   )
