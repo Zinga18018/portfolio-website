@@ -12,7 +12,7 @@ export default function Projects() {
         <div ref={ref} className="reveal section-intro">
           <p className="eyebrow">Featured projects</p>
           <h2>Selected projects.</h2>
-          <p>Explore the code, results, and demos behind six recent projects.</p>
+          <p>Explore the code, results, and demos behind {projects.length} recent projects.</p>
           <a className="repo-jump" href="#github-projects">Browse the repository archive <FiArrowUpRight /></a>
         </div>
         <div className="project-ledger">

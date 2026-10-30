@@ -1,0 +1,38 @@
+[
+  {
+    "file": "index.html",
+    "duplicate_ids": [],
+    "broken_fragments": [],
+    "missing_local_assets": [],
+    "h1_count": 1,
+    "project_order": [
+      "Women-Safety Public Discourse Research",
+      "DriftLab: Model Monitoring Simulator",
+      "Product Analytics Experimentation Lab",
+      "Readmission Risk Audit",
+      "NewsSnap: News Classification and Serving",
+      "Cardiometabolic GWAS Evidence Explorer",
+      "Prompt Rewriter"
+    ],
+    "archive_collapsed": true
+  },
+  {
+    "file": "career-summary.html",
+    "duplicate_ids": [],
+    "broken_fragments": [],
+    "missing_local_assets": [],
+    "h1_count": 1
+  },
+  {
+    "file": "evidence/driftlab-10000.html",
+    "duplicate_ids": [],
+    "broken_fragments": [],
+    "missing_local_assets": [],
+    "h1_count": 1
+  },
+  {
+    "evidence_records": 10000,
+    "trials_sha256": "5c184fc397c4d9d6037ca7f3fe96233b7e59a96d00655031f771adc2fc991679",
+    "any_alert_count": 0
+  }
+]

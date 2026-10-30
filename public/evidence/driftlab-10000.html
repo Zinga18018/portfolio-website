@@ -1,0 +1,60 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DriftLab | 10,000-trial validation</title><style>body{font:16px/1.65 system-ui,sans-serif;color:#172a36;background:#f6f8fa;margin:0}main{max-width:850px;margin:0 auto;padding:48px 24px}h1{font-size:clamp(2rem,6vw,3.5rem);line-height:1.1}h2{margin-top:32px}a{color:#155c86;text-underline-offset:3px}li{margin-bottom:8px}.intro{font-size:1.15rem}.meta{color:#4c6070}.actions{display:flex;gap:20px;flex-wrap:wrap}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.6 ui-monospace,monospace;background:white;padding:20px;border:1px solid #bccbd5}section{border-top:1px solid #bccbd5;margin-top:24px}button{font:inherit;padding:8px 16px;cursor:pointer}@media print{body{background:white;font-size:11pt}main{padding:0;max-width:none}.actions,.back{display:none}h1{font-size:25pt}h2{font-size:14pt;margin-top:18px}a{color:inherit}section{break-inside:avoid}}table{border-collapse:collapse;font-size:13px;width:100%;display:block;overflow:auto}td,th{border:1px solid #bccbd5;padding:8px;text-align:left}code{overflow-wrap:anywhere}h1:not(:first-of-type){font-size:1.8rem}</style></head><body><main><a class="back" href="/#driftlab">← Back to portfolio</a><p class="meta">Yogesh Kuchimanchi · Model evaluation</p><h1>10,000 synthetic no-drift trials.</h1><p class="intro">Zero observed false alerts. Two-sided 95% Wilson interval: 0%–0.0384%.</p><p>This is an independently seeded simulation experiment with fixed thresholds, not a measurement of production traffic or a claim of zero risk.</p><div class="actions"><a href="driftlab-10000-evidence.zip" download>Download code + full trial evidence (ZIP)</a><a href="driftlab-10000-report.md" download>Download report (Markdown)</a></div><h2>Protocol and reproducibility</h2><h2>No-drift extension: 10,000 fresh seeds</h2>
+<p>Run completed 2026-10-28T21:45:17Z against source commit <code>1a33b24cd9a1597cebf3378197e42d9a84e24e00</code>.</p>
+<p><strong>Observed any-alert false alerts: 0/10,000 (0.000000%). Two-sided Wilson 95% interval: [0.000000%, 0.038400%].</strong> The original 0/40 upper endpoint was 8.7622%; the new upper endpoint is 0.038400%, about 228 times smaller. These are separate samples, not 10,040 trials silently combined.</p>
+<h2>Fixed protocol</h2>
+<ul>
+<li>10,000 fresh, distinct pseudorandom seeds <strong>1040–11039 inclusive</strong>; no overlap with original seeds 1000–1039.</li>
+<li>2,000 rows in <strong>each</strong> training, held-out reference, and current window; fresh fitted model per seed. Three independent <code>SeedSequence</code> child streams within each experiment.</li>
+<li><code>drift_mode=&quot;none&quot;</code>, strength 0, label noise 0.08. The simulator and benchmark modules are unchanged from the source commit. No tuning, filtering, or removal of alerts.</li>
+<li>Distribution alert: any feature PSI &gt;=0.20. Degradation alert: reference AUC minus current AUC &gt;=0.08. Positive-rate alert: absolute current-minus-reference label-positive rate &gt;0.08.</li>
+<li><strong>Any alert</strong> is the union of these three flags. KS is diagnostic only. A run with several flags counts once in the union.</li>
+<li>Four processes, one BLAS thread each; original experiment function called directly for every seed. Progress/data flushed every100 records.</li>
+<li><code>metadata.json</code>&#39;s <code>config</code> is a <strong>template</strong>: its default seed42 is overridden by each actual trial seed. <code>start_seed</code>, <code>end_seed_inclusive</code>, and every JSONL record identify actual seeds; this is not 10,000 repetitions of seed42.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th align="right">Count / trials</th>
+<th align="right">Observed rate</th>
+<th align="right">Wilson95% interval</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>distribution_drift</td>
+<td align="right">0/10000</td>
+<td align="right">0.000000%</td>
+<td align="right">[0.000000%, 0.038400%]</td>
+</tr>
+<tr>
+<td>model_degradation</td>
+<td align="right">0/10000</td>
+<td align="right">0.000000%</td>
+<td align="right">[0.000000%, 0.038400%]</td>
+</tr>
+<tr>
+<td>positive_rate_shift</td>
+<td align="right">0/10000</td>
+<td align="right">0.000000%</td>
+<td align="right">[0.000000%, 0.038400%]</td>
+</tr>
+<tr>
+<td>any_alert</td>
+<td align="right">0/10000</td>
+<td align="right">0.000000%</td>
+<td align="right">[0.000000%, 0.038400%]</td>
+</tr>
+</tbody></table>
+<p>No unavailable AUC comparisons: 0. Runtime recorded by runner: 139.37s.</p>
+<h2>Reproduce and verify</h2>
+<p>Python <strong>3.12.14</strong>, NumPy <strong>2.3.5</strong>, pandas <strong>2.2.3</strong>. Existing environment used; no packages installed. Relevant dependency versions, source SHA256 hashes, and trials SHA256 are alongside this report.</p>
+<pre><code class="language-bash">python -m pip install numpy==2.3.5 pandas==2.2.3
+python scripts_no_drift.py --runs 10000 --start-seed 1040 --workers 4 --output-dir outputs/reproduced_no_drift_10000
+python -m unittest discover -s tests -v
+</code></pre>
+<p>The simulator-only runner needs NumPy and pandas; full tests additionally need Streamlit (1.66.1 in this verification environment). Use a fresh output directory: existing trial evidence is not overwritten. <code>trials.jsonl</code> contains one record per seed, with config, split fingerprints/class counts, metrics, all flags, and any-alert status. <code>summary.json</code> contains precise counts and intervals. The interval uses the unchanged <code>binomial_interval</code> implementation (z=1.959963984540054).</p>
+<p><strong>21/21 tests passed</strong>, including the original Streamlit smoke test, a new runner-vs-original-benchmark equality test, mixed/nonzero alert counting, and zero-event interval precision. Additional checks: serial and two-worker trial files identical for seeds1040–1041; existing-output refusal preserved the file; <code>git diff --check</code> passed. Core source files were verified unchanged.</p>
+<p>The original <strong>200-trial</strong> benchmark was rerun: protocol and all five scenario summaries match exactly; all trial metrics, alert flags and counts match, including <strong>0/40 no-drift alerts</strong>. 195 trial records match fully. The only five differences are the training CSV fingerprint for seed1017 reused across the five scenarios. The current environment differs from the archive; the cause of that fingerprint difference was not established. We do <strong>not</strong> claim byte-identical baseline reproduction. See <code>baseline_verification.json</code>.</p>
+<h2>Interpretation and limits</h2>
+<p>More independent synthetic trials substantially narrowed the binomial interval under this fixed generating mechanism. Zero observed alerts does not mean zero risk. This interval is across independently seeded model/window experiments, not repeated monitoring of one fixed production model. It does not establish production false alarms per day, account for overlapping windows or temporal dependence, or cover delayed labels, seasonality, missing data, and distribution changes absent from this simulator. These are synthetic development experiments, not a locked holdout or a production guarantee. The decision to extend the prior run followed observing the prior result; the fresh 10,000 sample is reported separately.</p>
+</main></body></html>

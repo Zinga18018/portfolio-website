@@ -6,30 +6,31 @@ export default function Hero() {
     <section className="hero" id="top">
       <div className="section-container hero-grid">
         <div className="hero-copy">
-          <p className="eyebrow">M.S. Data Science student · Rochester, New York</p>
-          <h1>Data science, in practice.</h1>
+          <p className="eyebrow">RIT M.S. Data Science · Expected December 2026 · Rochester, NY</p>
+          <h1>Data science. Tested ML.</h1>
           <p className="hero-lede">
             I&apos;m Yogesh, an M.S. Data Science student at RIT. I build Python tools
             for model evaluation, NLP, and public-data research. Here you can explore
             the code, results, and decisions behind my work.
           </p>
-          <div className="hero-actions">
+          <p>Seeking early-career Data Scientist &amp; ML Engineer roles.</p>
+          <div className="hero-actions"><a href="/career-summary.html" className="btn-quiet">Career summary</a>
             <a href="#projects" className="btn-primary">View selected work <FiArrowDownRight /></a>
             <a href={socialLinks.github} target="_blank" rel="noreferrer" className="btn-quiet"><FiGithub /> GitHub</a>
             <a href={socialLinks.linkedin} target="_blank" rel="noreferrer" className="btn-quiet"><FiLinkedin /> LinkedIn</a>
           </div>
         </div>
-        <aside className="hero-note" aria-label="Featured project">
-          <p className="hero-note-label">Featured project</p>
-          <h2>Cardiometabolic GWAS Evidence Explorer</h2>
+        <aside className="hero-note" aria-label="Featured research">
+          <p className="hero-note-label">Featured research</p>
+          <h2>Women’s-Safety Discourse Research</h2>
           <p className="hero-note-copy">
-            An audit of existing FinnGen and Open Targets evidence across five selected
-            type 2 diabetes regions, from variants to candidate genes and molecular clues.
+            Co-authored research accepted at ASONAM 2026, analyzing 351,501 comments
+            across 16 cases with Python pipelines and statistical comparisons.
           </p>
-          <a href="https://zinga18018.github.io/cardiometabolic-gwas-evidence-explorer/" target="_blank" rel="noreferrer">
-            Open the evidence explorer <FiArrowUpRight aria-hidden="true" />
+          <a href="/research/women-safety/" target="_blank" rel="noreferrer">
+            Explore the research <FiArrowUpRight aria-hidden="true" />
           </a>
-          <small>Public aggregate data · candidate evidence, not causal proof</small>
+          <small>Submitted-paper findings and later model audits are separated.</small>
         </aside>
       </div>
     </section>
